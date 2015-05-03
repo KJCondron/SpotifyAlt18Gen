@@ -355,7 +355,8 @@ object UAlt18 extends App {
    (artist, title) 
  })
  
- val byArtistMap = ats.groupBy(_._1.toLowerCase)
+ val byArtistMap1 = ats.groupBy(_._1.toLowerCase)
+ val byArtistMap = byArtistMap1.map( { case (k,v) => (k,v.map(_._2).distinct ) })
  
 // ats.foreach(println)
 // 
@@ -383,7 +384,8 @@ object UAlt18 extends App {
     val res = srch.get
     res.getItems.headOption
   }
-  
+ 
+ // get all artists with exact name match
  val possibles = byArtistMap.map( { case (a,_) => (a,findArtist(a,compare)) } ) 
  val matches = possibles.filter(_._2.size==1)
  val multimatches = possibles.filter(_._2.size>1)
@@ -392,18 +394,26 @@ object UAlt18 extends App {
  println("Matches Count:" + matches.size)
  println("MultiMatches Count:" + multimatches.size)
  
+ // TODO this isn't quite right it partitions but leaves the
+ // moreMatches and moreMatches1 with a buffer. The top of which
+ // id only the right match is find and fidTop preserve order
+ // (probably but still) it should be more like what we do
+ // on allNoMAtches, with an either
+  
+ // get artists with approx name matches and at least one song match, checking only top artist
  val(moreMatches,moreMismatches) = noExactMatches.partition({ case (k,v) =>
    val top = findTopArtist(k)
    val otrack = top.map(t=>s.getTopTracksForArtist(t.getId, "US").build.get)
-   otrack.map(track=>track.exists( t => byArtistMap(k).exists( tt => compare(t.getName,tt._2)) )).getOrElse(false)
+   otrack.map(track=>track.exists( t => byArtistMap(k).exists( tt => compare(t.getName,tt)) )).getOrElse(false)
  })
  
+ // get artists with multiple exact name matches where top match matches at least one song match
  // multimatches matched more than 1 so we don't need to worry about the
  // none case
  val(moreMatches1,moreMismatches2) = multimatches.partition({ case (k,v) =>
    val top = findTopArtist(k)
    val track = s.getTopTracksForArtist(top.get.getId, "US").build.get
-   track.exists( t => byArtistMap(k).exists( tt => compare(t.getName,tt._2)) )
+   track.exists( t => byArtistMap(k).exists( tt => compare(t.getName,tt)) )
  })
  
  println("More Matches Count:" + moreMatches.size)
@@ -411,31 +421,47 @@ object UAlt18 extends App {
  val allNoMatches = moreMismatches2 ++ moreMismatches
  println("NoMatches Count:" + allNoMatches.size)
 
- def anySongMatches( songList : List[(String,String)])(track : Track ) =
-   songList.exists({case (_,song) => compare(song,track.getName)})
+ def anySongMatches( songList : List[String])(track : Track ) =
+   songList.exists(song => compare(song,track.getName))
  
+ // check every possible artist match for matching songs
  val mapped = allNoMatches.map( { case (artistName,artistMatches) => 
    // for each possible artist get top tracks
    // if any top track matches any track in our
    // parsed list return artist id...else????
    val artistList = artistMatches.toList
-   artistList.find { artist => s.getTopTracksForArtist(artist.getId, "US").build.get.exists(anySongMatches(byArtistMap(artistName)) _ ) }
-   .map( a=> ( a.getId,true ) ).getOrElse( (artistName, false))
+   artistList.find { artist => s.getTopTracksForArtist(artist.getId, "US").build.get.exists(
+       anySongMatches(byArtistMap(artistName)) _ ) }
+   .map( a=> ( a.getName,true ) ).getOrElse( (artistName, false))
  })
  
- val (tt, ff) = mapped.partition(_._2)
+ val mapped2 : Map[String,Either[Artist,Boolean] ] = allNoMatches.map( { case (artistName,artistMatches) => 
+   // for each possible artist get top tracks
+   // if any top track matches any track in our
+   // parsed list return artist id...else????
+   val artistList = artistMatches.toList
+   val oartist = artistList.find { artist => s.getTopTracksForArtist(artist.getId, "US").build.get.exists(
+       anySongMatches(byArtistMap(artistName)) _ ) }
+   oartist.map( a => (artistName, Left(a)) ).getOrElse( (artistName, Right(false)))
+ })
  
- val (evenMoreMatches, finalNoMatches) = (tt.keys, ff.keys) 
+ val (ll, rr) = mapped2.partition(_._2.isLeft)
+ 
+ val (evenMoreMatches, finalNoMatches) = (ll.mapValues( { case Left(v) => v } ),  rr.keys) 
  
  finalNoMatches.foreach { x =>
    println("Searching For: " + x)
-   println("Songs: " + byArtistMap(x).map(_._2).mkString(","))
+   println("Songs: " + byArtistMap(x).mkString(","))
    findArtist(x).take(5).foreach({  t=>
      println(t.getName)
      println( s.getTopTracksForArtist(t.getId, "US").build.get.map(_.getName).mkString(",") )
      })}
  
  //s.createPlaylist(x$1, x$2)
+ 
+ val allMatches = matches ++ moreMatches ++ moreMatches1
+ 
+ evenMoreMatches.foreach(println) 
  
  conn.dispose
  conn2.dispose
