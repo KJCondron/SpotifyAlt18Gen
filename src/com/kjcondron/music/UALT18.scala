@@ -2,14 +2,13 @@ package com.kjcondron.music
 
 import scala.Option.option2Iterable
 import scala.collection.mutable.ListBuffer
-
 import org.xml.sax.Attributes
 import org.xml.sax.helpers.DefaultHandler
-
 import com.kjcondron.web.HTTPWrapper
-
 import com.wrapper.spotify._
 import scala.collection.JavaConversions._
+import UAlt18F._
+import com.wrapper.spotify.models.Artist
     
  
 object UAlt18F {
@@ -307,10 +306,16 @@ class UALT18ResHandler extends DefaultHandler {
    // tok2
     
     api
-  } 
+  }
+  
+  def compare(str1 : String, str2 : String) = {
+    val s1 = str1.replace("&", "and")
+    val s2 = str2.replace("&", "and")
+    
+    s1.trim.toLowerCase == s2.trim.toLowerCase
+  }
 
 }
-import UAlt18F._
 
 object UAlt18 extends App {
 
@@ -333,23 +338,59 @@ object UAlt18 extends App {
  
  val ats = fResults.map ( x=> {
    val at = x.split("-")
-   val artist = at(0).replace("&", "and")
+   val artist = at(0)
    val title = if(at.size > 1) { at(1) } else { "" } 
    (artist, title) 
  })
  
  val byArtistMap = ats.groupBy(_._1.toLowerCase)
  
- ats.foreach(println)
+// ats.foreach(println)
+// 
+// byArtistMap.foreach( { case(a,_) => { 
+//     val srch = s.searchArtists(a).build
+//     val res = srch.get
+//     val h = res.getItems.headOption
+//     h.collect( { 
+//       case x if !compare(x.getName, a) => {
+//         println("Artist Name: " + a)
+//         res.getItems.foreach(x=>println(x.getName)) }} )
+//  }
+// })
  
- byArtistMap.foreach( { case(a,_) => { 
-     val srch = s.searchArtists(a).build
-     val res = srch.get
-     val h = res.getItems.headOption
-     h.collect( { 
-       case x if x.getName.toLowerCase.trim != a.trim => 
-         println(a.trim + "=>" + x.getName.toLowerCase.trim + ":" + x.getId) } )
- }})
+ 
+ def findArtist( name : String, filter : (String,String) => Boolean = (_,_)=>true ) = {
+    val srch = s.searchArtists(name).build
+    val res = srch.get
+    val matches = res.getItems.filter( x=>filter(name,x.getName) )
+    matches
+  }
+  
+  def findTopArtist( name : String ) = {
+    val srch = s.searchArtists(name).limit(1).build
+    val res = srch.get
+    res.getItems.head
+  }
+  
+ val possibles = byArtistMap.map( { case (a,_) => (a,findArtist(a,compare)) } ) 
+ val matches = possibles.filter(_._2.size==1)
+ val multimatches = possibles.filter(_._2.size>1)
+ val nomatches = possibles.filter(_._2.size==0)
+ 
+ println("Matches Count:" + matches.size)
+ 
+ println("MultiMatches Count:" + multimatches.size)
+ 
+ multimatches.foreach({ case (k,v) =>
+   println("For Artist " + k + " found " + v.size + " possibles")
+   v.foreach(x=>println(x.getName + ":" + x.getId))
+ })
+
+ println("NoMatches Count:" + nomatches.size)
+ nomatches.foreach({ case (k,v) =>
+   println(k)
+   findArtist(k).foreach { x => println(x.getName) }
+   })
  
  conn.dispose
  conn2.dispose
