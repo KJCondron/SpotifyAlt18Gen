@@ -11,6 +11,7 @@ import UAlt18F._
 import com.wrapper.spotify.models.Artist
 import com.wrapper.spotify.methods.TopTracksRequest
 import com.wrapper.spotify.models.Track
+import java.util.Calendar
     
  
 object UAlt18F {
@@ -320,25 +321,34 @@ class UALT18ResHandler extends DefaultHandler {
 }
 
 object UAlt18 extends App {
-
-  val conn = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\""")
-
-  val s = getSpotify(conn)
   
+  println(Calendar.getInstance().getTime())
+  val s = getSpotify(conn)
+  println(Calendar.getInstance().getTime())
+  
+  val conn = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\""")
   val conn2 = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\Res\""")
-    
+  
   val address = """http://theunofficialalt18countdownplaylists.com/"""
+  
   val res = getUALT18Cal(address,conn)
+  
+  println(Calendar.getInstance().getTime())
+  
  
  val alt18add = res.flatMap( resAdd => getUALT18(resAdd,conn).flatten )
  
+ println(Calendar.getInstance().getTime())
+  
  val results = alt18add.collect( {
    case x  : String if(x.contains("results-")) => getUALT18Table(x,conn2) 
  } )
  
+ println(Calendar.getInstance().getTime())
+  
  val fResults = results.flatten
  
- val check = List("acoustic")
+ val check = List("acoustic", "fenech")
  
  def clean(s:String) = s.replace( 160.toChar, 32.toChar) 
  
@@ -351,27 +361,15 @@ object UAlt18 extends App {
    if( check.exists { c => x.toLowerCase.contains(c)  } ) println(x + "=>" + artist + ":" + title)
    if( at.size == 1 ) { println(x)   }
    
-   
    (artist, title) 
  })
+
+ println(Calendar.getInstance().getTime())
+  
+ val byArtistMap = ats.groupBy(_._1.toLowerCase).map { case (k,v) => (k,v.map(_._2).distinct ) }
  
- val byArtistMap1 = ats.groupBy(_._1.toLowerCase)
- val byArtistMap = byArtistMap1.map( { case (k,v) => (k,v.map(_._2).distinct ) })
- 
-// ats.foreach(println)
-// 
-// byArtistMap.foreach( { case(a,_) => { 
-//     val srch = s.searchArtists(a).build
-//     val res = srch.get
-//     val h = res.getItems.headOption
-//     h.collect( { 
-//       case x if !compare(x.getName, a) => {
-//         println("Artist Name: " + a)
-//         res.getItems.foreach(x=>println(x.getName)) }} )
-//  }
-// })
- 
- 
+ println(Calendar.getInstance().getTime())
+  
  def findArtist( name : String, filter : (String,String) => Boolean = (_,_)=>true ) = {
     val srch = s.searchArtists(name).build
     val res = srch.get
@@ -387,69 +385,35 @@ object UAlt18 extends App {
  
  // get all artists with exact name match
  val possibles = byArtistMap.map( { case (a,_) => (a,findArtist(a,compare)) } ) 
- val matches = possibles.filter(_._2.size==1)
- val multimatches = possibles.filter(_._2.size>1)
- val noExactMatches = possibles.filter(_._2.size==0)
  
- println("Matches Count:" + matches.size)
- println("MultiMatches Count:" + multimatches.size)
- 
- // TODO this isn't quite right it partitions but leaves the
- // moreMatches and moreMatches1 with a buffer. The top of which
- // id only the right match is find and fidTop preserve order
- // (probably but still) it should be more like what we do
- // on allNoMAtches, with an either
+ println(Calendar.getInstance().getTime())
   
- // get artists with approx name matches and at least one song match, checking only top artist
- val(moreMatches,moreMismatches) = noExactMatches.partition({ case (k,v) =>
-   val top = findTopArtist(k)
-   val otrack = top.map(t=>s.getTopTracksForArtist(t.getId, "US").build.get)
-   otrack.map(track=>track.exists( t => byArtistMap(k).exists( tt => compare(t.getName,tt)) )).getOrElse(false)
- })
+ val (newMatches, newNoMatches) = possibles.partition( _._2.size==1 )
  
- // get artists with multiple exact name matches where top match matches at least one song match
- // multimatches matched more than 1 so we don't need to worry about the
- // none case
- val(moreMatches1,moreMismatches2) = multimatches.partition({ case (k,v) =>
-   val top = findTopArtist(k)
-   val track = s.getTopTracksForArtist(top.get.getId, "US").build.get
-   track.exists( t => byArtistMap(k).exists( tt => compare(t.getName,tt)) )
- })
+ println(Calendar.getInstance().getTime())
+  
  
- println("More Matches Count:" + moreMatches.size)
-
- val allNoMatches = moreMismatches2 ++ moreMismatches
- println("NoMatches Count:" + allNoMatches.size)
-
- def anySongMatches( songList : List[String])(track : Track ) =
+ def anySongMatches( songList : List[String])( track : Track ) =
    songList.exists(song => compare(song,track.getName))
  
- // check every possible artist match for matching songs
- val mapped = allNoMatches.map( { case (artistName,artistMatches) => 
+ val newMapped : Map[String,Either[Artist,Boolean] ] = newNoMatches.map( { case (artistName,_) => 
    // for each possible artist get top tracks
    // if any top track matches any track in our
    // parsed list return artist id...else????
-   val artistList = artistMatches.toList
-   artistList.find { artist => s.getTopTracksForArtist(artist.getId, "US").build.get.exists(
+   val artistList = findArtist(artistName) // get all possible artists (no filter)
+   val oArtist = artistList.find { artist => s.getTopTracksForArtist(artist.getId, "US").build.get.exists(
        anySongMatches(byArtistMap(artistName)) _ ) }
-   .map( a=> ( a.getName,true ) ).getOrElse( (artistName, false))
+   oArtist.map( a => (artistName, Left(a)) ).getOrElse( (artistName, Right(false)))
  })
  
- val mapped2 : Map[String,Either[Artist,Boolean] ] = allNoMatches.map( { case (artistName,artistMatches) => 
-   // for each possible artist get top tracks
-   // if any top track matches any track in our
-   // parsed list return artist id...else????
-   val artistList = artistMatches.toList
-   val oartist = artistList.find { artist => s.getTopTracksForArtist(artist.getId, "US").build.get.exists(
-       anySongMatches(byArtistMap(artistName)) _ ) }
-   oartist.map( a => (artistName, Left(a)) ).getOrElse( (artistName, Right(false)))
- })
- 
- val (ll, rr) = mapped2.partition(_._2.isLeft)
- 
- val (evenMoreMatches, finalNoMatches) = (ll.mapValues( { case Left(v) => v } ),  rr.keys) 
- 
- finalNoMatches.foreach { x =>
+ println(Calendar.getInstance().getTime())
+  
+ val (ll, rr) = newMapped.partition(_._2.isLeft)
+ val (newMoreMatches, newFinalNoMatches) = (ll.mapValues( { case Left(v) => v } ),  rr.keys)
+
+ println(Calendar.getInstance().getTime())
+  
+ newFinalNoMatches.foreach { x =>
    println("Searching For: " + x)
    println("Songs: " + byArtistMap(x).mkString(","))
    findArtist(x).take(5).foreach({  t=>
@@ -457,11 +421,11 @@ object UAlt18 extends App {
      println( s.getTopTracksForArtist(t.getId, "US").build.get.map(_.getName).mkString(",") )
      })}
  
+ println("Artists Parsed:" + byArtistMap.size)
+ println("Matches Count:" + (newMatches.size + newMoreMatches.size))
+ println("No Matches Count:" + newFinalNoMatches.size)
+  
  //s.createPlaylist(x$1, x$2)
- 
- val allMatches = matches ++ moreMatches ++ moreMatches1
- 
- evenMoreMatches.foreach(println) 
  
  conn.dispose
  conn2.dispose
