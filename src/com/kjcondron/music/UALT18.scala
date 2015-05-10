@@ -295,6 +295,15 @@ class UALT18ResHandler extends DefaultHandler {
     val _ref = "AQCrukKfpQDzHxXKgxKHOf7tw_vt2bS4A8sXVqWsyp66e6cBj3P-tmdhnNMnUwVCMN4_XPNv8aE7fJUgU6d69Ei32S3WKehwudq_U2Hye54Jql0Ihq1gQh1sgcA9IPidNug"
   //  api.setAccessToken(_tok)
     api.setRefreshToken(_ref)
+    
+    
+    val at = api.refreshAccessToken.build.get
+    val tok = at.getAccessToken
+    println("Access Token: " + tok)
+    
+    val me = api.getMe.accessToken(tok).build.get
+    println("ID: " + me.getId)
+    
         
 //    
 //    val CR2 = api.refreshAccessToken.grantType("refresh_token").
@@ -336,6 +345,7 @@ object UAlt18 extends App {
   println(Calendar.getInstance().getTime())
   val s = getSpotify(conn)
   println(Calendar.getInstance().getTime())
+ 
   
   val address = """http://theunofficialalt18countdownplaylists.com/"""
   
@@ -434,7 +444,9 @@ object UAlt18 extends App {
  println("Matches Count:" + (newMatches.size + newMoreMatches.size))
  println("No Matches Count:" + newFinalNoMatches.size)
   
- //s.createPlaylist(x$1, x$2)
+ //val user = s.getMe.build.get
+ //println(user.getId)
+ //s.createPlaylist(uuid, name)
  
  conn.dispose
  conn2.dispose
