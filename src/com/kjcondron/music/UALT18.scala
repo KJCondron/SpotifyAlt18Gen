@@ -12,6 +12,9 @@ import com.wrapper.spotify.models.Artist
 import com.wrapper.spotify.methods.TopTracksRequest
 import com.wrapper.spotify.models.Track
 import java.util.Calendar
+import java.io.FileOutputStream
+import java.io.File
+import java.io.FileWriter
     
  
 object UAlt18F {
@@ -296,14 +299,14 @@ class UALT18ResHandler extends DefaultHandler {
   //  api.setAccessToken(_tok)
     api.setRefreshToken(_ref)
     
-    
+    /*
     val at = api.refreshAccessToken.build.get
     val tok = at.getAccessToken
     println("Access Token: " + tok)
     
     val me = api.getMe.accessToken(tok).build.get
     println("ID: " + me.getId)
-    
+    */
         
 //    
 //    val CR2 = api.refreshAccessToken.grantType("refresh_token").
@@ -394,6 +397,13 @@ object UAlt18 extends App {
     val matches = res.getItems.filter( x=>filter(name,x.getName) )
     matches
   }
+ 
+ def findSong( name : String, filter : (String,String) => Boolean = (_,_)=>true ) = {
+    val srch = s.searchTracks(name).build
+    val res = srch.get
+    val matches = res.getItems.filter( x=>filter(name,x.getName) )
+    matches
+  }
   
   def findTopArtist( name : String ) = {
     val srch = s.searchArtists(name).limit(1).build
@@ -442,6 +452,18 @@ object UAlt18 extends App {
  
  println("Artists Parsed:" + byArtistMap.size)
  println("Matches Count:" + (newMatches.size + newMoreMatches.size))
+ 
+ val file = new File("""C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\artists.txt""")
+ if (!file.exists)
+   file.createNewFile
+   
+ //val file = new File("Atrists.txt")
+ val fl = new FileWriter(file)
+ (newMatches ++ newMoreMatches).foreach {
+   case(k,v) => fl.write( k + ":" + v.getName + ":" + v.getId + "\n")
+ }
+ fl.close
+ 
  println("No Matches Count:" + newFinalNoMatches.size)
   
  //val user = s.getMe.build.get
