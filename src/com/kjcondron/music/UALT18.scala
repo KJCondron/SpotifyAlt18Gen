@@ -317,17 +317,25 @@ class UALT18ResHandler extends DefaultHandler {
     
     s1.trim.toLowerCase == s2.trim.toLowerCase
   }
+  
+  def partitionMap[A,B,C]( l : List[A] )( pred : A=>Boolean, m1 : A=>B, m2 : A=>C ) : (List[B], List[C]) = 
+    l.foldLeft( (List[B](), List[C]() ) )( (acc,x)=> 
+      if( pred(x) )
+        ( m1(x) :: acc._1, acc._2)
+      else
+        (acc._1, m2(x) :: acc._2)
+        )
 
 }
 
 object UAlt18 extends App {
   
+  val conn = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\""")
+  val conn2 = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\Res\""")
+  
   println(Calendar.getInstance().getTime())
   val s = getSpotify(conn)
   println(Calendar.getInstance().getTime())
-  
-  val conn = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\""")
-  val conn2 = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\Res\""")
   
   val address = """http://theunofficialalt18countdownplaylists.com/"""
   
@@ -388,7 +396,8 @@ object UAlt18 extends App {
  
  println(Calendar.getInstance().getTime())
   
- val (newMatches, newNoMatches) = possibles.partition( _._2.size==1 )
+ val (newMatches1, newNoMatches) = possibles.partition( _._2.size==1 )
+ val newMatches = newMatches1.mapValues { _.head }
  
  println(Calendar.getInstance().getTime())
   
@@ -409,8 +418,8 @@ object UAlt18 extends App {
  println(Calendar.getInstance().getTime())
   
  val (ll, rr) = newMapped.partition(_._2.isLeft)
- val (newMoreMatches, newFinalNoMatches) = (ll.mapValues( { case Left(v) => v } ),  rr.keys)
-
+ val (newMoreMatches, newFinalNoMatches) = (ll.collect( { case (k,Left(v)) => (k,v) } ),  rr.keys)
+ 
  println(Calendar.getInstance().getTime())
   
  newFinalNoMatches.foreach { x =>
