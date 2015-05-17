@@ -15,6 +15,7 @@ import java.util.Calendar
 import java.io.FileOutputStream
 import java.io.File
 import java.io.FileWriter
+import scala.collection.mutable.Buffer
     
  
 object UAlt18F {
@@ -337,61 +338,59 @@ class UALT18ResHandler extends DefaultHandler {
       else
         (acc._1, m2(x) :: acc._2)
         )
-
+        
+        
+  def loadExistingArtists(fileLoc : String) = {
+    io.Source.fromFile(fileLoc).getLines.map( line => { 
+      val entry = line.split(":")
+      (entry(0), (entry(1), entry(2)) )
+    }).toMap
+  }
 }
 
 object UAlt18 extends App {
   
+  val artistFileLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\artists.txt"""
+  val artistFile = new File(artistFileLoc)
+  val artists = if ( artistFile.exists ) Some( loadExistingArtists(artistFileLoc) ) else None
+    
   val conn = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\""")
   val conn2 = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\Res\""")
   
-  println(Calendar.getInstance().getTime())
   val s = getSpotify(conn)
-  println(Calendar.getInstance().getTime())
- 
   
   val address = """http://theunofficialalt18countdownplaylists.com/"""
   
   val res = getUALT18Cal(address,conn)
   
-  println(Calendar.getInstance().getTime())
+  val alt18add = res.flatMap( resAdd => getUALT18(resAdd,conn).flatten )
   
+  val results = alt18add.collect( {
+     case x  : String if(x.contains("results-")) => getUALT18Table(x,conn2) 
+   } )
  
- val alt18add = res.flatMap( resAdd => getUALT18(resAdd,conn).flatten )
+  val fResults = results.flatten
  
- println(Calendar.getInstance().getTime())
-  
- val results = alt18add.collect( {
-   case x  : String if(x.contains("results-")) => getUALT18Table(x,conn2) 
- } )
+  val check = List("acoustic", "fenech")
  
- println(Calendar.getInstance().getTime())
-  
- val fResults = results.flatten
+  def clean(s:String) = s.replace( 160.toChar, 32.toChar) 
  
- val check = List("acoustic", "fenech")
+  val ats = fResults.map ( g=> {
+     val x = clean(g)  
+     val at = x.split(" - ")
+     val artist = at(0)
+     val title = if(at.size > 1) { at(1) } else { "" }
+     
+     if( check.exists { c => x.toLowerCase.contains(c)  } ) println(x + "=>" + artist + ":" + title)
+     if( at.size == 1 ) { println(x)   }
+     
+     (artist, title) 
+   })
  
- def clean(s:String) = s.replace( 160.toChar, 32.toChar) 
- 
- val ats = fResults.map ( g=> {
-   val x = clean(g)  
-   val at = x.split(" - ")
-   val artist = at(0)
-   val title = if(at.size > 1) { at(1) } else { "" }
-   
-   if( check.exists { c => x.toLowerCase.contains(c)  } ) println(x + "=>" + artist + ":" + title)
-   if( at.size == 1 ) { println(x)   }
-   
-   (artist, title) 
- })
-
- println(Calendar.getInstance().getTime())
-  
- val byArtistMap = ats.groupBy(_._1.toLowerCase).map { case (k,v) => (k,v.map(_._2).distinct ) }
- 
- println(Calendar.getInstance().getTime())
+  val byArtistMap = ats.groupBy(_._1.toLowerCase).map { case (k,v) => (k,v.map(_._2).distinct ) }
   
  def findArtist( name : String, filter : (String,String) => Boolean = (_,_)=>true ) = {
+    println("SEARCHING FOR ARTIST: " + name)
     val srch = s.searchArtists(name).build
     val res = srch.get
     val matches = res.getItems.filter( x=>filter(name,x.getName) )
@@ -411,17 +410,19 @@ object UAlt18 extends App {
     res.getItems.headOption
   }
  
- // get all artists with exact name match
- val possibles = byArtistMap.map( { case (a,_) => (a,findArtist(a,compare)) } ) 
- 
- println(Calendar.getInstance().getTime())
+ // get all artists with exact name match, looking in existing map first
+ val possibles = byArtistMap.map( { case (a,_) =>
+   val artistId = artists.flatMap( _.get(a) )
+   val buf = artistId.flatMap( { case (name,id) => {
+     val artist = new Artist
+     artist.setId(id)
+     artist.setName(name)
+     Some( Buffer( artist ) ) }} )
+   (a, buf.getOrElse(findArtist(a,compare))) } ) 
   
  val (newMatches1, newNoMatches) = possibles.partition( _._2.size==1 )
  val newMatches = newMatches1.mapValues { _.head }
- 
- println(Calendar.getInstance().getTime())
-  
- 
+
  def anySongMatches( songList : List[String])( track : Track ) =
    songList.exists(song => compare(song,track.getName))
  
@@ -434,13 +435,9 @@ object UAlt18 extends App {
        anySongMatches(byArtistMap(artistName)) _ ) }
    oArtist.map( a => (artistName, Left(a)) ).getOrElse( (artistName, Right(false)))
  })
- 
- println(Calendar.getInstance().getTime())
-  
+   
  val (ll, rr) = newMapped.partition(_._2.isLeft)
  val (newMoreMatches, newFinalNoMatches) = (ll.collect( { case (k,Left(v)) => (k,v) } ),  rr.keys)
- 
- println(Calendar.getInstance().getTime())
   
  newFinalNoMatches.foreach { x =>
    println("Searching For: " + x)
@@ -453,12 +450,10 @@ object UAlt18 extends App {
  println("Artists Parsed:" + byArtistMap.size)
  println("Matches Count:" + (newMatches.size + newMoreMatches.size))
  
- val file = new File("""C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\artists.txt""")
- if (!file.exists)
-   file.createNewFile
+ if (!artistFile.exists)
+   artistFile.createNewFile
    
- //val file = new File("Atrists.txt")
- val fl = new FileWriter(file)
+ val fl = new FileWriter(artistFile)
  (newMatches ++ newMoreMatches).foreach {
    case(k,v) => fl.write( k + ":" + v.getName + ":" + v.getId + "\n")
  }
