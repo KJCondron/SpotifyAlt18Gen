@@ -376,6 +376,7 @@ object UAlt18 extends App {
   def clean(s:String) = s.replace( 160.toChar, 32.toChar) 
  
   val ats = fResults.map ( g=> {
+     println(g)
      val x = clean(g)  
      val at = x.split(" - ")
      val artist = at(0)
@@ -450,6 +451,14 @@ object UAlt18 extends App {
  println("Artists Parsed:" + byArtistMap.size)
  println("Matches Count:" + (newMatches.size + newMoreMatches.size))
  
+ val empty : Buffer[Track] = Buffer()
+ newFinalNoMatches.map( a => {
+   println("For Artist " + a + " based on tracks possible matches are: ")
+   val songs = byArtistMap(a)
+   val tracks = songs.flatMap( s => if( s.size > 1) findSong(s) else empty )
+   tracks.foreach( _.getArtists.foreach ( at=>println(at.getName) ) )
+ })
+ 
  if (!artistFile.exists)
    artistFile.createNewFile
    
@@ -464,6 +473,10 @@ object UAlt18 extends App {
  //val user = s.getMe.build.get
  //println(user.getId)
  //s.createPlaylist(uuid, name)
+ 
+ val test = findSong("Bad Blood")
+ println("Song Bad Blood Search Count:" + test.size )
+ test.foreach( _.getArtists.foreach(a=>println(a.getName)) )
  
  conn.dispose
  conn2.dispose
