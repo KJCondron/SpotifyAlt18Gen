@@ -425,18 +425,20 @@ object UAlt18 extends App {
  def anySongMatches( songList : List[String])( track : Track ) =
    songList.exists(song => compare(song,track.getName))
  
- val newMapped : Map[String,Either[Artist,Boolean] ] = newNoMatches.map( { case (artistName,_) => 
-   // for each possible artist get top tracks
-   // if any top track matches any track in our
-   // parsed list return artist id...else????
-   val artistList = findArtist(artistName) // get all possible artists (no filter)
-   val oArtist = artistList.find { artist => s.getTopTracksForArtist(artist.getId, "US").build.get.exists(
-       anySongMatches(byArtistMap(artistName)) _ ) }
-   oArtist.map( a => (artistName, Left(a)) ).getOrElse( (artistName, Right(false)))
- })
+ val newMapped : Map[String,Either[Artist,Boolean] ] = newNoMatches.map { 
+   case (artistName,_) => 
+     // for each possible artist get top tracks
+     // if any top track matches any track in our
+     // parsed list return artist id...else????
+     val artistList = findArtist(artistName) // get all possible artists (no filter)
+     val oArtist = artistList.find { artist => 
+         s.getTopTracksForArtist(artist.getId, "US").build.get.exists(
+             anySongMatches(byArtistMap(artistName)) _ ) }
+     oArtist.map( a => (artistName, Left(a)) ).getOrElse( (artistName, Right(false)))
+ }
    
  val (ll, rr) = newMapped.partition(_._2.isLeft)
- val (newMoreMatches, newFinalNoMatches) = (ll.collect( { case (k,Left(v)) => (k,v) } ),  rr.keys)
+ val (newMoreMatches, newFinalNoMatches) = (ll.collect { case (k,Left(v)) => (k,v) },  rr.keys)
   
  newFinalNoMatches.foreach { x =>
    println("Searching For: " + x)
@@ -457,8 +459,7 @@ object UAlt18 extends App {
    tracks.foreach( _.getArtists.foreach ( at=>println(at.getName) ) )
  })
  
- if (!artistFile.exists)
-   artistFile.createNewFile
+ if (!artistFile.exists) artistFile.createNewFile
    
  val fl = new BufferedWriter(new OutputStreamWriter(
     new FileOutputStream(artistFile), "UTF-8"));  
