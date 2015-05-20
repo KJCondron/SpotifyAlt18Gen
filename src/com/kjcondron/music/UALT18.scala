@@ -16,6 +16,8 @@ import java.io.FileOutputStream
 import java.io.File
 import java.io.FileWriter
 import scala.collection.mutable.Buffer
+import java.io.BufferedWriter
+import java.io.OutputStreamWriter
     
  
 object UAlt18F {
@@ -269,7 +271,6 @@ class UALT18ResHandler extends DefaultHandler {
               
     val request = api.clientCredentialsGrant().build();
     val response = request.get
-    println(response.getAccessToken)
     
     val scopes = List(
         "user-read-private",
@@ -341,7 +342,7 @@ class UALT18ResHandler extends DefaultHandler {
         
         
   def loadExistingArtists(fileLoc : String) = {
-    io.Source.fromFile(fileLoc).getLines.map( line => { 
+    io.Source.fromFile(fileLoc, "utf-8").getLines.map( line => { 
       val entry = line.split(":")
       (entry(0), (entry(1), entry(2)) )
     }).toMap
@@ -370,23 +371,19 @@ object UAlt18 extends App {
    } )
  
   val fResults = results.flatten
- 
-  val check = List("acoustic", "fenech")
- 
+  
   def clean(s:String) = s.replace( 160.toChar, 32.toChar) 
  
-  val ats = fResults.map ( g=> {
-     println(g)
+  val ats = fResults.collect { case g if g.contains("-") => 
      val x = clean(g)  
      val at = x.split(" - ")
      val artist = at(0)
      val title = if(at.size > 1) { at(1) } else { "" }
      
-     if( check.exists { c => x.toLowerCase.contains(c)  } ) println(x + "=>" + artist + ":" + title)
      if( at.size == 1 ) { println(x)   }
      
      (artist, title) 
-   })
+   }
  
   val byArtistMap = ats.groupBy(_._1.toLowerCase).map { case (k,v) => (k,v.map(_._2).distinct ) }
   
@@ -413,6 +410,7 @@ object UAlt18 extends App {
  
  // get all artists with exact name match, looking in existing map first
  val possibles = byArtistMap.map( { case (a,_) =>
+   //val artistId = artists.flatMap( _.get(a) )
    val artistId = artists.flatMap( _.get(a) )
    val buf = artistId.flatMap( { case (name,id) => {
      val artist = new Artist
@@ -462,22 +460,32 @@ object UAlt18 extends App {
  if (!artistFile.exists)
    artistFile.createNewFile
    
- val fl = new FileWriter(artistFile)
+ val fl = new BufferedWriter(new OutputStreamWriter(
+    new FileOutputStream(artistFile), "UTF-8"));  
+ 
  (newMatches ++ newMoreMatches).foreach {
    case(k,v) => fl.write( k + ":" + v.getName + ":" + v.getId + "\n")
  }
  fl.close
  
  println("No Matches Count:" + newFinalNoMatches.size)
+ 
+ val mismatchFileLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\mismatch.txt"""
+ val mismatchFile = new File(mismatchFileLoc)
+  
+ if (!mismatchFile.exists)
+   mismatchFile.createNewFile
+ 
+ val writer = new BufferedWriter(new OutputStreamWriter(
+    new FileOutputStream(mismatchFile), "UTF-8"));  
+   
+ (newFinalNoMatches).foreach(x=> writer.write(x + "\n"))
+ writer.close
+ 
   
  //val user = s.getMe.build.get
  //println(user.getId)
  //s.createPlaylist(uuid, name)
- 
- val test = findSong("Bad Blood")
- println("Song Bad Blood Search Count:" + test.size )
- test.foreach( _.getArtists.foreach(a=>println(a.getName)) )
- 
  conn.dispose
  conn2.dispose
 
