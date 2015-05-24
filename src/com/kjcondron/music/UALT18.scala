@@ -341,7 +341,7 @@ class UALT18ResHandler extends DefaultHandler {
         )
         
         
-  def loadExistingArtists(fileLoc : String) = {
+  def loadExisting(fileLoc : String) = {
     io.Source.fromFile(fileLoc, "utf-8").getLines.map( line => { 
       val entry = line.split(":")
       (entry(0), (entry(1), entry(2)) )
@@ -353,8 +353,12 @@ object UAlt18 extends App {
   
   val artistFileLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\artists.txt"""
   val artistFile = new File(artistFileLoc)
-  val artists = if ( artistFile.exists ) Some( loadExistingArtists(artistFileLoc) ) else None
-    
+  val artists = if ( artistFile.exists ) Some( loadExisting(artistFileLoc) ) else None
+  
+  val songFileLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs.txt"""
+  val songFile = new File(songFileLoc)
+  val songs = if ( songFile.exists ) Some( loadExisting(songFileLoc) ) else None
+  
   val conn = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\""")
   val conn2 = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\Res\""")
   
@@ -399,6 +403,7 @@ object UAlt18 extends App {
     val srch = s.searchTracks(name).build
     val res = srch.get
     val matches = res.getItems.filter( x=>filter(name,x.getName) )
+    matches.foreach(t=>println("song: " + t.getName) )
     matches
   }
   
@@ -410,7 +415,6 @@ object UAlt18 extends App {
  
  // get all artists with exact name match, looking in existing map first
  val possibles = byArtistMap.map( { case (a,_) =>
-   //val artistId = artists.flatMap( _.get(a) )
    val artistId = artists.flatMap( _.get(a) )
    val buf = artistId.flatMap( { case (name,id) => {
      val artist = new Artist
@@ -444,19 +448,20 @@ object UAlt18 extends App {
    println("Searching For: " + x)
    println("Songs: " + byArtistMap(x).mkString(","))
    findArtist(x).take(5).foreach({  t=>
-     println(t.getName)
+     println("Artist: " + t.getName + ":" + t.getId)
      println( s.getTopTracksForArtist(t.getId, "US").build.get.map(_.getName).mkString(",") )
      })}
  
+ val allMatches = newMatches ++ newMoreMatches
  println("Artists Parsed:" + byArtistMap.size)
- println("Matches Count:" + (newMatches.size + newMoreMatches.size))
+ println("Matches Count:" + allMatches.size)
  
  val empty : Buffer[Track] = Buffer()
  newFinalNoMatches.map( a => {
    println("For Artist " + a + " based on tracks possible matches are: ")
    val songs = byArtistMap(a)
-   val tracks = songs.flatMap( s => if( s.size > 1) findSong(s) else empty )
-   tracks.foreach( _.getArtists.foreach ( at=>println(at.getName) ) )
+   val tracks = songs.flatMap( s => { println(s); if( s.size > 1) findSong(s) else empty } )
+   tracks.foreach( _.getArtists.foreach ( at=>println("artist: " + at.getName +":" + at.getId) ) )
  })
  
  if (!artistFile.exists) artistFile.createNewFile
@@ -464,7 +469,7 @@ object UAlt18 extends App {
  val fl = new BufferedWriter(new OutputStreamWriter(
     new FileOutputStream(artistFile), "UTF-8"));  
  
- (newMatches ++ newMoreMatches).foreach {
+ (allMatches).foreach {
    case(k,v) => fl.write( k + ":" + v.getName + ":" + v.getId + "\n")
  }
  fl.close
@@ -483,7 +488,35 @@ object UAlt18 extends App {
  (newFinalNoMatches).foreach(x=> writer.write(x + "\n"))
  writer.close
  
-  
+ val foundSongs = allMatches.map { case (name,artist) =>
+     val songList = byArtistMap(name)
+     val topTracks = s.getTopTracksForArtist(artist.getId, "US").build.get
+     songList.map( s => {
+       val oT = songs.flatMap( _.get(s) )
+       oT.flatMap( t => {
+         val tr = new Track
+         tr.setName(t._1)
+         tr.setId(t._2)
+         Some((s, Some(tr))) } ) .getOrElse( {
+                       val matchingTracks = topTracks.filter { t => t.getName.toLowerCase == s.toLowerCase }
+                       if (matchingTracks.size == 1) (s, Some(matchingTracks.head)) else (s,None)
+                       } )})}.flatten
+ 
+ val songsPass1 = foundSongs.collect { case (s,Some(x)) => (s,x) }
+ val songsMissingPass1 = foundSongs.collect { case (s,None) => s }
+ 
+ val sfl = new BufferedWriter(new OutputStreamWriter(
+    new FileOutputStream(songFile), "UTF-8"));  
+ 
+ songsPass1.foreach {
+   case (s,t) => sfl.write( s + ":" + t.getName + ":" + t.getId + "\n")
+ }
+ sfl.close
+ 
+ println("Found " + songsPass1.size + " songs")
+ println("Didn't Find " + songsMissingPass1.size + " songs")
+ songsMissingPass1.foreach(println) 
+ 
  //val user = s.getMe.build.get
  //println(user.getId)
  //s.createPlaylist(uuid, name)
