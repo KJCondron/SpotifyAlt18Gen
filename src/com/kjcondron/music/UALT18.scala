@@ -491,7 +491,7 @@ object UAlt18 extends App {
  val foundSongs = allMatches.map { case (name,artist) =>
      val songList = byArtistMap(name)
      val topTracks = s.getTopTracksForArtist(artist.getId, "US").build.get
-     songList.map( s => {
+     (artist,songList.map( s => {
        val oT = songs.flatMap( _.get(s) )
        oT.flatMap( t => {
          val tr = new Track
@@ -499,23 +499,28 @@ object UAlt18 extends App {
          tr.setId(t._2)
          Some((s, Some(tr))) } ) .getOrElse( {
                        val matchingTracks = topTracks.filter { t => t.getName.toLowerCase == s.toLowerCase }
-                       if (matchingTracks.size == 1) (s, Some(matchingTracks.head)) else (s,None)
-                       } )})}.flatten
+                       if (matchingTracks.size == 1) (s, Some(matchingTracks.head)) else (s, None)
+                       } )}))}
  
- val songsPass1 = foundSongs.collect { case (s,Some(x)) => (s,x) }
- val songsMissingPass1 = foundSongs.collect { case (s,None) => s }
+ val fs = foundSongs.map { case(a,ss) => 
+   (a, ss.collect { case (sn,Some(x)) => (sn,x) }) }.filter{ case(_,ts) => ts.size > 0}
+ 
+ val nfs = foundSongs.map { case(a,ss) => 
+   (a, ss.collect { case (sn,None) => sn }) }.filter{ case(_,ts) => ts.size > 0}
  
  val sfl = new BufferedWriter(new OutputStreamWriter(
     new FileOutputStream(songFile), "UTF-8"));  
  
- songsPass1.foreach {
-   case (s,t) => sfl.write( s + ":" + t.getName + ":" + t.getId + "\n")
- }
+ fs.foreach {
+   case (_,ti) => ti.foreach {
+     case(s,t) =>
+       sfl.write( s + ":" + t.getName + ":" + t.getId + "\n")
+ }}
  sfl.close
  
- println("Found " + songsPass1.size + " songs")
- println("Didn't Find " + songsMissingPass1.size + " songs")
- songsMissingPass1.foreach(println) 
+ println("Found " + fs.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
+ println("Didn't Find " + nfs.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
+ nfs.foreach(println) 
  
  //val user = s.getMe.build.get
  //println(user.getId)
