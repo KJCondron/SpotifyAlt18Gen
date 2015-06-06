@@ -18,6 +18,7 @@ import java.io.FileWriter
 import scala.collection.mutable.Buffer
 import java.io.BufferedWriter
 import java.io.OutputStreamWriter
+import com.wrapper.spotify.exceptions.BadRequestException
     
  
 object UAlt18F {
@@ -326,10 +327,23 @@ class UALT18ResHandler extends DefaultHandler {
   }
   
   def compare(str1 : String, str2 : String) = {
+    
     val s1 = str1.replace("&", "and")
     val s2 = str2.replace("&", "and")
     
     s1.trim.toLowerCase == s2.trim.toLowerCase
+  }
+  
+  def compare2(str1 : String, str2 : String) = {
+    
+    val sFilter = (x:Char) => x > 64 && x < 123
+    val process = (s:String) => 
+      s.replace("&", "and").filter(sFilter).trim.toLowerCase
+    
+    val s1 = str1.replace("&", "and").filter(sFilter)
+    val s2 = str2.replace("&", "and").filter(sFilter)
+    
+    process(s1) == process(s2)
   }
   
   def partitionMap[A,B,C]( l : List[A] )( pred : A=>Boolean, m1 : A=>B, m2 : A=>C ) : (List[B], List[C]) = 
@@ -488,40 +502,68 @@ object UAlt18 extends App {
  (newFinalNoMatches).foreach(x=> writer.write(x + "\n"))
  writer.close
  
- val foundSongs = allMatches.map { case (name,artist) =>
-     val songList = byArtistMap(name)
-     val topTracks = s.getTopTracksForArtist(artist.getId, "US").build.get
-     (artist,songList.map( s => {
-       val oT = songs.flatMap( _.get(s) )
-       oT.flatMap( t => {
-         val tr = new Track
-         tr.setName(t._1)
-         tr.setId(t._2)
-         Some((s, Some(tr))) } ) .getOrElse( {
-                       val matchingTracks = topTracks.filter { t => t.getName.toLowerCase == s.toLowerCase }
-                       if (matchingTracks.size == 1) (s, Some(matchingTracks.head)) else (s, None)
-                       } )}))}
- 
- val fs = foundSongs.map { case(a,ss) => 
-   (a, ss.collect { case (sn,Some(x)) => (sn,x) }) }.filter{ case(_,ts) => ts.size > 0}
- 
- val nfs = foundSongs.map { case(a,ss) => 
-   (a, ss.collect { case (sn,None) => sn }) }.filter{ case(_,ts) => ts.size > 0}
- 
- val sfl = new BufferedWriter(new OutputStreamWriter(
-    new FileOutputStream(songFile), "UTF-8"));  
- 
- fs.foreach {
-   case (_,ti) => ti.foreach {
-     case(s,t) =>
-       sfl.write( s + ":" + t.getName + ":" + t.getId + "\n")
- }}
- sfl.close
- 
- println("Found " + fs.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
- println("Didn't Find " + nfs.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
- nfs.foreach(println) 
- 
+ //try{
+   val foundSongs = allMatches.map { case (name,artist) =>
+       val songList = byArtistMap(name)
+       (artist,songList.map( q => {
+         val oT = songs.flatMap( _.get(q) ) // get song from local cache if both exist
+         oT.map( t => { // we found the song in local cache
+           val tr = new Track
+           tr.setName(t._1)
+           tr.setId(t._2)
+           (q, Some(tr)) } ).getOrElse( { // we did not find the song locally
+                         val topTracks = s.getTopTracksForArtist(artist.getId, "US").build.get
+                         val matchingTracks = topTracks.filter { t => compare2(t.getName,q) }
+                         if (matchingTracks.size > 1) (q, Some(matchingTracks.head)) else (q, None)
+                         } )}))}
+   
+   val fs = foundSongs.map { case(a,ss) => 
+     (a, ss.collect { case (sn,Some(x)) => (sn,x) }) }.filter{ case(_,ts) => ts.size > 0}
+   
+   val nfs = foundSongs.map { case(a,ss) => 
+     (a, ss.collect { case (sn,None) => sn }) }.filter{ case(_,ts) => ts.size > 0}
+   
+   val sfl = new BufferedWriter(new OutputStreamWriter(
+      new FileOutputStream(songFile), "UTF-8"));  
+   
+   fs.foreach {
+     case (_,ti) => ti.foreach {
+       case(s,t) =>
+         sfl.write( s + ":" + t.getName + ":" + t.getId + "\n")
+   }}
+   sfl.close
+   
+   println("Found " + fs.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
+   println("Didn't Find " + nfs.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
+   nfs.foreach( {case (a,ss) => {
+     val topTracks = s.getTopTracksForArtist(a.getId, "US").build.get
+     val tt = topTracks.map(_.getName).toList
+     println( a.getName + ":" + ss + ":" + tt )
+     }} )
+     
+     def findASong(artist : String, title : String) = 
+     {
+       val str = s"track:$title artist:$artist"
+       val items = s.searchTracks(str).market("US").build.get.getItems
+       items//items.foreach(t=>println(t.getName + ":" + t.getId))
+     }
+   
+   def compareBoth( t : Track, artist : Artist, title : String ) = {
+     t.getArtists.head.getId == artist.getId &&
+       compare2(t.getName, title)
+   }
+   val searchRes : Map[Artist, List[Either[Track,String]]] = nfs.map( { case(a,ss) => (a,{
+     ss.map( song=> { 
+       val songList = findASong(a.getName, song) 
+       songList.find( t=>compareBoth(t,a,song) ).map( t=>Left(t) ).getOrElse(Right(song)) 
+     })  
+   })} )
+   
+         
+ /*}
+ catch {
+   case e : BadRequestException => println("Exception: " + e.getMessage)
+ }*/
  //val user = s.getMe.build.get
  //println(user.getId)
  //s.createPlaylist(uuid, name)
