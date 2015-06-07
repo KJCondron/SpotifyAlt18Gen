@@ -535,12 +535,13 @@ object UAlt18 extends App {
    
    println("Found " + fs.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
    println("Didn't Find " + nfs.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
-   nfs.foreach( {case (a,ss) => {
-     val topTracks = s.getTopTracksForArtist(a.getId, "US").build.get
-     val tt = topTracks.map(_.getName).toList
-     println( a.getName + ":" + ss + ":" + tt )
-     }} )
-     
+   
+//   nfs.foreach( {case (a,ss) => {
+//     val topTracks = s.getTopTracksForArtist(a.getId, "US").build.get
+//     val tt = topTracks.map(_.getName).toList
+//     println( a.getName + ":" + ss + ":" + tt )
+//     }} )
+//     
      def findASong(artist : String, title : String) = 
      {
        val str = s"track:$title artist:$artist"
@@ -552,6 +553,7 @@ object UAlt18 extends App {
      t.getArtists.head.getId == artist.getId &&
        compare2(t.getName, title)
    }
+   
    val searchRes : Map[Artist, List[Either[Track,String]]] = nfs.map( { case(a,ss) => (a,{
      ss.map( song=> { 
        val songList = findASong(a.getName, song) 
@@ -559,6 +561,12 @@ object UAlt18 extends App {
      })  
    })} )
    
+   val stillMissing = searchRes.map ( { case (a,ls) => (a, ls.filter(_.isRight)) }).filter( {case (a,ls) => ls.size > 0 } )
+   
+   println("Still Didn't Find " + stillMissing.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
+   stillMissing.foreach({case (a,ls) =>{ 
+     println(a.getName + ":" + ls.mkString(","))
+   }})
          
  /*}
  catch {
