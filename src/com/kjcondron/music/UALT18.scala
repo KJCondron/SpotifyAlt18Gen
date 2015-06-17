@@ -19,6 +19,8 @@ import scala.collection.mutable.Buffer
 import java.io.BufferedWriter
 import java.io.OutputStreamWriter
 import com.wrapper.spotify.exceptions.BadRequestException
+import com.wrapper.spotify.methods.TrackSearchRequest
+
     
  
 object UAlt18F {
@@ -511,11 +513,15 @@ object UAlt18 extends App {
            val tr = new Track
            tr.setName(t._1)
            tr.setId(t._2)
-           (q, Some(tr)) } ).getOrElse( { // we did not find the song locally
+           (q, Some(tr)) } ).getOrElse( try { // we did not find the song locally
                          val topTracks = s.getTopTracksForArtist(artist.getId, "US").build.get
                          val matchingTracks = topTracks.filter { t => compare2(t.getName,q) }
                          if (matchingTracks.size > 1) (q, Some(matchingTracks.head)) else (q, None)
-                         } )}))}
+                         }
+                         catch {
+                           case _ : Throwable => (q,None)
+                         }
+                         )}))}
    
    val fs = foundSongs.map { case(a,ss) => 
      (a, ss.collect { case (sn,Some(x)) => (sn,x) }) }.filter{ case(_,ts) => ts.size > 0}
@@ -531,42 +537,74 @@ object UAlt18 extends App {
        case(s,t) =>
          sfl.write( s + ":" + t.getName + ":" + t.getId + "\n")
    }}
-   sfl.close
+   
+   sfl.close()
    
    println("Found " + fs.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
    println("Didn't Find " + nfs.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
    
-//   nfs.foreach( {case (a,ss) => {
-//     val topTracks = s.getTopTracksForArtist(a.getId, "US").build.get
-//     val tt = topTracks.map(_.getName).toList
-//     println( a.getName + ":" + ss + ":" + tt )
-//     }} )
-//     
-     def findASong(artist : String, title : String) = 
-     {
-       val str = s"track:$title artist:$artist"
-       val items = s.searchTracks(str).market("US").build.get.getItems
-       items//items.foreach(t=>println(t.getName + ":" + t.getId))
-     }
-   
+   def findASong(artist : String, title : String) = 
+   {
+     val str = s"track:$title artist:$artist"
+     val items = s.searchTracks(str).market("US").build.get.getItems
+     items//items.foreach(t=>println(t.getName + ":" + t.getId))
+   }
+ 
    def compareBoth( t : Track, artist : Artist, title : String ) = {
      t.getArtists.head.getId == artist.getId &&
        compare2(t.getName, title)
    }
    
+   val sfl2 = new BufferedWriter(new OutputStreamWriter(
+      new FileOutputStream(songFile,true), "UTF-8"));  
+   
+   def nastyHack(song : String, track : Track) = 
+     sfl2.write( song + ":" + track.getName + ":" + track.getId + "\n")
+   
    val searchRes : Map[Artist, List[Either[Track,String]]] = nfs.map( { case(a,ss) => (a,{
-     ss.map( song=> { 
+     ss.map( song => { 
        val songList = findASong(a.getName, song) 
-       songList.find( t=>compareBoth(t,a,song) ).map( t=>Left(t) ).getOrElse(Right(song)) 
+       songList.find( t=>compareBoth(t,a,song) ).map( t=> { nastyHack(song,t); Left(t) } ).getOrElse(Right(song + ":" + songList.map(_.getName))) 
      })  
    })} )
    
+   sfl2.close()
+   
    val stillMissing = searchRes.map ( { case (a,ls) => (a, ls.filter(_.isRight)) }).filter( {case (a,ls) => ls.size > 0 } )
+   val nowFound = searchRes.map ( { case (a,ls) => (a, ls.filter(_.isLeft)) }).filter( {case (a,ls) => ls.size > 0 } )
+   
+   println("now Found " + nowFound.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
+   nowFound.foreach({case (a,ls) =>{ 
+     println(a.getName + ":" + ls.mkString(","))
+   }})
    
    println("Still Didn't Find " + stillMissing.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
    stillMissing.foreach({case (a,ls) =>{ 
      println(a.getName + ":" + ls.mkString(","))
    }})
+   
+//   def findBestTrack( ts : List[Track], name : String) =
+//   { if (ts.size == 0) println("nothing found for " + name)
+//     ts.foreach { x => println( "FBT:" + x.getArtists.head.getName + ":" +  x.getName) }
+//     val ret = new Track
+//     ret.setName("NOTFOUND")
+//     ret
+//   }
+//  
+// val pass2 = nfs.map { case(a,ss) => {
+//   val aq = "artist:" + a.getName
+//   (a, ss.map(s=> {
+//       val query = s + "+" + aq
+//       println(query)
+//       val tracks = TrackSearchRequest.builder.query(query).market("US").build.get.getItems
+//       if(tracks.size == 1) tracks.head else findBestTrack(tracks.toList,s)
+//     }))
+// }}
+// 
+// println("from stuff done on laptop not yet in git hub")
+// pass2.foreach{ case(a,tt) => 
+//   println(a.getName + ":" + tt.map(_.getName).mkString(","))}
+// 
          
  /*}
  catch {
