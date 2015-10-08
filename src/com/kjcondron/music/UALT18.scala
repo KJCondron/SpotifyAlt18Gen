@@ -209,8 +209,10 @@ class UALT18ResHandler extends DefaultHandler {
     var inTBody = false
     var inTRow = false
     var inTrackCol = false
+    var inTHCol = false
     var found1 = false
     var maxCol = 0
+    var trackCol = ""
     var chars = ""
     
     val res = ListBuffer[(String)]()
@@ -222,9 +224,11 @@ class UALT18ResHandler extends DefaultHandler {
       inTable = inTable || (inBody && name == "table")
       inTHead = inTHead || (inTable && name == "thead")
       if(inTHead && name == "th")
+      {
         maxCol += 1
+        inTHCol = true
+      }
       
-      val trackCol = "column-"+maxCol  
       inTBody = inTBody || (inTable && name == "tbody")
       inTRow = inTRow || (inTBody && name == "tr")
       inTrackCol = inTrackCol || (inTRow && name == "td" && tryGet(a,"class").getOrElse(false)==trackCol)
@@ -233,13 +237,25 @@ class UALT18ResHandler extends DefaultHandler {
     }
     
     override def characters( ch : Array[Char], start : Int, length : Int) : Unit =
+    {
       if(inTrackCol)
         chars += new String(ch, start, length)
+      if(inTHCol)
+      {
+        val chr = new String(ch, start, length)
+        if(chr.contains("ARTIST")){
+          trackCol = "column-" + maxCol
+        }
+          
+      }
+    }
       
-    
     override def endElement( uri : String, localName : String, name : String ) = {
       if(inTHead && name == "thead")
         inTHead = false
+        
+      if(inTHCol && name == "th")
+        inTHCol = false
         
         if(found1 && name == "table") {
         // just set all vars to false to stop parsing
@@ -259,18 +275,22 @@ class UALT18ResHandler extends DefaultHandler {
     }
     
   }
-    
-  def getSpotify(conn : HTTPWrapper) = {
-    
-   
+  
+  def getAPI = {
     val clientId = "20212105b1764ecb81a226fca7796b4b"
     val secret = "57a3b615f9be4b17b61361da94b35204"
     val redir = "https://www.google.com/"
     
-    val api = Api.builder.clientId(clientId)
+    Api.builder.clientId(clientId)
               .clientSecret(secret)
               .redirectURI(redir)
               .build
+  }
+  
+  // URL is always the same for given secret / cliient id and scopes
+  def getSpotifyAuthURL(conn : HTTPWrapper) = {
+    
+    val api = getAPI
               
     val request = api.clientCredentialsGrant().build();
     val response = request.get
@@ -283,49 +303,53 @@ class UALT18ResHandler extends DefaultHandler {
         "playlist-modify-private")
         
     val state = "mystate"
- //   val authorizeURL = api.createAuthorizeURL(scopes, state);
- //   println(authorizeURL)
-    
-
-    
-//    val code = "AQDmajMzNOJwZfAUmsY3j2I_bHs0by73pnBhMt5kKek-oIicOZHpGwt9i6WJD0T-CV-bD8GbgZPLRfPbxDY0l_LbpT_MJvZREdDuZ99auQ-F3U2Zv071MFPBEzVd_AhIDReugdKhDqQ11slXO335aG-otNzYmz34CCvt2b08OKSVDjZzmfb9LuOqbxgc0KJ969UC6pnPZ1YbackSrkFoHf9HZS1ydNpymwYhHq1dIajmuYEtD7EMiesE0D12A_kt0t5398KNwwMkSrWwORZ5yAe9fQcuOnqgQAcZO_mCM9CqwRh2iqvIYZLsd_p-asDFPuKFe33nv_JS"
-//    val credentialRequest = api.authorizationCodeGrant(code).build.get()
-// 
-//    val tok = credentialRequest.getAccessToken
-//    val ref = credentialRequest.getRefreshToken
-//    val expin = credentialRequest.getExpiresIn
-//    println(tok)
-//    println(ref)
-//    println(expin)
-//    //val token = getAccessToken
-    
- //   val _tok = "BQB6-JvveLXYXo0FVK8tOsdq66XM-pfy_nErHVcpR9NBchKf7daAHtwnP3OrF42uoSWfIPEElSwBjm7d0D5DxoOkf00DV3iBkQMSC275JbXNIwsF5sXi9NWE49CHXrowjaEwWtB2tpNHtvDrV1x7LvcqCml7kl9QP3pfIopdeGEj1XQ4k9ChXZV5TZNSav-JApE80Wn1_aXlf2Pfrm5vhmbolE5h2_dsovGnD51iIfGEsZjA8BJ9RJKsIezU888jMp3Dcw"
-    val _ref = "AQCrukKfpQDzHxXKgxKHOf7tw_vt2bS4A8sXVqWsyp66e6cBj3P-tmdhnNMnUwVCMN4_XPNv8aE7fJUgU6d69Ei32S3WKehwudq_U2Hye54Jql0Ihq1gQh1sgcA9IPidNug"
-  //  api.setAccessToken(_tok)
-    api.setRefreshToken(_ref)
-    
-    /*
-    val at = api.refreshAccessToken.build.get
-    val tok = at.getAccessToken
-    println("Access Token: " + tok)
-    
-    val me = api.getMe.accessToken(tok).build.get
-    println("ID: " + me.getId)
-    */
-        
-//    
-//    val CR2 = api.refreshAccessToken.grantType("refresh_token").
-//      refreshToken(_ref).build.get
-//    
-//    val tok2 = CR2.getAccessToken
-//    val expin2 = CR2.getExpiresIn
-//    println(tok2)
-//    println(expin2)
-//      
-    
-   // tok2
+    val authorizeURL = api.createAuthorizeURL(scopes, state);
+    println(authorizeURL)
     
     api
+    
+  }
+  
+  // using the url above, stick it in a web browser get the code and we can get our tokens
+  // code is one time use
+  def getSpotifyTok(conn : HTTPWrapper) = {
+    
+    val api = getAPI
+  
+    val code = "AQDi2DRVQy3ZAu562AWLU5EM_OhWbTm9L4sQlmXKWw-9qxN79yRDWx3eiNKnVg0OnLZ7n6jHOqgLwfpkJCGMpV7K518ZYjuLE_i_nHDE6328oxGpkpJjcua-AjyWGJUEIPfFmOlJJXnLeP5SC9KuFk9OBp775OY4wa8EP3eJiqp8GHeNumy5VGhqhEVFrzsB21eltOtRwj3y70qqecJBAHKyXED70ySnvVZNaoweqh1PAnTipaDs4C77jsxSHEt1PYQ_LSH7c7GwmBRowCFAKcOT9y6Ho-8b89TRmJHEAjh4vJQF5xP6QPDrr6RsYet89eCzQOLOyHzm"
+    val authCode = api.authorizationCodeGrant(code).build.get
+  
+    val tok = authCode.getAccessToken
+    val ref = authCode.getRefreshToken
+    val expin = authCode.getExpiresIn
+    println(tok)
+    println(ref)
+    println(expin)
+    
+    // must set tokens before have access
+    api.setAccessToken(tok)
+    api.setRefreshToken(ref)
+    
+    val user = api.getMe.build.get
+    println(user.getId)
+   
+    
+    api
+  }
+   
+  // if we have a token, and it is new enough we can setup tha api using just that
+  // the refesh token if set should alloww for longer authoriastion...but I am not sure how much
+  def getSpotify(conn : HTTPWrapper) = {
+    
+  val _acc="BQDinJMcartAnjY1BS34HNzEnmeOHATLh_9wY-mM0ujOmHmEJ132ZboJlLh4RmhijfR2wNjaWTOylxSW_1fd3SaLcBLXZXN6coKsAdJwY-WYu6nUpQs-SA7rnWK_HdjJYCGS94g2uFztcz6cp98RfNa4lnbOl7V7IYPtETgmZc8DH6w6ly8Vv19xIoCbYhuaDTNx_iyufLvxoY7J1zWfD-LvdgutvYU9QegO_6TPr9xvBa_S5tGuFC6rYHRPxf1pUQkylQ"
+  val _ref="AQC0OxT6ayAimF5iie5cfjU2PNBa0Fxc1T56tUfGtC57zn3peIrPfeuFom31Gt9uMJHpjiJf486TUdnMVPrtDXs6W-xch6fjzukOKfVjvZk7iIrjNxerlpHvj36w1JXjqYI" 
+  val api = Api.builder.accessToken(_acc).refreshToken(_ref).build
+   
+    val user = api.getMe.build.get
+    println(user.getId)
+   
+    //api.createPlaylist(user.getId, "test").build.get
+    api 
   }
   
   def compare(str1 : String, str2 : String) = {
@@ -338,14 +362,19 @@ class UALT18ResHandler extends DefaultHandler {
   
   def compare2(str1 : String, str2 : String) = {
     
+    println("comparing:" +str1 +":"+ str2)
+        
     val sFilter = (x:Char) => x > 64 && x < 123
-    val process = (s:String) => 
+    val myRep = (s:String) => 
       s.replace("&", "and").filter(sFilter).trim.toLowerCase
+      
+    val dropParenClause = (s:String) => 
+      s.takeWhile(_!= '(').trim.toLowerCase
+      
+    println("no parens:" + dropParenClause(str1) + ":"+ dropParenClause(str2))
     
-    val s1 = str1.replace("&", "and").filter(sFilter)
-    val s2 = str2.replace("&", "and").filter(sFilter)
-    
-    process(s1) == process(s2)
+    myRep(str1) == myRep(str2) || 
+      dropParenClause(str1) == dropParenClause(str2)
   }
   
   def partitionMap[A,B,C]( l : List[A] )( pred : A=>Boolean, m1 : A=>B, m2 : A=>C ) : (List[B], List[C]) = 
@@ -378,6 +407,10 @@ object UAlt18 extends App {
   val conn = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\""")
   val conn2 = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\Res\""")
   
+  println("getting spotify")
+  
+  //val s = getSpotifyAuthURL(conn)
+  //val s = getSpotifyTok(conn)
   val s = getSpotify(conn)
   
   val address = """http://theunofficialalt18countdownplaylists.com/"""
@@ -391,8 +424,9 @@ object UAlt18 extends App {
    } )
  
   val fResults = results.flatten
+  println("got results " + fResults.size)
   
-  def clean(s:String) = s.replace( 160.toChar, 32.toChar) 
+  def clean(s:String) = s.replace(160.toChar, 32.toChar) 
  
   val ats = fResults.collect { case g if g.contains("-") => 
      val x = clean(g)  
@@ -400,18 +434,51 @@ object UAlt18 extends App {
      val artist = at(0)
      val title = if(at.size > 1) { at(1) } else { "" }
      
-     if( at.size == 1 ) { println(x)   }
+     //if( at.size == 1 ) { println(x) }
      
      (artist, title) 
    }
  
+  println("got artists " + ats.size)
   val byArtistMap = ats.groupBy(_._1.toLowerCase).map { case (k,v) => (k,v.map(_._2).distinct ) }
   
  def findArtist( name : String, filter : (String,String) => Boolean = (_,_)=>true ) = {
     println("SEARCHING FOR ARTIST: " + name)
-    val srch = s.searchArtists(name).build
-    val res = srch.get
-    val matches = res.getItems.filter( x=>filter(name,x.getName) )
+    
+    val fn = (nm:String) => {
+      val srch = s.searchArtists(nm).build
+      val res = srch.get
+      res.getItems.filter( x=>filter(nm,x.getName) )
+    }  
+    
+    val matches = try {
+      fn(name)
+    }
+    catch {
+      case b:BadRequestException => {
+        if(b.getMessage == "429") {
+          // too many requests back off for 10 sec
+          try {
+            println("back off")
+            Thread sleep 10000
+            fn(name)
+          }
+          catch {
+            // failed twice stop
+            case t:Throwable => {
+              println("2 exception s:" + t)
+              Buffer[Artist]()
+            }
+          }
+        }
+        else
+          Buffer[Artist]()
+      }
+      case t:Throwable => {
+        println("exception:" + t)
+        Buffer[Artist]()
+      }
+    }
     matches
   }
  
@@ -543,14 +610,20 @@ object UAlt18 extends App {
    println("Found " + fs.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
    println("Didn't Find " + nfs.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
    
-   def findASong(artist : String, title : String) = 
+   def findASong(artist : String, title : String) : java.util.List[Track] = 
    {
      val str = s"track:$title artist:$artist"
      val items = s.searchTracks(str).market("US").build.get.getItems
-     items//items.foreach(t=>println(t.getName + ":" + t.getId))
+     
+     if(items.size == 0 && (title.contains( "(" ) || artist.contains( "(" )))
+       findASong(artist.takeWhile(_!='('),title.takeWhile(_!='('))
+     else
+       items
    }
  
    def compareBoth( t : Track, artist : Artist, title : String ) = {
+     println(t.getArtists.head.getName +":"+ artist.getName +":" + t.getName + ":" + title)
+     println(t.getArtists.head.getId +":"+ artist.getId)
      t.getArtists.head.getId == artist.getId &&
        compare2(t.getName, title)
    }
@@ -563,7 +636,8 @@ object UAlt18 extends App {
    
    val searchRes : Map[Artist, List[Either[Track,String]]] = nfs.map( { case(a,ss) => (a,{
      ss.map( song => { 
-       val songList = findASong(a.getName, song) 
+       val songList = findASong(a.getName, song)
+       println("possibles for " + song + ":" + songList.map(t=>t.getName +":" + t.getId))
        songList.find( t=>compareBoth(t,a,song) ).map( t=> { nastyHack(song,t); Left(t) } ).getOrElse(Right(song + ":" + songList.map(_.getName))) 
      })  
    })} )
@@ -610,10 +684,12 @@ object UAlt18 extends App {
  catch {
    case e : BadRequestException => println("Exception: " + e.getMessage)
  }*/
- //val user = s.getMe.build.get
- //println(user.getId)
- //s.createPlaylist(uuid, name)
- conn.dispose
- conn2.dispose
+ 
 
+ //s.createPlaylist(user.getId, "test")
+ 
+  conn.dispose
+  conn2.dispose
+ 
+   
 } // end app

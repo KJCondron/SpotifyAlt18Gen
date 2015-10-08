@@ -25,11 +25,12 @@ capital cities:Capital Cities:4gwpcMTbLWtBUlOijbVpuu
 junior prom:Junior Prom:29noXXNLw1uvxcnd6PLMkS
 tv on the radio:TV On The Radio:3HJIB8sYPyxrFGuwvKXSLR
 the moth & the flame:The Moth & The Flame:6Fk18HpdnXUsKWpN9mPb9R
-queens of the stone age:Queens Of The Stone Age:4pejUc4iciQfgdX6OKulQn
+nothing but thieves:Nothing but Thieves:1kDGbuxWknIKx4FlgWxiSp
+queens of the stone age:Queens of the Stone Age:4pejUc4iciQfgdX6OKulQn
 terraplane sun:Terraplane Sun:2jUEbzY3ihXrzqOaTV6jTF
 rac:RAC:4AGwPDdh1y8hochNzHy5HC
 hands:Hands:1bq1Z7hsSv9EEP01UmEnZk
-haim:Haim:4Ui2kfOqGujY81UcPrb5KE
+haim:HAIM:4Ui2kfOqGujY81UcPrb5KE
 blondfire:Blondfire:5ySYeIhqg4Rfs5tjteVMz3
 mark ronson:Mark Ronson:3hv9jJF3adDNsBSIQDqcjp
 brandon flowers:Brandon Flowers:18Zv2g2vUcEGqJf6WnjfXN
@@ -41,19 +42,24 @@ kodaline:Kodaline:4BxCuXFJrSWGi1KHcVqaU4
 modest mouse:Modest Mouse:1yAwtBaoHLEDWAnWR87hBT
 elel:ELEL:0VsU6iPTvo3KmiaYJr03wb
 local natives:Local Natives:75dQReiBOHN37fQgWQrIAJ
+nathaniel rateliff & the night sweats:Nathaniel Rateliff & The Night Sweats:02seUFsFQP7TH4hLrTj77o
 the lumineers:The Lumineers:16oZKvXb6WkQlVAjwo2Wbg
 the 1975:The 1975:3mIj9lX2MWuHmhNCA7LSCW
 magic man:Magic Man:6ejhZKxWJr9apHAzj74DHv
 foo fighters:Foo Fighters:7jy3rLJdDQY21OgRLCZ9sD
 coldplay:Coldplay:4gzpq5DPGxSnKTe4SA8HAU
+hippo campus:Hippo Campus:1btWGBz4Uu1HozTwb2Lm8A
 rise against:Rise Against:6Wr3hh341P84m3EI8qdn9O
+jr jr:JR JR:3VAxb3UskTNiHAKh4UeOEv
 sleeper agent:Sleeper Agent:1f4it0Ej0T3TiSpYldK8qS
-dale earnhardt jr. jr.:Dale Earnhardt Jr. Jr.:4nLwqhq99GkNa4V5TL5Vqg
+dale earnhardt jr. jr.:JR JR:3VAxb3UskTNiHAKh4UeOEv
 st. lucia:St. Lucia:5WId4o5jdGVhptNU0uqKxu
 the killers:The Killers:0C0XlULifJtAgn6ZNCW2eu
+coleman hell:Coleman Hell:3q9nybxzbSHsesDBHUlP4c
 cherub:Cherub:00dwwnz3V4kRfu3UFYpJLz
 future islands:Future Islands:1WvvwcQx0tj6NdDhZZ2zZz
 pearl jam:Pearl Jam:1w5Kfo2jwwIPruYS2UWh56
+until the ribbon breaks:Until The Ribbon Breaks:0PFM64sKw3GG4Sk8kqNIcp
 daft punk:Daft Punk:4tZwfgrHOc3mvqYlEYSvVi
 ex cops:Ex Cops:53jUEBC2whloRpELoilcy3
 jamie xx:Jamie xx:7A0awCXkE1FtSU8B0qwOJQ
@@ -81,7 +87,7 @@ vacationer:Vacationer:4rs1K6gDzLY5VnCMSC80o7
 the national:The National:2cCUtGK9sDU2EoElnk0GNB
 arcade fire:Arcade Fire:3kjuyTCjPG1WMFCiyc5IuB
 bear hands:Bear Hands:3ViZST9PgFoieuOHY2GZMp
-kings of leon:Kings Of Leon:2qk9voo8llSGYcZ6xrBzKx
+kings of leon:Kings of Leon:2qk9voo8llSGYcZ6xrBzKx
 cayucas:Cayucas:7LLcRttKjV6PeJOlCNCYon
 the gaslight anthem:The Gaslight Anthem:7If8DXZN7mlGdQkLE2FaMo
 sylvan esso:Sylvan Esso:39vA9YljbnOApXKniLWBZv
@@ -98,11 +104,15 @@ neon trees:Neon Trees:0RpddSzUHfncUWNJXKOsjy
 bad books:Bad Books:0e9H8oaYYRCKFXOVv848nt
 kongos:KONGOS:58R5LHkK3vkmEyGUPOR5kS
 broken bells :Broken Bells:6dgwEwnK0YtDfS9XhRwBTG
+the arcs:The Arcs:3mVWMgLc7bcyCBtL2ymZwK
+beck:Beck:3vbKDsSS70ZX9D2OcvbZmS
 lana del rey:Lana Del Rey:00FQb4jTyendYWaN8pK0wa
 foals:Foals:6FQqZYVfTNQ1pCqfkwVFEa
 coasts:Coasts:5OgSr6wQteRu9jek5JvnDQ
 twenty one pilots:Twenty One Pilots:3YQKmKGau1PzlVlkL1iodx
 fenech-soler:Fenech-Soler:5GqAhBdaiG5StP2EHhmw8B
+silersun pickups:Silversun Pickups:6qyi8X6MdP1lu6B1K6yh3h
+the struts:The Struts:3lDpdwM8KILepMHqBWUhIA
 night riots:Night Riots:67Dg546QfThu4PuanvFD8y
 dan croll:Dan Croll:5Rr15NSbi1Xjno1AEP9u21
 interpol:Interpol:3WaJSfKnzc65VDgmj2zU8B
@@ -117,6 +127,7 @@ franz ferdinand:Franz Ferdinand:0XNa1vTidXlvJ2gHSsRi4A
 metric:Metric:1rCIEwPp5OnXW0ornlSsRl
 joywave:Joywave:1UfzhwcOR4yfX7yHTPfC9m
 mona:Mona:4AKwIU9B31J3L41DuJfFym
+catfish and the bottlemen:Catfish and the Bottlemen:2xaAOVImG2O6lURwqperlD
 chvrches:CHVRCHES:3CjlHNtplJyTf9npxaPl5w
 thumpers:Thumpers:6tDrK7qikYyJjxTBjlDHO9
 hellogoodbye:Hellogoodbye:6GH0NzpthMGxu1mcfAkOde
@@ -144,8 +155,10 @@ the postal service:The Postal Service:5yV1qdnmxyIYiSFB02wpDj
 arctic monkeys:Arctic Monkeys:7Ln80lUS6He07XvHI8qqHH
 banks:Banks:2xe8IXgCTpwHE3eA9hTs4n
  bear hands:Bear Hands:3ViZST9PgFoieuOHY2GZMp
+big grams:Big Grams:4jU68Hm8np6WNZXMqi7rz3
 cage the elephant:Cage The Elephant:26T3LtbuGT1Fu9m0eRq5X3
 bastille:Bastille:7EQ0qTo7fWT7DPxmxtSYEc
+baio:Baio:50lhyY7UVI9NyVHl79rVgk
 milky chance:Milky Chance:1hzfo8twXdOegF3xireCYs
 saint motel:Saint Motel:1dWEYMPtNmvSVaDNLgB6NV
 hozier:Hozier:2FXC3k01G6Gw61bmprjgqS
@@ -160,6 +173,7 @@ robert delong:Robert DeLong:42crL07E4WPfVovyUtMpvC
 imagine dragons:Imagine Dragons:53XhwfbYqKCa1cC15pYq2q
 the naked and famous:The Naked And Famous:0oeUpvxWsC8bWS6SnpU8b9
 smallpools:Smallpools:4iiQabGKtS2RtTKpVkrVTw
+u2:U2:51Blml2LZPmy7TTiAg47vQ
 the ceremonies:The Ceremonies:6RXXWho8kNQtLbhoxeH8WZ
 little daylight:Little Daylight:63aFY9yQyFDJtGkInMUris
 belle and sebastian:Belle & Sebastian:4I2BJf80C0skQpp1sQmA0h
@@ -168,6 +182,7 @@ cold war kids:Cold War Kids:6VDdCwrBM4qQaGxoAyxyJC
 colony house:Colony House:6R664N4cEza3eORSqKSgO4
 broken bells:Broken Bells:6dgwEwnK0YtDfS9XhRwBTG
 tove lo:Tove Lo:4NHQUGzhtTLFvgF5SZesLK
+houndmouth:Houndmouth:7EGwUS3c5dXduO4sMyLWC5
 the strokes:The Strokes:0epOFNiUfyON9EYx7Tpr6V
 papa:PAPA:2WQfUqU0HCYbiOA2w9zmBp
 nine inch nails:Nine Inch Nails:0X380XXQSNBYuleKzav5UO
@@ -178,7 +193,7 @@ glass animals:Glass Animals:4yvcSjfu4PC0CYQyLy4wSq
 weezer:Weezer:3jOstUTkEu2JkjvRdBA5Gu
 san cisco:San Cisco:0Ou0138wEd8XWebhc4j7O0
 slaptop:Slaptop:5NFB7dL4b4ZtcMAk2wCOoi
-walk the moon:Walk the Moon:6DIS6PRrLS3wbnZsf7vYic
+walk the moon:WALK THE MOON:6DIS6PRrLS3wbnZsf7vYic
 ms mr:MS MR:4XaUmUGjidSklcDHxv3XWf
 fitz and the tantrums:Fitz and The Tantrums:4AcHt3JxKy59IX7JNNlZn4
 lorde:Lorde:163tK9Wjr9P9DmM0AVK7lm
