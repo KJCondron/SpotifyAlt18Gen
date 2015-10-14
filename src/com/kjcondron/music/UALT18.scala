@@ -279,18 +279,19 @@ class UALT18ResHandler extends DefaultHandler {
   def getAPI = {
     val clientId = "20212105b1764ecb81a226fca7796b4b"
     val secret = "57a3b615f9be4b17b61361da94b35204"
-    val redir = "https://www.google.com/"
+    
     
     Api.builder.clientId(clientId)
               .clientSecret(secret)
-              .redirectURI(redir)
-              .build
+              
   }
   
   // URL is always the same for given secret / cliient id and scopes
   def getSpotifyAuthURL(conn : HTTPWrapper) = {
     
-    val api = getAPI
+    val redir = "https://www.google.com/"
+    val api = getAPI.redirectURI(redir)
+              .build
               
     val request = api.clientCredentialsGrant().build();
     val response = request.get
@@ -314,7 +315,7 @@ class UALT18ResHandler extends DefaultHandler {
   // code is one time use
   def getSpotifyTok(conn : HTTPWrapper) = {
     
-    val api = getAPI
+    val api = getAPI.build
   
     val code = "AQDi2DRVQy3ZAu562AWLU5EM_OhWbTm9L4sQlmXKWw-9qxN79yRDWx3eiNKnVg0OnLZ7n6jHOqgLwfpkJCGMpV7K518ZYjuLE_i_nHDE6328oxGpkpJjcua-AjyWGJUEIPfFmOlJJXnLeP5SC9KuFk9OBp775OY4wa8EP3eJiqp8GHeNumy5VGhqhEVFrzsB21eltOtRwj3y70qqecJBAHKyXED70ySnvVZNaoweqh1PAnTipaDs4C77jsxSHEt1PYQ_LSH7c7GwmBRowCFAKcOT9y6Ho-8b89TRmJHEAjh4vJQF5xP6QPDrr6RsYet89eCzQOLOyHzm"
     val authCode = api.authorizationCodeGrant(code).build.get
@@ -337,17 +338,30 @@ class UALT18ResHandler extends DefaultHandler {
     api
   }
    
-  // if we have a token, and it is new enough we can setup tha api using just that
-  // the refesh token if set should alloww for longer authoriastion...but I am not sure how much
+  // if we have a token, and it is new enough we can setup the api using just that
+  // the refresh token can be used with secret to get a new access token
   def getSpotify(conn : HTTPWrapper) = {
     
-  val _acc="BQDinJMcartAnjY1BS34HNzEnmeOHATLh_9wY-mM0ujOmHmEJ132ZboJlLh4RmhijfR2wNjaWTOylxSW_1fd3SaLcBLXZXN6coKsAdJwY-WYu6nUpQs-SA7rnWK_HdjJYCGS94g2uFztcz6cp98RfNa4lnbOl7V7IYPtETgmZc8DH6w6ly8Vv19xIoCbYhuaDTNx_iyufLvxoY7J1zWfD-LvdgutvYU9QegO_6TPr9xvBa_S5tGuFC6rYHRPxf1pUQkylQ"
+  val _acc="BQDUIN37hIOO-ZbkTyP6tuZOpTOcw1o3uPoZt3hsvSw9f7APSgFtL8BxcMf4Q2tqlWmeQFnXAUV2Hs0ucHSunXVus6lbYL0RjHxiLs-WfmYlWh9500dQb_sMxpbgK2cL8wB7I4fQsPVJz5jd-uGTyBikXgSZCr5nhfvZ8eA3cYksbGO2W__J7V02OHy6XiOvJ_DQjIglEJykis2feDjEteuTSlycy7Cm4m0Bn-gcqzZiHDkYRazFUmkXI_8qtnNWXccY8A"
   val _ref="AQC0OxT6ayAimF5iie5cfjU2PNBa0Fxc1T56tUfGtC57zn3peIrPfeuFom31Gt9uMJHpjiJf486TUdnMVPrtDXs6W-xch6fjzukOKfVjvZk7iIrjNxerlpHvj36w1JXjqYI" 
-  val api = Api.builder.accessToken(_acc).refreshToken(_ref).build
-   
-    val user = api.getMe.build.get
-    println(user.getId)
-   
+  
+    //val api = Api.builder.accessToken(_acc).refreshToken(_ref).build
+     val api = 
+     try{
+       val _api = Api.builder.accessToken(_acc).build
+       val user = _api.getMe.build.get
+       _api
+     }
+     catch{
+       case t:Throwable => {
+         val _acc2 = getAPI.refreshToken(_ref).build.refreshAccessToken.build.get.getAccessToken
+         println(_acc2)
+         Api.builder.accessToken(_acc2).build
+       }
+     }
+     
+     val user = api.getMe.build.get
+     println(user.getEmail)
     //api.createPlaylist(user.getId, "test").build.get
     api 
   }
