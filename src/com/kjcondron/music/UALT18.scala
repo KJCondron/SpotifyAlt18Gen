@@ -342,7 +342,7 @@ class UALT18ResHandler extends DefaultHandler {
   // the refresh token can be used with secret to get a new access token
   def getSpotify(conn : HTTPWrapper) = {
     
-  val _acc="BQDUIN37hIOO-ZbkTyP6tuZOpTOcw1o3uPoZt3hsvSw9f7APSgFtL8BxcMf4Q2tqlWmeQFnXAUV2Hs0ucHSunXVus6lbYL0RjHxiLs-WfmYlWh9500dQb_sMxpbgK2cL8wB7I4fQsPVJz5jd-uGTyBikXgSZCr5nhfvZ8eA3cYksbGO2W__J7V02OHy6XiOvJ_DQjIglEJykis2feDjEteuTSlycy7Cm4m0Bn-gcqzZiHDkYRazFUmkXI_8qtnNWXccY8A"
+  val _acc="BQDxjkRXosCSAH5cP-vMHzAV34ZtXk9UCFDUCqVlLkOBKchKIv1749Gsuk0e7gHhyF1MGJMXgBCWPfNg9ymUREsPs9oDvax7b9nwNQmna_OIg2LbzTexKnYOOa2PoGNyAf5AGlvN1bPR56UZm4ru49CZ8Snbo0dhla30vwYaBYwNKiGiciRCS5rQb1jrw2WDxHfpKp727kFGELjNtRzihFNXVSLmluY9X6LDMx9QvV6wOoxc2g4u0FE27Tuv8ijp5inLEA"
   val _ref="AQC0OxT6ayAimF5iie5cfjU2PNBa0Fxc1T56tUfGtC57zn3peIrPfeuFom31Gt9uMJHpjiJf486TUdnMVPrtDXs6W-xch6fjzukOKfVjvZk7iIrjNxerlpHvj36w1JXjqYI" 
   
     //val api = Api.builder.accessToken(_acc).refreshToken(_ref).build
@@ -375,8 +375,6 @@ class UALT18ResHandler extends DefaultHandler {
   }
   
   def compare2(str1 : String, str2 : String) = {
-    
-    println("comparing:" +str1 +":"+ str2)
         
     val sFilter = (x:Char) => x > 64 && x < 123
     val myRep = (s:String) => 
@@ -385,8 +383,6 @@ class UALT18ResHandler extends DefaultHandler {
     val dropParenClause = (s:String) => 
       s.takeWhile(_!= '(').trim.toLowerCase
       
-    println("no parens:" + dropParenClause(str1) + ":"+ dropParenClause(str2))
-    
     myRep(str1) == myRep(str2) || 
       dropParenClause(str1) == dropParenClause(str2)
   }
@@ -433,26 +429,41 @@ object UAlt18 extends App {
   
   val alt18add = res.flatMap( resAdd => getUALT18(resAdd,conn).flatten )
   
+  // results is each weeks alt-18 address (for which we can get the date
+  // and the "artist-title" list
   val results = alt18add.collect( {
-     case x  : String if(x.contains("results-")) => getUALT18Table(x,conn2) 
+     case x  : String if(x.contains("results-")) => (x,getUALT18Table(x,conn2)) 
    } )
+   
+  val results2 = results.map(_._2)
  
-  val fResults = results.flatten
+  val fResults = results2.flatten
+  
   println("got results " + fResults.size)
   
   def clean(s:String) = s.replace(160.toChar, 32.toChar) 
  
-  val ats = fResults.collect { case g if g.contains("-") => 
-     val x = clean(g)  
-     val at = x.split(" - ")
-     val artist = at(0)
-     val title = if(at.size > 1) { at(1) } else { "" }
-     
-     //if( at.size == 1 ) { println(x) }
-     
-     (artist, title) 
-   }
- 
+  val parseArtistAndTitle : PartialFunction[String, (String,String)] = {
+      case g if g.contains("-") => 
+       val x = clean(g)  
+       val at = x.split(" - ")
+       val artist = at(0)
+       val title = if(at.size > 1) { at(1) } else { "" }
+       
+       (artist, title)
+  }
+  
+//  val ats = fResults.collect { case g if g.contains("-") => 
+//     val x = clean(g)  
+//     val at = x.split(" - ")
+//     val artist = at(0)
+//     val title = if(at.size > 1) { at(1) } else { "" }
+//     
+//     (artist, title) 
+//   }
+// 
+  
+  val ats = fResults.collect(parseArtistAndTitle)
   println("got artists " + ats.size)
   val byArtistMap = ats.groupBy(_._1.toLowerCase).map { case (k,v) => (k,v.map(_._2).distinct ) }
   

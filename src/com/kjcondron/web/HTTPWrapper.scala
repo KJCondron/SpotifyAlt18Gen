@@ -39,6 +39,10 @@ class HTTPWrapper(
     val cacheLocation : String,
     val urlToName : Option[String => String] = None)
 {
+  val dir = new java.io.File(cacheLocation)
+  if(!dir.exists())
+    dir.mkdir()
+  
   val _urlToName = urlToName.getOrElse( HTTPWrapper.getSaveName(cacheLocation) _ )
   
   def request( address : String ) : InputSource = {
@@ -68,7 +72,7 @@ class HTTPWrapper(
   private def inputToFile(is: java.io.InputStream, f: java.io.File) {
 	  val in = scala.io.Source.fromInputStream(is)("UTF-8")
 	  
-	  val out = new BufferedWriter(new OutputStreamWriter(
+    val out = new BufferedWriter(new OutputStreamWriter(
 			  new FileOutputStream(f), "UTF-8"));
       try { in.getLines().foreach(out.write(_)) }
 	  finally { out.close }
