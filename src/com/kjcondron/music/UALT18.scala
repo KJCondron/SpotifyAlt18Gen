@@ -21,8 +21,6 @@ import java.io.OutputStreamWriter
 import com.wrapper.spotify.exceptions.BadRequestException
 import com.wrapper.spotify.methods.TrackSearchRequest
 
-    
- 
 object UAlt18F {
   
   def tryGet( a : Attributes, name : String) : Option[String] =
@@ -341,12 +339,12 @@ class UALT18ResHandler extends DefaultHandler {
   // if we have a token, and it is new enough we can setup the api using just that
   // the refresh token can be used with secret to get a new access token
   def getSpotify(conn : HTTPWrapper) = {
-    
-  val _acc="BQDxjkRXosCSAH5cP-vMHzAV34ZtXk9UCFDUCqVlLkOBKchKIv1749Gsuk0e7gHhyF1MGJMXgBCWPfNg9ymUREsPs9oDvax7b9nwNQmna_OIg2LbzTexKnYOOa2PoGNyAf5AGlvN1bPR56UZm4ru49CZ8Snbo0dhla30vwYaBYwNKiGiciRCS5rQb1jrw2WDxHfpKp727kFGELjNtRzihFNXVSLmluY9X6LDMx9QvV6wOoxc2g4u0FE27Tuv8ijp5inLEA"
-  val _ref="AQC0OxT6ayAimF5iie5cfjU2PNBa0Fxc1T56tUfGtC57zn3peIrPfeuFom31Gt9uMJHpjiJf486TUdnMVPrtDXs6W-xch6fjzukOKfVjvZk7iIrjNxerlpHvj36w1JXjqYI" 
+             
+
+    val _acc="BQA5Pe99HURTN_uHDkSnaZ6cqDae4pbFLX4tohvG7FQheCING8VqfOtMGaZLgyI33n6I849PC7zUmhBj20qFiiYo1_hqv60r-5ZmLJnYcY4hZDOySWvAbiUR7M61_F7Zjx5TjiuZpGgIHv8hgMBmSBxxvaVdPJpIhgW4jw2tjVQRNVM6QhuYR6tgtBW87ChWeriO0JZorM1CHfriFEaT3pe5tI8KVCLqTTjzOVu2RwwO7QP060s95tt9AzWcwd2dOF8BKw"
+    val _ref="AQC0OxT6ayAimF5iie5cfjU2PNBa0Fxc1T56tUfGtC57zn3peIrPfeuFom31Gt9uMJHpjiJf486TUdnMVPrtDXs6W-xch6fjzukOKfVjvZk7iIrjNxerlpHvj36w1JXjqYI" 
   
-    //val api = Api.builder.accessToken(_acc).refreshToken(_ref).build
-     val api = 
+    val api = 
      try{
        val _api = Api.builder.accessToken(_acc).build
        val user = _api.getMe.build.get
@@ -406,6 +404,8 @@ class UALT18ResHandler extends DefaultHandler {
 
 object UAlt18 extends App {
   
+  println("start")
+  
   val artistFileLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\artists.txt"""
   val artistFile = new File(artistFileLoc)
   val artists = if ( artistFile.exists ) Some( loadExisting(artistFileLoc) ) else None
@@ -429,12 +429,12 @@ object UAlt18 extends App {
   
   val alt18add = res.flatMap( resAdd => getUALT18(resAdd,conn).flatten )
   
-  // results is each weeks alt-18 address (for which we can get the date
+  // results is each weeks alt-18 address (for which we can get the date)
   // and the "artist-title" list
   val results = alt18add.collect( {
      case x  : String if(x.contains("results-")) => (x,getUALT18Table(x,conn2)) 
    } )
-   
+    
   val results2 = results.map(_._2)
  
   val fResults = results2.flatten
@@ -452,17 +452,7 @@ object UAlt18 extends App {
        
        (artist, title)
   }
-  
-//  val ats = fResults.collect { case g if g.contains("-") => 
-//     val x = clean(g)  
-//     val at = x.split(" - ")
-//     val artist = at(0)
-//     val title = if(at.size > 1) { at(1) } else { "" }
-//     
-//     (artist, title) 
-//   }
-// 
-  
+    
   val ats = fResults.collect(parseArtistAndTitle)
   println("got artists " + ats.size)
   val byArtistMap = ats.groupBy(_._1.toLowerCase).map { case (k,v) => (k,v.map(_._2).distinct ) }
@@ -681,38 +671,7 @@ object UAlt18 extends App {
    stillMissing.foreach({case (a,ls) =>{ 
      println(a.getName + ":" + ls.mkString(","))
    }})
-   
-//   def findBestTrack( ts : List[Track], name : String) =
-//   { if (ts.size == 0) println("nothing found for " + name)
-//     ts.foreach { x => println( "FBT:" + x.getArtists.head.getName + ":" +  x.getName) }
-//     val ret = new Track
-//     ret.setName("NOTFOUND")
-//     ret
-//   }
-//  
-// val pass2 = nfs.map { case(a,ss) => {
-//   val aq = "artist:" + a.getName
-//   (a, ss.map(s=> {
-//       val query = s + "+" + aq
-//       println(query)
-//       val tracks = TrackSearchRequest.builder.query(query).market("US").build.get.getItems
-//       if(tracks.size == 1) tracks.head else findBestTrack(tracks.toList,s)
-//     }))
-// }}
-// 
-// println("from stuff done on laptop not yet in git hub")
-// pass2.foreach{ case(a,tt) => 
-//   println(a.getName + ":" + tt.map(_.getName).mkString(","))}
-// 
-         
- /*}
- catch {
-   case e : BadRequestException => println("Exception: " + e.getMessage)
- }*/
- 
-
- //s.createPlaylist(user.getId, "test")
- 
+    
   conn.dispose
   conn2.dispose
  
