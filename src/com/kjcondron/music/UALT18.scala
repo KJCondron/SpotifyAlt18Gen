@@ -408,13 +408,18 @@ case class MyTrack(artist : String, title : String) {
   def spotifyID = { "123" }
 }
 
+// if you make this impl GenTraversableOnce then
+// you can use coll.flatten to remove NoSongs from List[SearchedSongs]
+// like you can with Option (clever huh?)
 sealed abstract class SearchedSong {
   def alt18Name : String
-  def spotifyTrack : Option[Track] = None
+  def isFound : Boolean = false
 }
 case class FoundSong(alt18Name : String, track : Track) extends SearchedSong
 {
-  override def spotifyTrack = Some(track)
+  def spotifyName = track.getName 
+  def spotifyId = track.getId
+  override def isFound = true
 }
 case class NoSong(alt18Name : String) extends SearchedSong
 
@@ -626,8 +631,8 @@ object UAlt18 extends App {
        (spotifyArtist,oSpotifySongs) }
    
    // for these artist we found at least a song. This is artist and the found songs
-   val fs = foundSongs.map { case(a,ss) => 
-     (a, ss.collect { case fs : FoundSong => fs.track }) }.filter{ case(_,ts) => ts.size > 0}
+   val fs = foundSongs.map { case(a,ss) =>
+     (a, ss.collect { case fs : FoundSong => fs }) }.filter{ case(_,ts) => ts.size > 0}
    
    // for these artist we missed at least a song. This is artist and the missed songs
    val nfs = foundSongs.map { case(a,ss) => 
@@ -660,42 +665,40 @@ object UAlt18 extends App {
 //   def nastyHack(song : String, track : Track) = 
 //     sfl2.write( song + ":" + track.getName + ":" + track.getId + "\n")
 //   
-   val searchRes : Map[Artist, List[Either[Track,String]]] = nfs.map( { case(a,ss) => (a,{
+//   val searchRes : Map[Artist, List[Either[Track,String]]] = nfs.map( { case(a,ss) => (a,{
+//     ss.map( song => { 
+//       val songList = findASong(a.getName, song)
+//       println("possibles for " + song + ":" + songList.map(t=>t.getName +":" + t.getId))
+//       songList.find( t=>compareBoth(t,a,song) ).map( t => Left(t) ).getOrElse(Right(song + ":" + songList.map(_.getName))) 
+//     })  
+//   })} )
+//   
+   //val finds : Map[Artist, List[Track] ]= searchRes.mapValues( ts => ts.collect( {case t if t.isLeft => t.left.get } ))
+   
+   val searchRes : Map[Artist, List[SearchedSong]] = nfs.map( { case(a,ss) => (a,{
      ss.map( song => { 
        val songList = findASong(a.getName, song)
        println("possibles for " + song + ":" + songList.map(t=>t.getName +":" + t.getId))
-       songList.find( t=>compareBoth(t,a,song) ).map( t => Left(t) ).getOrElse(Right(song + ":" + songList.map(_.getName))) 
+       songList.find( t=>compareBoth(t,a,song) ).map( 
+           t => FoundSong(song,t) ).getOrElse(
+               NoSong(song + ":" + songList.map(_.getName))) 
      })  
    })} )
    
-   val finds : Map[Artist, List[Track] ]= searchRes.mapValues( ts => ts.collect( {case t if t.isLeft => t.left.get } ))
+   val finds : Map[Artist, List[FoundSong] ]= searchRes.mapValues( ts => ts.collect( {case fs : FoundSong => fs } ))
    
    val sfl = new BufferedWriter(new OutputStreamWriter(
       new FileOutputStream(songFile), "UTF-8"));  
-   
-   (fs).foreach {
+    
+   (fs ++ finds).foreach {
      case (_,ti) => ti.foreach { tr =>
-         sfl.write( s + "fs:fs" + tr.getName + ":" + tr.getId + "\n")
+         sfl.write( tr.alt18Name + ":" + tr.spotifyName + ":" + tr.spotifyId + "\n")
    }}
-   
-   sfl.write("***************************FS DONE*******************")
-   
-   (finds).foreach {
-     case (_,ti) => ti.foreach { tr =>
-         sfl.write( s + "fs:fs" + tr.getName + ":" + tr.getId + "\n")
-   }}
-   
-   
-//    // NOPE!!!!
-//   (fs ++ finds).foreach {
-//     case (_,ti) => ti.foreach { tr =>
-//         sfl.write( s + "bob:bob" + tr.getName + ":" + tr.getId + "\n")
-//   }}
    
    sfl.close()
   
-   val stillMissing = searchRes.map ( { case (a,ls) => (a, ls.filter(_.isRight)) }).filter( {case (a,ls) => ls.size > 0 } )
-   val nowFound = searchRes.map ( { case (a,ls) => (a, ls.filter(_.isLeft)) }).filter( {case (a,ls) => ls.size > 0 } )
+   val stillMissing = searchRes.map ( { case (a,ls) => (a, ls.filter(!_.isFound)) }).filter( {case (a,ls) => ls.size > 0 } )
+   val nowFound = searchRes.map ( { case (a,ls) => (a, ls.filter(_.isFound)) }).filter( {case (a,ls) => ls.size > 0 } )
    
    println("now Found " + nowFound.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
    nowFound.foreach({case (a,ls) =>{ 
