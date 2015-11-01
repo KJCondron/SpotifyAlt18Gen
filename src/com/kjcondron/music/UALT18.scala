@@ -373,6 +373,8 @@ class UALT18ResHandler extends DefaultHandler {
   }
   
   def compare2(str1 : String, str2 : String) = {
+    
+    println("Comparing:" + str1 + " and " + str2) 
         
     val sFilter = (x:Char) => x > 64 && x < 123
     val myRep = (s:String) => 
@@ -631,19 +633,12 @@ object UAlt18 extends App {
    val nfs = foundSongs.map { case(a,ss) => 
      (a, ss.collect { case ns : NoSong => ns.alt18Name }) }.filter{ case(_,ts) => ts.size > 0}
    
-   val sfl = new BufferedWriter(new OutputStreamWriter(
-      new FileOutputStream(songFile), "UTF-8"));  
-   
-   fs.foreach {
-     case (_,ti) => ti.foreach { tr =>
-         sfl.write( s + ":" + tr.getName + ":" + tr.getId + "\n")
-   }}
-   
-   sfl.close()
-   
    println("Found " + fs.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
    println("Didn't Find " + nfs.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
    
+   //Too many songs not found by this point!
+   //throw new Exception("stop")
+
    def findASong(artist : String, title : String) : java.util.List[Track] = 
    {
      val str = s"track:$title artist:$artist"
@@ -662,22 +657,43 @@ object UAlt18 extends App {
        compare2(t.getName, title)
    }
    
-   val sfl2 = new BufferedWriter(new OutputStreamWriter(
-      new FileOutputStream(songFile,true), "UTF-8"));  
-   
-   def nastyHack(song : String, track : Track) = 
-     sfl2.write( song + ":" + track.getName + ":" + track.getId + "\n")
-   
+//   def nastyHack(song : String, track : Track) = 
+//     sfl2.write( song + ":" + track.getName + ":" + track.getId + "\n")
+//   
    val searchRes : Map[Artist, List[Either[Track,String]]] = nfs.map( { case(a,ss) => (a,{
      ss.map( song => { 
        val songList = findASong(a.getName, song)
        println("possibles for " + song + ":" + songList.map(t=>t.getName +":" + t.getId))
-       songList.find( t=>compareBoth(t,a,song) ).map( t=> { nastyHack(song,t); Left(t) } ).getOrElse(Right(song + ":" + songList.map(_.getName))) 
+       songList.find( t=>compareBoth(t,a,song) ).map( t => Left(t) ).getOrElse(Right(song + ":" + songList.map(_.getName))) 
      })  
    })} )
    
-   sfl2.close()
+   val finds : Map[Artist, List[Track] ]= searchRes.mapValues( ts => ts.collect( {case t if t.isLeft => t.left.get } ))
    
+   val sfl = new BufferedWriter(new OutputStreamWriter(
+      new FileOutputStream(songFile), "UTF-8"));  
+   
+   (fs).foreach {
+     case (_,ti) => ti.foreach { tr =>
+         sfl.write( s + "fs:fs" + tr.getName + ":" + tr.getId + "\n")
+   }}
+   
+   sfl.write("***************************FS DONE*******************")
+   
+   (finds).foreach {
+     case (_,ti) => ti.foreach { tr =>
+         sfl.write( s + "fs:fs" + tr.getName + ":" + tr.getId + "\n")
+   }}
+   
+   
+//    // NOPE!!!!
+//   (fs ++ finds).foreach {
+//     case (_,ti) => ti.foreach { tr =>
+//         sfl.write( s + "bob:bob" + tr.getName + ":" + tr.getId + "\n")
+//   }}
+   
+   sfl.close()
+  
    val stillMissing = searchRes.map ( { case (a,ls) => (a, ls.filter(_.isRight)) }).filter( {case (a,ls) => ls.size > 0 } )
    val nowFound = searchRes.map ( { case (a,ls) => (a, ls.filter(_.isLeft)) }).filter( {case (a,ls) => ls.size > 0 } )
    
