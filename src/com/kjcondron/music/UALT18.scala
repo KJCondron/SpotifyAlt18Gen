@@ -625,7 +625,7 @@ object UAlt18 extends App {
    
    // for these artist we found at least a song. This is artist and the found songs
    val fs = foundSongs.map { case(a,ss) => 
-     (a, ss.collect { case fs : FoundSong => fs.track }) }.filter{ case(_,ts) => ts.size > 0}
+     (a, ss.collect { case fs : FoundSong => fs }) }.filter{ case(_,ts) => ts.size > 0}
    
    // for these artist we missed at least a song. This is artist and the missed songs
    val nfs = foundSongs.map { case(a,ss) => 
@@ -635,8 +635,8 @@ object UAlt18 extends App {
       new FileOutputStream(songFile), "UTF-8"));  
    
    fs.foreach {
-     case (_,ti) => ti.foreach { tr =>
-         sfl.write( s + ":" + tr.getName + ":" + tr.getId + "\n")
+     case (sg,ti) => ti.foreach { tr =>
+         sfl.write( tr.alt18Name + ":" + tr.track.getName + ":" + tr.track.getId + "\n")
    }}
    
    sfl.close()
