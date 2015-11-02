@@ -342,7 +342,7 @@ class UALT18ResHandler extends DefaultHandler {
   // the refresh token can be used with secret to get a new access token
   def getSpotify(conn : HTTPWrapper) = {
              
-    val _acc="BQCtUHUklaqgBnlfaskPZjKYoRpey9jSSj5yknESPgMXreaLBGPTfkn-0LNR5oFfqiFwnGSQMqNh0c5aXPwEyyQjzDcuFUMEGow27Pn74L5WFIQRS1y97bdJGAc7M7VCTvG60makAKQQSI16FgQgXj0jsWjWLhFUcbcM3fiWVkdfUCkXlg2PyRqqKJhyXL_UPX1-Ajgj4ir60FsrDog9zl1N8zAkk0oqW89ONvkQmqYDwB_Bt2vGHUkQAlq0EWRpTkXQWA"
+    val _acc="BQCVZQEIW092psB0o6FeFBYpVsIdmdRjxDNWslRvp83YLr_LqeIgASdF2LS0P-BwM-E3ywStj7NPZnznR8f5-Tp-Bx_FleyQQCEgf-NSE8whCp5SdmhSg6XA4c666gfiUX069Ty66pFhwQwzk8QehIvgn8tfOVjtEnkiAF4MhQGYXwVYG2ak-dEjg9tRQlbdCZIxtMl_hOe6sVoF0kRojCHZRu0Muk1Y2HnvDWlpoawtySrofKF1wv4oTx1RfMNdU6UV3Q"
     val _ref="AQC0OxT6ayAimF5iie5cfjU2PNBa0Fxc1T56tUfGtC57zn3peIrPfeuFom31Gt9uMJHpjiJf486TUdnMVPrtDXs6W-xch6fjzukOKfVjvZk7iIrjNxerlpHvj36w1JXjqYI" 
   
     val api = 
@@ -404,24 +404,35 @@ class UALT18ResHandler extends DefaultHandler {
   }
 }
 
-case class MyTrack(artist : String, title : String) {
-  def spotifyID = { "123" }
-}
+case class MyTrack(artist : String, title : String)
 
 // if you make this impl GenTraversableOnce then
 // you can use coll.flatten to remove NoSongs from List[SearchedSongs]
 // like you can with Option (clever huh?)
 sealed abstract class SearchedSong {
+  override def toString = alt18Name
   def alt18Name : String
   def isFound : Boolean = false
+  def equals(that:Any) : Boolean
 }
 case class FoundSong(alt18Name : String, track : Track) extends SearchedSong
 {
   def spotifyName = track.getName 
   def spotifyId = track.getId
   override def isFound = true
+  override def equals(that:Any) : Boolean = 
+    that match {
+    case fs : FoundSong => fs.track.getId == track.getId
+    case _ => false
+  }
 }
-case class NoSong(alt18Name : String) extends SearchedSong
+case class NoSong(alt18Name : String) extends SearchedSong {
+override def equals(that:Any) : Boolean = 
+    that match {
+    case fs : NoSong => fs.alt18Name == alt18Name
+    case _ => false
+  }
+}
 
 object Util {
       
@@ -445,7 +456,7 @@ object UAlt18 extends App {
   
   val artistFileLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\artists.txt"""
   val artistFile = new File(artistFileLoc)
-  val artists = if ( artistFile.exists ) Some( loadExisting(artistFileLoc) ) else None
+  val artistCache = if ( artistFile.exists ) Some( loadExisting(artistFileLoc) ) else None
   
   val songFileLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs.txt"""
   val songFile = new File(songFileLoc)
@@ -502,6 +513,8 @@ object UAlt18 extends App {
     backOffLogic( fn(name) )
   }
   
+  // not very important function. The filter isn't used this just gets possible songs
+  // by title
  def findSong( name : String, filter : (String,String) => Boolean = (_,_)=>true ) = {
     val srch = s.searchTracks(name).build
     val res = srch.get
@@ -510,9 +523,9 @@ object UAlt18 extends App {
     matches
   }
   
- // get all artists with exact name match, looking in existing map first
+ // get all artists with EXACT name match (compare filter), looking in existing map first
  val possibles = allTracksByArtist.map( { case (a,_) =>
-   val artistId = artists.flatMap( _.get(a) )
+   val artistId = artistCache.flatMap( _.get(a) )
    val buf = artistId.map({ case (name,id) => {
      val artist = new Artist
      artist.setId(id)
@@ -532,6 +545,9 @@ object UAlt18 extends App {
  def anySongMatches( songList : List[String])( track : Track ) =
    songList.exists(song => compare(song,track.getName))
  
+ // for the not found artists, get all artist from spotify
+ // if any song from alt 18 list matches any of the top
+   // songs on spotify then we found it
  val moreArtists : Map[String,Option[Artist]] = nonMatchingArtists.map { 
    case (artistName,_) => 
      // for each possible artist get top tracks
@@ -547,7 +563,11 @@ object UAlt18 extends App {
  val (ll, rr) = moreArtists.partition(_._2.isDefined)
  val moreFoundArtists = ll.collect { case (k,Some(v)) => (k,v) }
  val missingArtists = rr.keys
-  
+ 
+ 
+ // for still missing artists print name, alt18 songs
+ // top 5 artists on spotify and top tracks for those
+ // artists on spotify
  missingArtists.foreach { x =>
    println("Searching For: " + x)
    println("Songs: " + allTracksByArtist(x).mkString(","))
@@ -562,7 +582,9 @@ object UAlt18 extends App {
  
  val empty : Buffer[Track] = Buffer()
 
- // print out artists that might match?
+ // another idea for finally missing artists
+ // search for each song on spotify and print the
+ // artist for eaach track
  missingArtists.foreach( a => {
    println("For Artist " + a + " based on tracks possible matches are: ")
    val songs = allTracksByArtist(a)
@@ -601,13 +623,26 @@ object UAlt18 extends App {
  catch {
    case _ : Throwable => NoSong(title)
    }
-  def findSongOnSpotify( title : String, artist : Artist ) = {
+  
+ def findSongOnSpotify( title : String, artist : Artist ) : SearchedSong = {
                          val topTracks = backOffLogic(s.getTopTracksForArtist(artist.getId, "US").build.get)
                          val matchingTracks = topTracks.filter { t => compare2(t.getName,title) }
                          if (matchingTracks.size > 1) 
                            FoundSong(title, matchingTracks.head) else
                            NoSong(title)
                     }
+ 
+ def findASong(artist : String, title : String) : java.util.List[Track] = 
+   {
+     val str = s"track:$title artist:$artist"
+     val items = backOffLogic(s.searchTracks(str).market("US").build.get.getItems)
+     
+     if(items.size == 0 && (title.contains( "(" ) || artist.contains( "(" )))
+       findASong(artist.takeWhile(_!='('),title.takeWhile(_!='('))
+     else
+       items
+   }
+ 
   
   def makeTrack(name : String, id : String) = {
     val tr = new Track
@@ -617,18 +652,18 @@ object UAlt18 extends App {
   }
   
   val mt = (makeTrack _).tupled
- //try{
-   val foundSongs : Map[Artist, List[SearchedSong]]= allArtists.map { case (artistName,spotifyArtist) =>
+  
+  val foundSongs : Map[Artist, List[SearchedSong]] = allArtists.map { case (artistName,spotifyArtist) =>
        // for each artist
        val songsFromAlt18 = allTracksByArtist(artistName)
-       val oSpotifySongs = songsFromAlt18.map( _songTitle => {
+       val spotifySongs = songsFromAlt18.map( _songTitle => {
          def fSOS() = findSongOnSpotify(_songTitle, spotifyArtist)
          def mt2( x : (String,String)) = FoundSong(_songTitle, mt(x)) 
          val oT = songs.flatMap( _.get(_songTitle) ) // get song from local cache if both exist
          oT.map(mt2).getOrElse(fSOS)
          // or oT.fold(fSOS)( mt2 )
        })
-       (spotifyArtist,oSpotifySongs) }
+       (spotifyArtist,spotifySongs) }
    
    // for these artist we found at least a song. This is artist and the found songs
    val fs = foundSongs.map { case(a,ss) =>
@@ -641,39 +676,12 @@ object UAlt18 extends App {
    println("Found " + fs.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
    println("Didn't Find " + nfs.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
    
-   //Too many songs not found by this point!
-   //throw new Exception("stop")
-
-   def findASong(artist : String, title : String) : java.util.List[Track] = 
-   {
-     val str = s"track:$title artist:$artist"
-     val items = backOffLogic(s.searchTracks(str).market("US").build.get.getItems)
-     
-     if(items.size == 0 && (title.contains( "(" ) || artist.contains( "(" )))
-       findASong(artist.takeWhile(_!='('),title.takeWhile(_!='('))
-     else
-       items
-   }
- 
    def compareBoth( t : Track, artist : Artist, title : String ) = {
      println(t.getArtists.head.getName +":"+ artist.getName +":" + t.getName + ":" + title)
      println(t.getArtists.head.getId +":"+ artist.getId)
      t.getArtists.head.getId == artist.getId &&
        compare2(t.getName, title)
    }
-   
-//   def nastyHack(song : String, track : Track) = 
-//     sfl2.write( song + ":" + track.getName + ":" + track.getId + "\n")
-//   
-//   val searchRes : Map[Artist, List[Either[Track,String]]] = nfs.map( { case(a,ss) => (a,{
-//     ss.map( song => { 
-//       val songList = findASong(a.getName, song)
-//       println("possibles for " + song + ":" + songList.map(t=>t.getName +":" + t.getId))
-//       songList.find( t=>compareBoth(t,a,song) ).map( t => Left(t) ).getOrElse(Right(song + ":" + songList.map(_.getName))) 
-//     })  
-//   })} )
-//   
-   //val finds : Map[Artist, List[Track] ]= searchRes.mapValues( ts => ts.collect( {case t if t.isLeft => t.left.get } ))
    
    val searchRes : Map[Artist, List[SearchedSong]] = nfs.map( { case(a,ss) => (a,{
      ss.map( song => { 
@@ -697,11 +705,11 @@ object UAlt18 extends App {
    
    sfl.close()
   
-   val stillMissing = searchRes.map ( { case (a,ls) => (a, ls.filter(!_.isFound)) }).filter( {case (a,ls) => ls.size > 0 } )
-   val nowFound = searchRes.map ( { case (a,ls) => (a, ls.filter(_.isFound)) }).filter( {case (a,ls) => ls.size > 0 } )
+   val stillMissing = searchRes.mapValues( ss => ss.collect({ case s:NoSong => s}) ).filter({case(_,fs)=>fs.size>0})
    
-   println("now Found " + nowFound.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
-   nowFound.foreach({case (a,ls) =>{ 
+     
+   println("now Found " + finds.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
+   finds.foreach({case (a,ls) if ls.size > 0 => { 
      println(a.getName + ":" + ls.mkString(","))
    }})
    
@@ -710,10 +718,40 @@ object UAlt18 extends App {
      println(a.getName + ":" + ls.mkString(","))
    }})
    
-   //val xx = alt18wTracks.map({ case(a,ts)=>(a,ts.map())})
+   val spotifySongs = (fs++finds).values.flatten.map( x=> (x.alt18Name,x.track) ).toMap
+   val sps2 = spotifySongs.mapValues( t=> backOffLogic(s.getTrack(t.getId).build.get)  )
    
-   // iterate over xx mapping artist and title to song id
+   // write lots of pls (just do 5 for now)
+   val uid = s.getMe.build.get.getId
+   def getPL(name : String) = try {
+     println("trying to get:" + name)
+     val pls = s.getPlaylistsForUser(uid).build.get.getItems.filter(_.getName == name)
+     pls.headOption
+   }
+   catch{
+       case bre:BadRequestException => None
+   }
+   
+   val salt18wTracks = alt18wTracks.sortBy(_._1)
     
+   val plRes = salt18wTracks.take(5).map( x => {
+       val plname = "@@_"+x._1.drop(48).dropRight(1) 
+       val plid = getPL(plname).map(_.getId).getOrElse(
+            s.createPlaylist(uid, plname).build.get.getId)
+      
+            val tracks = x._2.map( x=>{ sps2(x.title).getUri } )
+            
+              println("adding tracks")
+              try{
+              val bldr = s.addTracksToPlaylist(uid, plid, tracks).build
+              println(bldr.toUrl)
+              bldr.get
+              }
+              catch{
+                case t:Throwable => println(t)
+              }
+     })
+       
   conn.dispose
   conn2.dispose
  
