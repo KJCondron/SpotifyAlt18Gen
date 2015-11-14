@@ -342,7 +342,7 @@ class UALT18ResHandler extends DefaultHandler {
   // the refresh token can be used with secret to get a new access token
   def getSpotify(conn : HTTPWrapper) = {
              
-    val _acc="BQCVZQEIW092psB0o6FeFBYpVsIdmdRjxDNWslRvp83YLr_LqeIgASdF2LS0P-BwM-E3ywStj7NPZnznR8f5-Tp-Bx_FleyQQCEgf-NSE8whCp5SdmhSg6XA4c666gfiUX069Ty66pFhwQwzk8QehIvgn8tfOVjtEnkiAF4MhQGYXwVYG2ak-dEjg9tRQlbdCZIxtMl_hOe6sVoF0kRojCHZRu0Muk1Y2HnvDWlpoawtySrofKF1wv4oTx1RfMNdU6UV3Q"
+    val _acc="BQAWgADUPS0fGuE_HzATYl_aVsTfBUMNxASuancvSEbEqDeaEb4qvXGlYzlH3sQuZB6eMUKE439O5dVywEWrj4eJzqaObTuhPW7DeGubLf7geUu4sPCauCT-SopVwfkuy7rLIjnY_4SiaLXSoesXJX4WbKDE2BXLp9omixQM-nPwJt9FBo77uit3jnhYbb6JwFZvgdJPm4GvPOXuwbdfTxvl74QMnlIqUzSOT347yGDO63ElZ1sGSbOfjNwa-yMAPwFmfg"
     val _ref="AQC0OxT6ayAimF5iie5cfjU2PNBa0Fxc1T56tUfGtC57zn3peIrPfeuFom31Gt9uMJHpjiJf486TUdnMVPrtDXs6W-xch6fjzukOKfVjvZk7iIrjNxerlpHvj36w1JXjqYI" 
   
     val api = 
@@ -441,7 +441,7 @@ object Util {
      catch {
         case b:BadRequestException if(b.getMessage == "429" && count < 10) => {
               println("backing off:" + count)
-              Thread sleep 1000
+              Thread sleep 4000
               backOffLogic(g, count+1)
           }
         case t:Throwable => {println("count:" + count); throw t}
@@ -660,6 +660,8 @@ object UAlt18 extends App {
          def fSOS() = findSongOnSpotify(_songTitle, spotifyArtist)
          def mt2( x : (String,String)) = FoundSong(_songTitle, mt(x)) 
          val oT = songs.flatMap( _.get(_songTitle) ) // get song from local cache if both exist
+         if(!oT.isDefined)
+           println("*****CACHE MISS*****:  " + _songTitle)
          oT.map(mt2).getOrElse(fSOS)
          // or oT.fold(fSOS)( mt2 )
        })
@@ -698,7 +700,23 @@ object UAlt18 extends App {
    val sfl = new BufferedWriter(new OutputStreamWriter(
       new FileOutputStream(songFile), "UTF-8"));  
     
-   (fs ++ finds).foreach {
+   val (inFs, notInFs) = finds.partition( p => fs.contains(p._1) )
+   val fsp = fs ++ notInFs
+   
+   //val alls = (fs ++ finds)
+   // where we have artists in both maps we need to merge the
+   // values that share the same key
+   val alls = inFs.foldLeft(fsp)( (acc,e) => acc + (e._1->(fsp(e._1)++e._2)) )
+   
+   val fspp = fs.toSeq ++ finds.toSeq
+   val fsppg = fspp.groupBy(_._1).mapValues(_.map(_._2).flatten.toList)
+   
+   assert(fsppg.size==alls.size)
+   assert(fsppg.keySet==alls.keySet)
+   assert(fsppg.values.toSet==alls.values.toSet)
+   // they both work, so time them
+   
+   alls.foreach {
      case (_,ti) => ti.foreach { tr =>
          sfl.write( tr.alt18Name + ":" + tr.spotifyName + ":" + tr.spotifyId + "\n")
    }}
@@ -706,7 +724,6 @@ object UAlt18 extends App {
    sfl.close()
   
    val stillMissing = searchRes.mapValues( ss => ss.collect({ case s:NoSong => s}) ).filter({case(_,fs)=>fs.size>0})
-   
      
    println("now Found " + finds.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
    finds.foreach({case (a,ls) if ls.size > 0 => { 
@@ -718,40 +735,77 @@ object UAlt18 extends App {
      println(a.getName + ":" + ls.mkString(","))
    }})
    
-   val spotifySongs = (fs++finds).values.flatten.map( x=> (x.alt18Name,x.track) ).toMap
+   val spotifySongs = alls.values.flatten.map( x=> (x.alt18Name,x.track) ).toMap
    val sps2 = spotifySongs.mapValues( t=> backOffLogic(s.getTrack(t.getId).build.get)  )
    
-   // write lots of pls (just do 5 for now)
-   val uid = s.getMe.build.get.getId
+   val spotifySongs2 = alls.values.flatten
+   val sps2_2 = spotifySongs2.map( t => backOffLogic(s.getTrack(t.track.getId).build.get)  )
+   
+   val uid = backOffLogic(s.getMe.build.get.getId)
+   
    def getPL(name : String) = try {
      println("trying to get:" + name)
-     val pls = s.getPlaylistsForUser(uid).build.get.getItems.filter(_.getName == name)
+     val plpage = backOffLogic( s.getPlaylistsForUser(uid).build.get )
+     val pls = plpage.getItems.filter(_.getName == name)
      pls.headOption
    }
    catch{
        case bre:BadRequestException => None
    }
    
-   val salt18wTracks = alt18wTracks.sortBy(_._1)
-    
-   val plRes = salt18wTracks.take(5).map( x => {
-       val plname = "@@_"+x._1.drop(48).dropRight(1) 
-       val plid = getPL(plname).map(_.getId).getOrElse(
-            s.createPlaylist(uid, plname).build.get.getId)
-      
-            val tracks = x._2.map( x=>{ sps2(x.title).getUri } )
+   println("get all18 pl")
+   val plid = getPL("all18").map(_.getId).getOrElse(
+            s.createPlaylist(uid, "all18").build.get.getId)
             
-              println("adding tracks")
-              try{
-              val bldr = s.addTracksToPlaylist(uid, plid, tracks).build
-              println(bldr.toUrl)
-              bldr.get
-              }
-              catch{
-                case t:Throwable => println(t)
-              }
-     })
+   val pltracks = s.getPlaylistTracks(uid, plid).build.get.getItems
+   val newtracks = sps2_2.filterNot( tr => pltracks.exists( pltr => pltr.getTrack == tr ) )
+   val newtracks2 = sps2_2.filterNot( pltracks.contains( _ ) )
+   assert(newtracks2==newtracks)
+   
+   println("spotify songs count:" + sps2.size)
+   println("spotify 2 songs count:" + sps2_2.size)
+   println("new track count:" + newtracks.size)
+   
+   val newPLTrackUris = newtracks.map(_.getUri).toList
+   
+   def addTracks(uid : String, plid : String, tracks : List[String]) : Unit = {
+       val maxSize = 50
+       if(tracks.size > maxSize)
+         addTracks(uid, plid, tracks.drop(maxSize))
        
+         
+       val url = s.addTracksToPlaylist(uid, plid, tracks.take(maxSize)).build
+       println(url)
+       val _ = backOffLogic(url.get)
+   }
+   
+   addTracks(uid, plid, newPLTrackUris)
+   
+//   val url = s.addTracksToPlaylist(uid, plid, newPLTrackUris.take(150)).build
+//   println(url)
+//   backOffLogic(url.get)
+
+   
+//   val salt18wTracks = alt18wTracks.sortBy(_._1)
+//    
+//   val plRes = salt18wTracks.take(5).map( x => {
+//       val plname = "@@_"+x._1.drop(48).dropRight(1) 
+//       val plid = getPL(plname).map(_.getId).getOrElse(
+//            s.createPlaylist(uid, plname).build.get.getId)
+//      
+//            val tracks = x._2.map( x=>{ sps2(x.title).getUri } )
+//            
+//              println("adding tracks")
+//              try{
+//              val bldr = s.addTracksToPlaylist(uid, plid, tracks).build
+//              println(bldr.toUrl)
+//              bldr.get
+//              }
+//              catch{
+//                case t:Throwable => println(t)
+//              }
+//     })
+//       
   conn.dispose
   conn2.dispose
  
