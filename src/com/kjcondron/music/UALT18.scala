@@ -342,7 +342,7 @@ class UALT18ResHandler extends DefaultHandler {
   // the refresh token can be used with secret to get a new access token
   def getSpotify(conn : HTTPWrapper) = {
              
-    val _acc="BQAWgADUPS0fGuE_HzATYl_aVsTfBUMNxASuancvSEbEqDeaEb4qvXGlYzlH3sQuZB6eMUKE439O5dVywEWrj4eJzqaObTuhPW7DeGubLf7geUu4sPCauCT-SopVwfkuy7rLIjnY_4SiaLXSoesXJX4WbKDE2BXLp9omixQM-nPwJt9FBo77uit3jnhYbb6JwFZvgdJPm4GvPOXuwbdfTxvl74QMnlIqUzSOT347yGDO63ElZ1sGSbOfjNwa-yMAPwFmfg"
+    val _acc="BQBfTmcbyxisX-wFkVs4-AV2uXC07J3pm-Ws4lSl8QL2mknfNnqaQBIDGGPntPfHcpnJNPo5Aj1MDSfoqEeEY0xRFLab45IoX0lUhCb9Gqv_Gm1qPdhbzwveLC_JtI0pkKhwPUiiV9Z1Bkku5FHGXMHEbMeUBK0SZmga9N1sN5-aK9DonO_zFA3WV0s-eKKmnc78HQcaeNAH7o8QfAmSx_vkHTmVQQbLyRcvvJvXIJ-9nNuIiAmZhd2PI0ewxZsPI2EjwJbefQ"
     val _ref="AQC0OxT6ayAimF5iie5cfjU2PNBa0Fxc1T56tUfGtC57zn3peIrPfeuFom31Gt9uMJHpjiJf486TUdnMVPrtDXs6W-xch6fjzukOKfVjvZk7iIrjNxerlpHvj36w1JXjqYI" 
   
     val api = 
@@ -762,6 +762,16 @@ object UAlt18 extends App {
    val newtracks2 = sps2_2.filterNot( pltracks.contains( _ ) )
    assert(newtracks2==newtracks)
    
+   val plids = pltracks.map(_.getTrack.getId).sorted
+   val slids = sps2_2.map(_.getId).toList.sorted
+   
+   val newids = slids.filterNot( plids.contains( _ ) )
+   
+   println("plids count:" + plids.size)
+   println("slids count:" + slids.size) 
+   println("newids count:" + newids.size)
+  
+   
    println("spotify songs count:" + sps2.size)
    println("spotify 2 songs count:" + sps2_2.size)
    println("new track count:" + newtracks.size)
@@ -772,14 +782,13 @@ object UAlt18 extends App {
        val maxSize = 50
        if(tracks.size > maxSize)
          addTracks(uid, plid, tracks.drop(maxSize))
-       
-         
+        
        val url = s.addTracksToPlaylist(uid, plid, tracks.take(maxSize)).build
        println(url)
        val _ = backOffLogic(url.get)
    }
    
-   addTracks(uid, plid, newPLTrackUris)
+   //addTracks(uid, plid, newPLTrackUris)
    
 //   val url = s.addTracksToPlaylist(uid, plid, newPLTrackUris.take(150)).build
 //   println(url)
