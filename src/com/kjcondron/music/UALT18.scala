@@ -6,6 +6,7 @@ import org.xml.sax.Attributes
 import org.xml.sax.helpers.DefaultHandler
 import com.kjcondron.web.HTTPWrapper
 import com.wrapper.spotify._
+import com.wrapper.spotify.models._
 import scala.collection.JavaConversions.asScalaIterator
 import scala.collection.JavaConversions.asScalaBuffer
 import scala.collection.JavaConversions.seqAsJavaList
@@ -345,23 +346,40 @@ class UALT18ResHandler extends DefaultHandler {
     val _acc="BQBfTmcbyxisX-wFkVs4-AV2uXC07J3pm-Ws4lSl8QL2mknfNnqaQBIDGGPntPfHcpnJNPo5Aj1MDSfoqEeEY0xRFLab45IoX0lUhCb9Gqv_Gm1qPdhbzwveLC_JtI0pkKhwPUiiV9Z1Bkku5FHGXMHEbMeUBK0SZmga9N1sN5-aK9DonO_zFA3WV0s-eKKmnc78HQcaeNAH7o8QfAmSx_vkHTmVQQbLyRcvvJvXIJ-9nNuIiAmZhd2PI0ewxZsPI2EjwJbefQ"
     val _ref="AQC0OxT6ayAimF5iie5cfjU2PNBa0Fxc1T56tUfGtC57zn3peIrPfeuFom31Gt9uMJHpjiJf486TUdnMVPrtDXs6W-xch6fjzukOKfVjvZk7iIrjNxerlpHvj36w1JXjqYI" 
   
-    val api = 
-     try{
-       val _api = Api.builder.accessToken(_acc).build
-       val user = _api.getMe.build.get
-       _api
-     }
-     catch{
-       case t:Throwable => {
-         val _acc2 = getAPI.refreshToken(_ref).build.refreshAccessToken.build.get.getAccessToken
-         println(_acc2)
-         Api.builder.accessToken(_acc2).build
-       }
-     }
-     
-     val user = api.getMe.build.get
-     println(user.getEmail)
-     api 
+    val accLoc = """acc.tmp""" 
+    val accFile = new File(accLoc)
+    
+    println(accFile.getAbsoluteFile)
+    
+    val apix = if(accFile.exists)
+      try
+      {
+        val accTok = io.Source.fromFile(accFile, "utf-8").mkString
+        Some(Api.builder.accessToken(accTok).build)
+      }
+      catch  {
+         case t:Throwable => {
+           println ("******STALE TOKEN*********") 
+           accFile.delete
+           accFile.createNewFile
+           None
+         }
+      }
+      else{
+        println ("******NO FILE*********")
+        accFile.createNewFile
+        None
+      }
+        
+    val api2 = apix.getOrElse( {
+      val acc2Tk = getAPI.refreshToken(_ref).build.refreshAccessToken.build.get.getAccessToken
+      val writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(accFile), "UTF-8"));  
+      writer.write(acc2Tk)
+      writer.close
+      Api.builder.accessToken(acc2Tk).build
+    })
+    
+    api2 
   }
   
   def compare(str1 : String, str2 : String) = {
@@ -757,20 +775,25 @@ object UAlt18 extends App {
    val plid = getPL("all18").map(_.getId).getOrElse(
             s.createPlaylist(uid, "all18").build.get.getId)
             
-   val pltracks = s.getPlaylistTracks(uid, plid).build.get.getItems
-   val newtracks = sps2_2.filterNot( tr => pltracks.exists( pltr => pltr.getTrack == tr ) )
-   val newtracks2 = sps2_2.filterNot( pltracks.contains( _ ) )
-   assert(newtracks2==newtracks)
    
-   val plids = pltracks.map(_.getTrack.getId).sorted
-   val slids = sps2_2.map(_.getId).toList.sorted
+   def getPLTracks(uid : String, plid : String, offset : Int = 0, acc : List[PlaylistTrack] = List()) : 
+     List[PlaylistTrack] =
+   {
+      val currItems = s.getPlaylistTracks(uid, plid).offset(offset).build.get.getItems
+      
+      if(currItems.size == 0)
+        acc
+      else
+        getPLTracks(uid,plid,offset+100,acc++currItems)
+   }
+               
+   val pltracks = getPLTracks(uid, plid)
    
-   val newids = slids.filterNot( plids.contains( _ ) )
-   
-   println("plids count:" + plids.size)
-   println("slids count:" + slids.size) 
-   println("newids count:" + newids.size)
-  
+   implicit class Wrapper1(_tr : PlaylistTrack) {
+       def matches(_tr2 : Track) = _tr.getTrack.getId == _tr2.getId  
+   }
+   def closure1(_tr2 : Track) = pltracks.exists( _.matches(_tr2) )
+   val newtracks = sps2_2.filterNot( closure1 )
    
    println("spotify songs count:" + sps2.size)
    println("spotify 2 songs count:" + sps2_2.size)
@@ -778,45 +801,21 @@ object UAlt18 extends App {
    
    val newPLTrackUris = newtracks.map(_.getUri).toList
    
-   def addTracks(uid : String, plid : String, tracks : List[String]) : Unit = {
+   def addTracks(uid : String, plid : String, tracks : List[String]) : Unit = {  
+       if(tracks.size > 0){
        val maxSize = 50
-       if(tracks.size > maxSize)
-         addTracks(uid, plid, tracks.drop(maxSize))
-        
-       val url = s.addTracksToPlaylist(uid, plid, tracks.take(maxSize)).build
-       println(url)
-       val _ = backOffLogic(url.get)
+         if(tracks.size > maxSize)
+           addTracks(uid, plid, tracks.drop(maxSize))
+          
+         val url = s.addTracksToPlaylist(uid, plid, tracks.take(maxSize)).build
+         println(url)
+         val _ = backOffLogic(url.get)
+     }
    }
    
-   //addTracks(uid, plid, newPLTrackUris)
-   
-//   val url = s.addTracksToPlaylist(uid, plid, newPLTrackUris.take(150)).build
-//   println(url)
-//   backOffLogic(url.get)
-
-   
-//   val salt18wTracks = alt18wTracks.sortBy(_._1)
-//    
-//   val plRes = salt18wTracks.take(5).map( x => {
-//       val plname = "@@_"+x._1.drop(48).dropRight(1) 
-//       val plid = getPL(plname).map(_.getId).getOrElse(
-//            s.createPlaylist(uid, plname).build.get.getId)
-//      
-//            val tracks = x._2.map( x=>{ sps2(x.title).getUri } )
-//            
-//              println("adding tracks")
-//              try{
-//              val bldr = s.addTracksToPlaylist(uid, plid, tracks).build
-//              println(bldr.toUrl)
-//              bldr.get
-//              }
-//              catch{
-//                case t:Throwable => println(t)
-//              }
-//     })
-//       
-  conn.dispose
-  conn2.dispose
- 
+   addTracks(uid, plid, newPLTrackUris)
+         
+   conn.dispose
+   conn2.dispose
    
 } // end app
