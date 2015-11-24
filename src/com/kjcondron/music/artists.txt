@@ -1,4 +1,5 @@
 sir sly:Sir Sly:3DFoVPonoAAt4EZ1FEI8ue
+wavves:Wavves:6bUJpbekaIlq2fT5FMV2mQ
 parade of lights:Parade of Lights:5acfZKELBZRBvyhrC0kzG1
 american authors:American Authors:0MlOPi3zIDMVrfA9R04Fe3
 django django:Django Django:2ARO60gI5do88ho6azmzab
@@ -22,6 +23,7 @@ phantogram:Phantogram:1l9d7B8W0IHy3LqWsxP2SH
 manchester orchestra:Manchester Orchestra:5wFXmYsg3KFJ8BDsQudJ4f
 bad suns:Bad Suns:0YhUSm86okLWldQVwJkLlP
 capital cities:Capital Cities:4gwpcMTbLWtBUlOijbVpuu
+el vy:EL VY:3zsR0Nsw8G2KuzKSdmosPI
 junior prom:Junior Prom:29noXXNLw1uvxcnd6PLMkS
 tv on the radio:TV On The Radio:3HJIB8sYPyxrFGuwvKXSLR
 the moth & the flame:The Moth & The Flame:6Fk18HpdnXUsKWpN9mPb9R
@@ -37,6 +39,7 @@ brandon flowers:Brandon Flowers:18Zv2g2vUcEGqJf6WnjfXN
 george ezra:George Ezra:2ysnwxxNtSgbb9t1m2Ur4j
 big data:Big Data:4S1nvNHWiZLP4rzwmULmUa
 heavy english:Heavy English:0d36ctIKo0d9JNbA8zRfHB
+firekid:firekid:61XyQHQKfzbzgTmtbiVOR3
 mumford & sons:Mumford & Sons:3gd8FJtBJtkRxdfbTu19U2
 kodaline:Kodaline:4BxCuXFJrSWGi1KHcVqaU4
 modest mouse:Modest Mouse:1yAwtBaoHLEDWAnWR87hBT
@@ -141,15 +144,18 @@ young the giant:Young the Giant:4j56EQDQu5XnL7R3E9iFJT
 the colourist:The Colourist:0hK26QoGcuKV3lH0x9MvUU
 x ambassadors:X Ambassadors:3NPpFNZtSTHheNBaWC82rB
 broods:Broods:5r5Va4lVQ1zjEfbJSrmCsS
+coast modern:Coast Modern:4wYk01oPJNfaEssVFL46oQ
 james bay:James Bay:4EzkuveR9pLvDVFNx6foYD
 young rising sons:Young Rising Sons:6ZUjdwG0NvY6MT7vvmluhV
 elle king:Elle King:3bhu7P5PfngueRHiB9hjcx
+brick+mortar:Brick + Mortar:7oHJbmt1VAj16Tm6nJpSqr
 dotan:Dotan:1cwOthlzLBwN8Imbq7P71H
 coin:COIN:0ZxZlO7oWCSYMXhehpyMvE
 avid dancer:Avid Dancer:7x4bI6vTtMCONH8MVqI8WK
 bleachers:Bleachers:2eam0iDomRHGBypaDQLwWI
 somekindawonderful:SomeKindaWonderful:60Jys4EElM1SuCQbZ63XRm
 biffy clyro:Biffy Clyro:1km0R7wy712AzLkA1WjKET
+mainland:Mainland:1glS4fPaSC5EgMTnOsiXif
 death cab for cutie:Death Cab for Cutie:0YrtvWJMgSdVrk3SfNjTbx
 kaiser chiefs:Kaiser Chiefs:0LbLWjaweRbO4FDKYlbfNt
 the strypes:The Strypes:2sShFUqcFIAZGqagNYy4om
