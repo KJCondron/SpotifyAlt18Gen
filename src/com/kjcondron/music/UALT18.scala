@@ -1,29 +1,19 @@
 package com.kjcondron.music
 
 import scala.Option.option2Iterable
-import scala.collection.mutable.ListBuffer
-import org.xml.sax.Attributes
-import org.xml.sax.helpers.DefaultHandler
 import com.kjcondron.web.HTTPWrapper
 import com.wrapper.spotify._
 import com.wrapper.spotify.models._
-import scala.collection.JavaConversions.asScalaIterator
 import scala.collection.JavaConversions.asScalaBuffer
 import scala.collection.JavaConversions.seqAsJavaList
-import UAlt18F._
-import com.wrapper.spotify.models.Artist
-import com.wrapper.spotify.methods.TopTracksRequest
-import com.wrapper.spotify.models.Track
-import java.util.Calendar
 import java.io.FileOutputStream
 import java.io.File
-import java.io.FileWriter
 import scala.collection.mutable.Buffer
 import java.io.BufferedWriter
 import java.io.OutputStreamWriter
 import com.wrapper.spotify.exceptions.BadRequestException
-import com.wrapper.spotify.methods.TrackSearchRequest
 import UAlt18Parser._
+import UAlt18F._
 
 object UAlt18F {
           
@@ -93,7 +83,6 @@ object UAlt18F {
   // the refresh token can be used with secret to get a new access token
   def getSpotify(conn : HTTPWrapper) = {
              
-    val _acc="BQBfTmcbyxisX-wFkVs4-AV2uXC07J3pm-Ws4lSl8QL2mknfNnqaQBIDGGPntPfHcpnJNPo5Aj1MDSfoqEeEY0xRFLab45IoX0lUhCb9Gqv_Gm1qPdhbzwveLC_JtI0pkKhwPUiiV9Z1Bkku5FHGXMHEbMeUBK0SZmga9N1sN5-aK9DonO_zFA3WV0s-eKKmnc78HQcaeNAH7o8QfAmSx_vkHTmVQQbLyRcvvJvXIJ-9nNuIiAmZhd2PI0ewxZsPI2EjwJbefQ"
     val _ref="AQC0OxT6ayAimF5iie5cfjU2PNBa0Fxc1T56tUfGtC57zn3peIrPfeuFom31Gt9uMJHpjiJf486TUdnMVPrtDXs6W-xch6fjzukOKfVjvZk7iIrjNxerlpHvj36w1JXjqYI" 
   
     val accLoc = """acc.tmp""" 
