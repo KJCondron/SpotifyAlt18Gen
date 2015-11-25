@@ -17,16 +17,9 @@ import UAlt18F._
 
 object UAlt18F {
           
-  def getAPI = {
-    val clientId = "20212105b1764ecb81a226fca7796b4b"
-    val secret = "57a3b615f9be4b17b61361da94b35204"
-    
-    
-    Api.builder.clientId(clientId)
-              .clientSecret(secret)
-              
-  }
-  
+  val getAPI = Api.builder.clientId("20212105b1764ecb81a226fca7796b4b")
+                          .clientSecret("57a3b615f9be4b17b61361da94b35204")
+                          
   // URL is always the same for given secret / client id and scopes
   def getSpotifyAuthURL(conn : HTTPWrapper) = {
     
@@ -48,35 +41,7 @@ object UAlt18F {
     val authorizeURL = api.createAuthorizeURL(scopes, state);
     println(authorizeURL)
     
-    api
-    
-  }
-  
-  // using the url above, stick it in a web browser get the code and we can get our tokens
-  // code is one time use
-  def getSpotifyTok(conn : HTTPWrapper) = {
-    
-    val api = getAPI.build
-  
-    val code = "AQDi2DRVQy3ZAu562AWLU5EM_OhWbTm9L4sQlmXKWw-9qxN79yRDWx3eiNKnVg0OnLZ7n6jHOqgLwfpkJCGMpV7K518ZYjuLE_i_nHDE6328oxGpkpJjcua-AjyWGJUEIPfFmOlJJXnLeP5SC9KuFk9OBp775OY4wa8EP3eJiqp8GHeNumy5VGhqhEVFrzsB21eltOtRwj3y70qqecJBAHKyXED70ySnvVZNaoweqh1PAnTipaDs4C77jsxSHEt1PYQ_LSH7c7GwmBRowCFAKcOT9y6Ho-8b89TRmJHEAjh4vJQF5xP6QPDrr6RsYet89eCzQOLOyHzm"
-    val authCode = api.authorizationCodeGrant(code).build.get
-  
-    val tok = authCode.getAccessToken
-    val ref = authCode.getRefreshToken
-    val expin = authCode.getExpiresIn
-    println(tok)
-    println(ref)
-    println(expin)
-    
-    // must set tokens before have access
-    api.setAccessToken(tok)
-    api.setRefreshToken(ref)
-    
-    val user = api.getMe.build.get
-    println(user.getId)
-   
-    
-    api
+    api  
   }
    
   // if we have a token, and it is new enough we can setup the api using just that
@@ -231,28 +196,21 @@ object UAlt18 extends App {
   
   val s = getSpotify(conn)
   
-  val address = """http://theunofficialalt18countdownplaylists.com/"""
+  //val alt18s = getUAlt18(conn,conn2)
+  val alt18s = UAlt18AnnualParser.getUAlt18Annual
   
-  val res = getUALT18Cal(address,conn)
-  println("got getUALT18Cal 1")
-  
-  val alt18add = res.flatMap( resAdd => getUALT18(resAdd,conn).flatten )
-  println("got getUALT18Cal 2")
-  
-  // results is each weeks alt-18 address (for which we can get the date)
-  // and the "artist-title" list
-  val alt18s = alt18add.collect( {
-     case x  : String if(x.contains("results-")) => (x,getUALT18Table(x,conn2)) 
-   } )
+  def fn(gg:String, sep : String) = { 
+      val x = clean(gg)  
+      val at = x.split(" " +sep+ " ")
+      val artist = at(0)
+      val title = if(at.size > 1) { at(1) } else { "" }
+    
+      MyTrack(artist.toLowerCase, title)
+  }
     
   val parseArtistAndTitle : PartialFunction[String, MyTrack] = {
-      case g if g.contains("-") => 
-       val x = clean(g)  
-       val at = x.split(" - ")
-       val artist = at(0)
-       val title = if(at.size > 1) { at(1) } else { "" }
-       
-       MyTrack(artist.toLowerCase, title)
+    case g if g.contains("-") => fn(g,"-")
+    case g if g.contains("–") => fn(g,"–")
   }
   
   val alt18wTracks = alt18s.map( { case(url,songs) => (url,songs.collect(parseArtistAndTitle)) })   
@@ -296,6 +254,9 @@ object UAlt18 extends App {
    
  val (matchingArtistsBuf, nonMatchingArtists) = possibles.partition( _._2.size==1 )
  val matchingArtists = matchingArtistsBuf.mapValues { _.head }
+ 
+ println("matchingArtists:" + matchingArtistsBuf.size)
+ println("non-matchingArtists:" + nonMatchingArtists.size)
  
  // or (time these)
  //val matchingArtists1 = possibles.mapValues { case ms if ms.size==1 => ms.head }
@@ -486,9 +447,12 @@ object UAlt18 extends App {
    val stillMissing = searchRes.mapValues( ss => ss.collect({ case s:NoSong => s}) ).filter({case(_,fs)=>fs.size>0})
      
    println("now Found " + finds.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
-   finds.foreach({case (a,ls) if ls.size > 0 => { 
-     println(a.getName + ":" + ls.mkString(","))
-   }})
+   finds.foreach(
+       {case (a,ls) if ls.size > 0 => { 
+           println(a.getName + ":" + ls.mkString(","))}
+       case (a,ls) => { 
+           println(a.getName + ":" + "none")}
+       })
    
    println("Still Didn't Find " + stillMissing.foldLeft(0)((acc,x) => acc+x._2.size) + " songs")
    stillMissing.foreach({case (a,ls) =>{ 
@@ -555,7 +519,7 @@ object UAlt18 extends App {
      }
    }
    
-   addTracks(uid, plid, newPLTrackUris)
+   //addTracks(uid, plid, newPLTrackUris)
          
    conn.dispose
    conn2.dispose

@@ -50,8 +50,7 @@ class UALT18TableHandler extends DefaultHandler {
       val chr = new String(ch, start, length)
       if(chr.contains("ARTIST")){
         trackCol = "column-" + maxCol
-      }
-        
+      }   
     }
   }
     

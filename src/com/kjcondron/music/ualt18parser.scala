@@ -63,4 +63,21 @@ object UAlt18Parser {
   	
   	h1.res.toList
 }
+
+def getUAlt18(conn : HTTPWrapper, conn2 : HTTPWrapper) = {
+  val address = """http://theunofficialalt18countdownplaylists.com/"""
+  
+  val res = getUALT18Cal(address,conn)
+  println("got getUALT18Cal 1")
+  
+  val alt18add = res.flatMap( resAdd => getUALT18(resAdd,conn).flatten )
+  println("got getUALT18Cal 2")
+  
+  // results is each weeks alt-18 address (for which we can get the date)
+  // and the "artist-title" list
+  val alt18s = alt18add.collect( {
+     case x  : String if(x.contains("results-")) => (x,getUALT18Table(x,conn2)) 
+   } )
+  alt18s
+}  
 }
