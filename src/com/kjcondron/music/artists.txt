@@ -3,6 +3,7 @@ red hot chili peppers:Red Hot Chili Peppers:0L8ExT028jH3ddEcZwqJJ5
 the black keys:The Black Keys:7mnBLXK823vNxN3UWB7Gfz
 polock:Polock:0dRPyk7hiV4FJxSG1VHf2L
 new politics:New Politics:3RbyaF3Pq6iDUKNp04AIcU
+deadmau5 feat. gerard way:deadmau5:2CIMQHirSU0MQqyYHq0eOx
 manchester orchestra:Manchester Orchestra:5wFXmYsg3KFJ8BDsQudJ4f
 garbage:Garbage:6S0GHTqz5sxK5f9HtLXn9q
 givers:Givers:6t4Gtzu86ovaXYUmAL2zb3
@@ -56,6 +57,8 @@ of monsters and men:Of Monsters and Men:4dwdTW1Lfiq0cM8nBAqIIz
 atlas genius:Atlas Genius:42vg2T0Xg9yPaAgogJzoQH
 passion pit:Passion Pit:7gjAu1qr5C2grXeQFFOGeh
 wolf gang:Wolf Gang:6EkvDqOOEX08BotcQppKoD
+danger mouse & daniele luppi ft. jack white:Danger Mouse:2dBj3prW7gP9bCCOIQeDUf
+the sounds:The Sounds:0W2XAE5AnBWqcGNhfupEOU
 matt & kim:Matt and Kim:4MSMDY0ClgWqXApU53I1L1
 cults:Cults:3Oim8XBPbznAa8Jj8QzNc8
 smoke & jackal:Smoke & Jackal:5XGkHUlJjnDwWeSBO5ChsA
@@ -76,6 +79,9 @@ the airborne toxic event:The Airborne Toxic Event:7xovAENFxmyEWhzbnHsB3Z
 tegan & sara:Tegan and Sara:5e1BZulIiYWPRm8yogwUYH
 the limousines:The Limousines:2rKoD8HgdamRQpAtp4N4BA
 metric:Metric:1rCIEwPp5OnXW0ornlSsRl
+blink 182:blink-182:6FBDaR13swtiWwGhX1WQsP
+beastie boys w/santigold:Beastie Boys:03r4iKL2g2442PT9n2UKsx
+the kooks:The Kooks:1GLtl8uqKmnyCWxHmw9tL4
 the xx:The xx:3iOvXCl6edW5Um0fXEBRXy
 bloc party:Bloc Party:3MM8mtgFzaEJsqbjZBSsHJ
 young the giant:Young the Giant:4j56EQDQu5XnL7R3E9iFJT
@@ -88,16 +94,19 @@ incubus:Incubus:3YcBF2ttyueytpXtEzn1Za
 biffy clyro:Biffy Clyro:1km0R7wy712AzLkA1WjKET
 death cab for cutie:Death Cab for Cutie:0YrtvWJMgSdVrk3SfNjTbx
 animal kingdom:Animal Kingdom:3XTDF3ka1IRLXu61qd36zK
-jane’s addiction:Jane's Addiction:02NfyD6AlLA12crYzw5YcR
+jane's addiction:Jane's Addiction:02NfyD6AlLA12crYzw5YcR
 cage the elephant:Cage The Elephant:26T3LtbuGT1Fu9m0eRq5X3
 silversun pickups:Silversun Pickups:6qyi8X6MdP1lu6B1K6yh3h
 muse:Muse:12Chz98pHFMPJEknJQMWvI
 fitz & the tantrums:Fitz and The Tantrums:4AcHt3JxKy59IX7JNNlZn4
+beastie boys ft. santigold:Beastie Boys:03r4iKL2g2442PT9n2UKsx
 peter, bjorn & john:Peter Bjorn and John:6u11Qbko2N2hP4lTBYjX86
 imagine dragons:Imagine Dragons:53XhwfbYqKCa1cC15pYq2q
 bombay bicycle club:Bombay Bicycle Club:3pTE9iaJTkWns3mxpNQlJV
 the naked and famous:The Naked And Famous:0oeUpvxWsC8bWS6SnpU8b9
+noel gallagher's high flying birds:Noel Gallagher's High Flying Birds:7sjttK1WcZeyLPn3IsQ62L
 them swoops:Them Swoops:74YrgwzfY7K2AVEahAarhp
+cold war kids:Cold War Kids:6VDdCwrBM4qQaGxoAyxyJC
 citizens!:Citizens!:2LpTDvw6ZW4iV2yLpntiCU
 peter bjorn & john:Peter Bjorn and John:6u11Qbko2N2hP4lTBYjX86
 beastie boys:Beastie Boys:03r4iKL2g2442PT9n2UKsx

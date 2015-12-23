@@ -379,7 +379,6 @@ Matt & Kim – Let’s Go
 The Gaslight Anthem – “45”
 The Temper Trap – Trembling Hands
 Green Day – Oh Love
-Kimbra, Mark Foster & A-Trak – Warrior
 Grouplove – Itchin’ On A Photograph
 Ball Park Music – It’s Nice To Be Alive
 A Silent Film – Danny, Dakota & The Wishing Well
@@ -405,7 +404,6 @@ A Silent Film – Danny, Dakota & The Wishing Well
 Chappo – Come Home
 fun. – Some Nights
 Imagine Dragons – It’s Time
-Kimbra, Mark Foster & A-Trak – Warrior
 Silversun Pickups – Bloody Mary (Nerve Endings)
 The Black Keys – Little Black Submarines
 Passion Pit – Take A Walk
@@ -427,7 +425,6 @@ Imagine Dragons – It’s Time
 Foster The People – Houdini
 Passion Pit – Take A Walk
 Silversun Pickups – Bloody Mary (Nerve Endings)
-Kimbra, Mark Foster & A-Trak – Warrior
 Walk The Moon – Anna Sun 
 Grouplove – Itchin’ On A Photograph 
 Blondfire – Where The Kids Are
@@ -444,12 +441,11 @@ fun. – Some Nights
 Imagine Dragons – It’s Time
 Passion Pit – Take A Walk
 Foster The People – Houdini
-Kimbra, Mark Foster & A-Trak – Warrior
 Walk The Moon – Anna Sun
 Silversun Pickups – Bloody Mary (Nerve Endings) 
 Oberhofer – Away FRM U
 Blondfire – Where The Kids Are 
-Ballpark Music – It’s Nice To Be Alive
+Ball Park Music – It’s Nice To Be Alive
 The Black Keys – Little Black Submarines
 Chappo – Come Home
 The Temper Trap – Trembling Hands
@@ -458,7 +454,6 @@ M83 – Reunion
 The Gaslight Anthem – “45”
 A Silent Film – Danny, Dakota & The Wishing Well
 Passion Pit – Take A Walk
-Kimbra, Mark Foster & A-Trak – Warrior
 Metric – Youth Without Youth
 fun. – Some Nights
 Imagine Dragons – It’s Time
@@ -477,7 +472,6 @@ Gotye – Eyes Wide Open
 Passion Pit – Take A Walk
 fun. – Some Nights
 A Silent Film – Danny, Dakota & The Wishing Well
-Kimbra, Mark Foster & A-Trak – Warrior
 Metric – Youth Without Youth
 Imagine Dragons – It’s Time
 Foster The People – Houdini
@@ -494,13 +488,12 @@ Passion Pit – Take A Walk
 Gotye – Eyes Wide Open
 The Gaslight Anthem – “45”
 A Silent Film – Danny, Dakota & The Wishing Well
-Kimbra, Mark Foster & A-Trak – Warrior
 The Wombats – Jump Into The Fog
 Metric – Youth Without Youth
 Imagine Dragons – It’s Time
 Foster The People – Houdini
 Walk The Moon – Anna Sun
-Silvesun Pickups – Bloody Mary (Nerve Endings) 
+Silversun Pickups – Bloody Mary (Nerve Endings) 
 Ball Park Music – It’s Nice To Be Alive 
 The Hives – Go Right Ahead
 fun. – Some Nights 
@@ -515,7 +508,6 @@ Gotye – Eyes Wide Open
 The Wombats – Jump Into The Fog
 Metric – Youth Without Youth
 Foster The People – Houdini
-Kimbra, Mark Foster & A-Trak – Warrior
 Imagine Dragons – It’s Time
 Silversun Pickups – Bloody Mary (Nerve Endings)
 Walk The Moon – Anna Sun 
@@ -532,7 +524,6 @@ Gotye – Eyes Wide Open
 A Silent Film – Danny, Dakota & The Wishing Well
 Metric – Youth Without Youth
 The Wombats – Jump Into The Fog
-Kimbra, Mark Foster & A-Trak – Warrior
 Jack White – Sixteen Saltines
 Imagine Dragons – It’s Time
 Silversun Pickups – Bloody Mary (Nerve Endings)
@@ -547,7 +538,6 @@ Chappo – Come Home
 The Gaslight Anthem – “45”
 Gotye – Eyes Wide Open
 The Black Keys – Gold On The Ceiling
-Kimbra, Mark Foster & A-Trak – Warrior
 A Silent Film – Danny, Dakota & The Wishing Well
 Santigold – Disparate Youth
 Imagine Dragons – Its Time
@@ -562,7 +552,6 @@ Electric Guest – This Head I Hold
 The Temper Trap – Need Your Love
 Chappo – Come Home
 The Gaslight Anthem – “45”
-Kimbra, Mark Foster & A-Trak – Warrior
 Gotye – Eyes Wide Open
 Bombay Bicycle Club – Shuffle
 A Silent Film – Danny, Dakota & The Wishing Well
@@ -576,7 +565,6 @@ Walk The Moon – Anna Sun
 Morning Parade – Headlights
 The Gaslight Anthem – “45” 
 Atlas Genius – Trojans
-Kimbra, Mark Foster & A-Trak – Warrior
 The Shins – Simple Song
 The Temper Trap – Need Your Love
 Chappo – Come Home
@@ -594,7 +582,6 @@ The Wombats – Jump Into The Fog
 Morning Parade – Headlights
 Gotye – Eyes Wide Open
 Atlas Genius – Trojans
-Kimbra, Mark Foster & A-Trak – Warrior
 Chappo – Come Home
 Santigold – Disparate Youth
 The Shins – Simple Song
@@ -610,7 +597,6 @@ The Black Keys – Gold On The Ceiling
 Walk The Moon – Anna Sun
 The Wombats – Jump Into The Fog 
 Gotye – Eyes Wide Open 
-Kimbra, Mark Foster & A-Trak – Warrior 
 Santigold – Disparate Youth
 Chappo – Come Home
 Grouplove – Tongue Tied
@@ -879,10 +865,10 @@ Foster The People – Don’t Stop (Color On The Walls)
 Grouplove – Tongue Tied
 M83 – Midnight City
 Atlas Genius – Trojans 
-The Lonley Forest – Turn Off This Song And Go Outside
+The Lonely Forest – Turn Off This Song And Go Outside
 Coldplay – Charlie Brown 
 The Joy Formidable – A Heavy Abacus
-Deathcab For Cutie – Underneath The Sycamore 
+Death Cab For Cutie – Underneath The Sycamore 
 fun. – We Are Young 
 Noel Gallagher’s High Flying Birds – AKA..What A Life 
 Neon Trees – Everybody Talks
