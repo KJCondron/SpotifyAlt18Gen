@@ -102,9 +102,8 @@ object UAlt18F {
     
     //println("Comparing:" + str1 + " and " + str2 + " " + compareScore(str1, str2) + " " + compareScore(str2, str1) + ":" + (compareScore(str1, str2)==1.0 || compareScore(str2, str1)==1.0)) 
         
-    val sFilter = (x:Char) => x > 64 && x < 123
-    val myRep = (s:String) => 
-      s.replace("&", "and").filter(sFilter).trim.toLowerCase
+    val sFilter = (x:Char) => x > 96 && x < 123 // filter out any non lower case letters
+    val myRep = (s:String) => s.replace("&", "and").toLowerCase.filter(sFilter).trim // apply filter after toLower to remove anything outside [a-z]
       
     val dropParenClause = (s:String) => 
       s.takeWhile(_!= '(').trim.toLowerCase
@@ -165,7 +164,7 @@ case class FoundSong(alt18Name : String, track : Track) extends SearchedSong
   }
 }
 case class NoSong(alt18Name : String) extends SearchedSong {
-  println("NOSong:" + alt18Name)
+  println("NOSong: " + alt18Name)
 override def equals(that:Any) : Boolean = 
     that match {
     case fs : NoSong => fs.alt18Name == alt18Name
@@ -454,7 +453,7 @@ object UAlt18 extends App {
    def compareBoth( t : Track, artist : Artist, title : String ) = {
      println("CompareBoth:" + t.getArtists.head.getName +":"+ artist.getName +":" + t.getName + ":" + title)
      println("CompareBoth:" + t.getArtists.head.getId +":"+ artist.getId)
-     val ret = t.getArtists.head.getId == artist.getId &&
+     val ret = t.getArtists.head.getId == artist.getId && // "The BandName" doesn't match "Band Name"
        compare2(t.getName, title)
        
        println("CompareBoth:" + ret)
@@ -536,6 +535,7 @@ object UAlt18 extends App {
    val plid = getPL("all18").map(_.getId).getOrElse(
             s.createPlaylist(uid, "all18").build.get.getId)
             
+   println("playlist id:" + plid)
    
    def getPLTracks(uid : String, plid : String, offset : Int = 0, acc : List[PlaylistTrack] = List()) : 
      List[PlaylistTrack] =
