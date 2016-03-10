@@ -61,13 +61,13 @@ class UALT18TableHandler extends DefaultHandler {
     if(inTHCol && name == "th")
       inTHCol = false
       
-    if(found1 && name == "table") {
-      // just set all vars to false to stop parsing
-      inBody = false
+    if(found1 && name == "table") { // done with this table...lets see if there are anymore?
       inTable = false
       inTBody = false
       inTRow = false
       inTrackCol = false
+      trackCol = "" // table may have a different trackColumn
+      maxCol = 0 // table may have a different maxCol
     }
     
     if(inTrackCol && name == "td")

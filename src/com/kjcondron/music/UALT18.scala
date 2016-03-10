@@ -192,6 +192,7 @@ object UAlt18 extends App {
   
   println("start")
   
+  
   val artistFileLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\artists.txt"""
   val artistFile = new File(artistFileLoc)
   val artistCache = if ( artistFile.exists ) Some( loadExisting(artistFileLoc) ) else None
@@ -202,6 +203,7 @@ object UAlt18 extends App {
   
   val conn = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\""")
   val conn2 = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\Res\""")
+  val conn3 = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\Res2\""")
   
   def clean(s:String) = s.replace(160.toChar, 32.toChar).replace('’', ''') 
  
@@ -210,7 +212,7 @@ object UAlt18 extends App {
   val s = getSpotify(conn)
   
   //val alt18s = getUAlt18(conn,conn2)
-  val alt18s = UAlt18AnnualParser.getUAlt18Annual
+  val alt18s = UAlt18AnnualParser.getUAlt18Annual(conn3)
   
   def fn(gg:String, sep : String) = { 
       val x = clean(gg).trim .toLowerCase 
@@ -517,8 +519,8 @@ object UAlt18 extends App {
    val sps2 = spotifySongs.mapValues( t=> backOffLogic(s.getTrack(t.getId).build.get)  )
    
    val spotifySongs2 = alls.values.flatten
-   val sps2_2 = spotifySongs2.map( t => backOffLogic(s.getTrack(t.track.getId).build.get)  )
-   
+   val sps2_2 = spotifySongs2.map( t => {println(t.track.getId); backOffLogic(s.getTrack(t.track.getId).build.get) } )
+   println("done")
    val uid = backOffLogic(s.getMe.build.get.getId)
    
    def getPL(name : String) = try {
@@ -578,5 +580,6 @@ object UAlt18 extends App {
          
    conn.dispose
    conn2.dispose
+   conn3.dispose
    
 } // end app
