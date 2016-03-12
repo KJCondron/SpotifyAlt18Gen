@@ -56,7 +56,8 @@ class HTTPWrapper(
   }
   
   def requestLatest( address : String ) : InputSource = {
-      val h = getISFromURL(address)
+    println("getLatest")  
+    val h = getISFromURL(address)
       save(h,address)
   }
   

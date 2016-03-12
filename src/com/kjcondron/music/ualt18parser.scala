@@ -53,9 +53,9 @@ object UAlt18Parser {
   	h1.res.toList
 }
   //2
-  def getUALT18Table( address : String, conn : HTTPWrapper  ) : List[String] = {
+  def getUALT18Table( address : String, conn : HTTPWrapper, ignoreCache : Boolean = false  ) : List[String] = {
     
-    val HTML = conn.request(address)
+    val HTML = if (ignoreCache) conn.requestLatest(address) else conn.request(address)
     	
   	val h1 = new UALT18TableHandler
   	val parser = new SAXFactoryImpl().newSAXParser()

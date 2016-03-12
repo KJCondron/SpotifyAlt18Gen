@@ -422,6 +422,7 @@ object UAlt18 extends App {
     val tr = new Track
     tr.setName(name)
     tr.setId(id)
+    tr.setUri("spotify:track:"+id)
     tr
   }
   
@@ -514,12 +515,13 @@ object UAlt18 extends App {
    stillMissing.foreach({case (a,ls) =>{ 
      println(a.getName + ":" + ls.mkString(","))
    }})
-   
+      
    val spotifySongs = alls.values.flatten.map( x=> (x.alt18Name,x.track) ).toMap
-   val sps2 = spotifySongs.mapValues( t=> backOffLogic(s.getTrack(t.getId).build.get)  )
+   //val sps2 = spotifySongs.mapValues( t=> backOffLogic(s.getTrack(t.getId).build.get)  )
+   //assert(spotifySongs.keys==sps2.keys)
    
    val spotifySongs2 = alls.values.flatten
-   val sps2_2 = spotifySongs2.map( t => {println(t.track.getId); backOffLogic(s.getTrack(t.track.getId).build.get) } )
+   //val sps2_2 = spotifySongs2.map( t => backOffLogic(s.getTrack(t.track.getId).build.get) )
    println("done")
    val uid = backOffLogic(s.getMe.build.get.getId)
    
@@ -534,8 +536,8 @@ object UAlt18 extends App {
    }
    
    println("get all18 pl")
-   val plid = getPL("all18").map(_.getId).getOrElse(
-            s.createPlaylist(uid, "all18").build.get.getId)
+   val plid = getPL("all18new").map(_.getId).getOrElse(
+            s.createPlaylist(uid, "all18new").build.get.getId)
             
    println("playlist id:" + plid)
    
@@ -556,14 +558,30 @@ object UAlt18 extends App {
        def matches(_tr2 : Track) = _tr.getTrack.getId == _tr2.getId  
    }
    def closure1(_tr2 : Track) = pltracks.exists( _.matches(_tr2) )
-   val newtracks = sps2_2.filterNot( closure1 )
+   //val newtracks = sps2_2.filterNot( closure1 )
+   def closure2( _fs : FoundSong ) = pltracks.exists( _.matches(_fs.track) )
+   val newtracks2 = spotifySongs2.filterNot( closure2 )
    
-   println("spotify songs count:" + sps2.size)
-   println("spotify 2 songs count:" + sps2_2.size)
-   println("new track count:" + newtracks.size)
    
-   val newPLTrackUris = newtracks.map(_.getUri).toList
+  // println("spotify songs count:" + sps2.size)
+   //println("spotify 2 songs count:" + sps2_2.size)
+   //println("new track count:" + newtracks.size)
+   println("new track count2:" + newtracks2.size)
    
+   
+   //val newPLTrackUris = newtracks.map(_.getUri).toList
+   val newPLTrackUris2 = newtracks2.map(_.track.getUri).toList
+   
+   val distinctUris = newPLTrackUris2.distinct
+   println("orig uri size" + newPLTrackUris2.size)
+   println("distinct size" + distinctUris.size)
+   //assert(newPLTrackUris==newPLTrackUris)
+   
+   //newPLTrackUris2.take(5).foreach(println)
+   //newPLTrackUris.take(5).foreach(println)
+   
+
+   //not tailrec
    def addTracks(uid : String, plid : String, tracks : List[String]) : Unit = {  
        if(tracks.size > 0){
        val maxSize = 50
@@ -576,7 +594,9 @@ object UAlt18 extends App {
      }
    }
    
-   //addTracks(uid, plid, newPLTrackUris)
+   addTracks(uid, plid, distinctUris)
+   
+   println("missing from orig set: " + alt18wTracks.foldLeft(0)( (acc,x)=> acc + x._2.count( y => !spotifySongs.contains(y.title) ) ))
          
    conn.dispose
    conn2.dispose
