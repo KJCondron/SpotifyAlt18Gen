@@ -231,7 +231,7 @@ object UAlt18 extends App {
   val alt18wTracks = alt18s.map( { case(url,songs) => (url,songs.collect(parseArtistAndTitle)) })   
   
   val allTracks = alt18wTracks.map(_._2).flatten
-  println("got artists " + allTracks.size)
+  println("got tracks " + allTracks.size)
   
   val allTracksByArtist = allTracks.groupBy(_.artist).map { case (k,v) => (k,v.map(_.title).distinct ) } 
   println("got distinct artists " + allTracksByArtist.size)
@@ -595,6 +595,11 @@ object UAlt18 extends App {
    }
    
    addTracks(uid, plid, distinctUris)
+   
+   val byYr = alt18wTracks.toMap.mapValues( tracks => tracks.flatMap( tr => songs.flatMap( _.get(tr.title) ) ) )
+   
+   alt18wTracks.foreach( x=>println(x._1 + ":" +x._2.size) )
+   byYr.foreach( x=>println(x._1 + ":" +x._2.size) )
    
    println("missing from orig set: " + alt18wTracks.foldLeft(0)( (acc,x)=> acc + x._2.count( y => !spotifySongs.contains(y.title) ) ))
          
