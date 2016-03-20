@@ -1,0 +1,972 @@
+ #	WKS	HIGH 	 1	Top 18 of 2011
+18	13	5	–	Coldplay – Paradise
+17	18	1	3	The Black Keys – Howlin’ For You
+16	12	4	–	Two Door Cinema Club – What You Know
+15	24	1	1	The Airborne Toxic Event – Changing
+14	14	2	–	Blink-182 – Up All Night
+13	11	2	–	Atlas Genius – Trojans
+12	11	1	1	Mumford & Sons – The Cave
+11	13	2	–	Red Hot Chili Peppers – The Adventures Of Rain Dance Maggie
+10	16	1	2	The Strokes – Under Cover Of Darkness
+9	13	1	3	Cage The Elephant – Shake Me Down
+8	18	1	6	Death Cab For Cutie – You Are A Tourist
+7	21	4	–	The Joy Formidable – Whirring
+6	12	1	2	Foo Fighters – Rope
+5	19	1	3	Young The Giant – Cough Syrup
+4	18	1	5	The Naked And Famous – Punching In A Dream
+3	25	1	8	Grouplove – Colours
+2	8	1	4	The Black Keys – Lonely Boy
+1	24	1	5	Foster The People – Helena Beat
+ 
+
+Week ending 12/17/2011
+18	–	18	–	Sleeper Agent – Get Burned (debut)
+17	15	7	–	Red Hot Chili Peppers – Monarchy of Roses
+16	16	16	–	The Lonely Forest – Turn Off This Song and Go Outside
+15	–	15	–	Neon Trees – Everybody Talks (debut)
+14	17	14	–	The Joy Formidable – A Heavy Abacus
+13	8	8	–	Bombay Bicycle Club – Shuffle
+12	14	12	–	The Wombats – Jump Into The Fog
+11	6	2	–	Florence + The Machine – What The Water Gave Me
+10	13	10	–	Of Monsters & Men – Little Talks
+9	9	8	–	Cage The Elephant – Aberdeen
+8	11	8	–	M83 – Midnight City
+7	4	1	3	Young The Giant – Cough Syrup
+6	10	6	–	Grouplove – Tongue Tied
+5	5	5	–	Wolf Gang – The King And All Of His Men
+4	7	4	–	AWOLNATION – Not Your Fault
+3	3	3	–	Foster The People – Don’t Stop (Color on the Walls)
+2	2	2	–	Atlas Genius – Trojans
+1	1	1	4	The Black Keys – Lonely Boy (4)
+Week ending 12/10/2011
+18	15	11	–	Blink-182 – After Midnight
+17	–	17	–	The Joy Formidable – A Heavy Abacus (debut)
+16	18	16	–	The Lonely Forest – Turn off This Song and Go Outside
+15	9	7	–	Red Hot Chili Peppers – Monarchy of Roses
+14	–	14	–	The Wombats – Jump Into The Fog (re-entry)
+13	13	13	–	Of Monsters & Men – Little Talks
+12	7	5	–	Coldplay – Paradise
+11	16	11	–	M83 – Midnight City
+10	14	10	–	Grouplove – Tongue Tied
+9	11	8	–	Cage The Elephant – Aberdeen
+8	10	8	–	Bombay Bicycle Club – Shuffle
+7	8	7	–	AWOLNATION – Not Your Fault
+6	2	2	–	Florence + The Machine – What The Water Gave Me
+5	5	5	–	Wolf Gang – The King and All of His Men
+4	4	1	3	Young The Giant – Cough Syrup
+3	6	3	–	Foster The People – Don’t Stop (Color on the Walls)
+2	3	2	–	Atlas Genius – Trojans
+1	1	1	3	The Black Keys – Lonely Boy (3)
+Week ending 12/3/2011
+18	–	18	–	The Lonely Forest – Turn Off This Song and Go Outside (debut)
+17	13	1	5	The Naked and Famous – Punching in a Dream
+16	16	15	–	M83 – Midnight City
+15	11	11	–	Blink-182 – After Midnight
+14	–	14	–	Grouplove – Tongue Tied (debut)
+13	18	13	–	Of Monsters & Men – Little Talks
+12	15	4	–	The Airborne Toxic Event – All I Ever Wanted
+11	14	8	–	Cage the Elephant – Aberdeen
+10	10	10	–	Bombay Bicycle Club – Shuffle
+9	7	7	–	Red Hot Chili Peppers – Monarchy of Roses
+8	8	8	–	AWOLNATION – Not Your Fault
+7	5	5	–	Coldplay – Paradise
+6	12	6	–	Foster The People – Don’t Stop (Color on the Walls)
+5	6	5	–	Wolf Gang – The King and All of His Men
+4	3	1	3	Young the Giant – Cough Syrup
+3	4	3	–	Atlas Genius – Trojans
+2	2	2	–	Florence + The Machine – What The Water Gave Me
+1	1	1	2	The Black Keys – Lonely Boy (2)
+Week ending 11/26/2011
+18	–	18	–	Of Monsters & Men – Little Talks (debut)
+17	18	13	–	Foo Fighters – These Days
+16	15	15	–	M83 – Midnight City
+15	9	4	–	The Airborne Toxic Event – All I Ever Wanted
+14	16	8	–	Cage The Elephant – Aberdeen
+13	12	1	5	The Naked and Famous – Punching in a Dream
+12	13	12	–	Foster The People – Don’t Stop (Color on the Walls)
+11	14	11	–	Blink-182 – After Midnight
+10	11	10	–	Bombay Bicycle Club – Shuffle
+9	5	2	–	Death Cab For Cutie – Stay Young, Go Dancing
+8	10	8	–	AWOLNATION – Not Your Fault
+7	8	7	–	Red Hot Chili Peppers – Monarchy of Roses
+6	7	6	–	Wolf Gang – The King and All of His Men
+5	6	5	–	Coldplay – Paradise
+4	4	4	–	Atlas Genius – Trojans
+3	1	1	3	Young The Giant – Cough Syrup
+2	2	2	–	Florence + The Machine – Water The Water Gave Me
+1	3	1	1	The Black Keys – Lonely Boy (1)
+Week ending 11/19/2011
+18	16	13	–	Foo Fighters – These Days
+17	10	4	–	The Kooks – Junk of the Heart
+16	18	8	–	Cage the Elephant – Aberdeen
+15	–	15	–	M83 – Midnight City (debut)
+14	14	14	–	Blink-182 – After Midnight
+13	–	13	–	Foster The People – Don’t Stop (Color the Walls) (debut)
+12	7	1	5	The Naked and Famous – Punching in a Dream
+11	15	11	–	Bombay Bicycle Club – Shuffle
+10	12	10	–	AWOLNATION – Not Your Fault
+9	7	4	–	The Airborne Toxic Event – All I Ever Wanted
+8	11	8	–	Red Hot Chili Peppers – Monarchy of Roses
+7	6	6	–	Wolf Gang – The King and All of His Men
+6	9	6	–	Coldplay – Paradise
+5	2	2	–	Death Cab For Cutie – Stay Young, Go Dancing
+4	4	4	–	Atlas Genius – Trojans
+3	5	3	–	The Black Keys – Lonely Boy
+2	3	2	–	Florence + The Machine – What The Water Gave Me
+1	1	1	3	Young The Giant – Cough Syrup (3)
+Week ending 11/12/2011
+18	14	8	–	Cage The Elephant – Aberdeen
+17	–	17	–	The Wombats – Jump Into The Fog (debut)
+16	17	13	–	Foo Fighters – These Days
+15	16	15	–	Bombay Bicycle Club – Shuffle
+14	15	14	–	Blink-182 – After Midnight
+13	11	1	5	Foster The People – Helena Beat
+12	13	12	–	AWOLNATION – Not Your Fault
+11	12	11	–	Red Hot Chili Peppers – Monarchy of Roses
+10	9	4	–	The Kooks – Junk of the Heart
+9	10	7	–	Coldplay – Paradise
+8	3	1	5	The Naked and Famous – Punching in a Dream
+7	6	4	–	The Airborne Toxic Event – All I Ever Wanted
+6	7	6	–	Wolf Gang – The King and All of His Men
+5	8	5	–	The Black Keys – Lonely Boy
+4	5	4	–	Atlas Genius – Trojans
+3	4	3	–	Florence + The Machine – What The Water Gave Me
+2	2	2	–	Death Cab For Cutie – Stay Young, Go Dancing
+1	1	1	2	Young The Giant – Cough Syrup (2)
+Week ending 11/5/2012
+18	15	11	–	Mutemath – Blood Pressure
+17	18	13	–	Foo Fighters – These Days
+16	–	16	–	Bombay Bicycle Club – Shuffle (debut)
+15	16	15	–	Blink-182 – After Midnight
+14	13	8	–	Cage The Elephant – Aberdeen
+13	17	13	–	AWOLNATION – Not Your Fault
+12	12	12	–	Red Hot Chili Peppers – Monarchy of Roses
+11	5	1	5	Foster The People – Helena Beat
+10	10	7	–	Coldplay – Paradise
+9	6	4	–	The Kooks – Junk of the Heart
+8	14	8	–	The Black Keys – Lonely Boy
+7	9	7	–	Wolf Gang – The King and All of His Men
+6	4	4	–	The Airborne Toxic Event – All I Ever Wanted
+5	7	5	–	Atlas Genius – Trojans
+4	8	4	–	Florence + The Machine – What The Water Gave Me
+3	1	1	5	The Naked And Famous – Punching in a Dream
+2	3	2	–	Death Cab For Cutie – Stay Young, Go Dancing
+1	2	1	1	Young The Giant – Cough Syrup (1)
+Week ending 10/29/2011
+18	13	13	–	Foo Fighters – These Days
+17	–	17	–	AWOLNATION – Not Your Fault (debut)
+16	17	16	–	Blink182 – After Midnight
+15	14	11	–	Mutemath – Blood Pressure
+14	–	14	–	The Black Keys – Lonely Boy (debut)
+13	10	8	–	Cage The Elephant – Aberdeen
+12	15	12	–	Red Hot Chili Peppers – Monarchy of Roses
+11	6	1	8	Grouplove – Colours
+10	7	7	–	Coldplay – Paradise
+9	9	9	–	Wolf Gang – The King and All of His Men
+8	11	8	–	Florence + The Machine – What The Water Gave Me
+7	12	7	–	Atlas Genius – Trojans
+6	4	4	–	The Kooks – Junk of the Heart
+5	3	1	5	Foster The People – Helena Beat
+4	8	4	–	The Airborne Toxic Event – All I Ever Wanted
+3	5	3	–	Death Cab For Cutie – Stay Young, Go Dancing
+2	2	2	–	Young The Giant – Cough Syrup
+1	1	1	5	The Naked And Famous – Punching in a Dream (5)
+Week ending 10/22/2011
+18	–	18	–	Funeral Party – New York City Moves to the Sound of LA (debut)
+17	–	17	–	Blink-182 – After Midnight (debut)
+16	18	16	–	Manchester Orchestra – Virgin
+15	–	15	–	Red Hot Chili Peppers – Monarchy of Roses (debut)
+14	12	11	–	Mutemath – Blood Pressure
+13	15	13	–	Foo Fighters – These Days
+12	16	12	–	Atlas Genius – Trojans
+11	14	11	–	Florence + The Machine – What The Water Gave Me
+10	8	8	–	Cage The Elephant – Aberdeen
+9	10	9	–	Wolf Gang – The King and All of His Men
+8	7	7	–	The Airborne Toxic Event – All I Ever Wanted
+7	11	7	–	Coldplay – Paradise
+6	4	1	8	Grouplove – Colours
+5	5	5	–	Death Cab For Cutie – Stay Young, Go Dancing
+4	6	4	–	The Kooks – Junk of the Heart
+3	2	1	5	Foster The People – Helena Beat
+2	3	2	–	Young the Giant – Cough Syrup
+1	1	1	4	The Naked And Famous – Punching in a Dream (4)
+Week ending 10/15/2011
+18	–	18	–	Manchester Orchestra – Virgin (debut)
+17	14	7	–	Cults – Go Outside
+16	18	16	–	Atlas Genius – Trojans
+15	16	15	–	Foo Fighters – These Days
+14	15	14	–	Florence + The Machine – What The Water Gave Me
+13	5	2	–	Blink-182 – Up All Night
+12	11	11	–	Mutemath – Blood Pressure
+11	13	11	–	Coldplay – Paradise
+10	9	9	–	Wolf Gang – The King and All of His Men
+9	8	2	–	Red Hot Chili Peppers – The Adventures of Rain Dance Maggie
+8	12	8	–	Cage The Elephant – Aberdeen
+7	10	7	–	The Airborne Toxic Event – All I Ever Wanted
+6	6	6	–	The Kooks – Junk of the Heart
+5	7	5	–	Death Cab For Cutie – Stay Young, Go Dancing
+4	3	1	8	Grouplove – Colours
+3	4	3	–	Young the Giant – Cough Syrup
+2	2	1	5	Foster The People – Helena Beat
+1	1	1	2	The Naked And Famous – Punching in a Dream (2)
+Week ending 10/8/2011
+18	–	18	–	Atlas Genius – Trojans (debut)
+17	10	4	–	The Joy Formidable – Whirring
+16	–	16	–	Foo Fighters – These Days (debut)
+15	17	15	–	Florence + The Machine – What The Water Gave Me
+14	12	7	–	Cults – Go Outside
+13	15	13	–	Coldplay – Paradise
+12	14	12	–	Cage The Elephant – Aberdeen
+11	13	11	–	Mutemath – Blood Pressure
+10	11	10	–	The Airborne Toxic Event – All I Ever Wanted
+9	9	9	–	Wolf Gang – The King And All Of His Men
+8	7	2	–	Red Hot Chili Peppers – The Adventures Of Rain Dance Maggie
+7	8	7	–	Death Cab For Cutie – Stay Young, Go Dancing
+6	6	6	–	The Kooks – Junk Of The Heart
+5	4	2	–	Blink-182 – Up All Night
+4	5	4	–	Young The Giant – Cough Syrup
+3	1	1	8	Grouplove – Colours
+2	2	1	5	Foster The People – Helena Beat
+1	3	1	1	The Naked And Famous – Punching In A Dream (1)
+Week ending 10/1/2011
+18	17	12	–	Givers – Up Up Up
+17	18	17	–	Florence + The Machine – What The Water Gave Me
+16	13	13	–	Sleeper Agent – Get It Daddy
+15	16	15	–	Coldplay – Paradise
+14	15	14	–	Cage The Elephant – Aberdeen
+13	14	13	–	Mutemath – Blood Pressure
+12	11	7	–	Cults – Go Outside
+11	12	11	–	The Airborne Toxic Event – All I Ever Wanted
+10	8	4	–	The Joy Formidable – Whirring
+9	10	9	–	Wolf Gang – The King And All Of His Men
+8	9	8	–	Death Cab For Cutie – Stay Young, Go Dancing
+7	5	2	–	Red Hot Chili Peppers – The Adventures Of Rain Dance Maggie
+6	7	6	–	The Kooks – Junk Of The Heart
+5	6	5	–	Young The Giant – Cough Syrup
+4	3	2	–	Blink-182 – Up All Night
+3	4	3	–	The Naked And Famous – Punching In A Dream
+2	2	1	5	Foster The People – Helena Beat
+1	1	1	8	Grouplove – Colours (3)
+Week ending 9/24/2011
+18	–	18	–	Florence + The Machine – What The Water Gave Me (debut)
+17	13	12	–	Givers – Up Up Up
+16	18	16	–	Coldplay – Paradise
+15	17	15	–	Cage The Elephant – Aberdeen
+14	16	14	–	Mutemath – Blood Pressure
+13	14	13	–	Sleeper Agent – Get It Daddy
+12	15	12	–	The Airborne Toxic Event – All I Ever Wanted
+11	7	7	–	Cults – Go Outside
+10	11	10	–	Wolf Gang – The King And All Of His Men
+9	9	9	–	Death Cab For Cutie – Stay Young, Go Dancing
+8	6	4	–	The Joy Formidable – Whirring
+7	10	7	–	The Kooks – Junk Of The Heart
+6	8	6	–	Young The Giant – Cough Syrup
+5	3	2	–	Red Hot Chili Peppers – The Adventures Of Rain Dance Maggie
+4	4	4	–	The Naked And Famous – Punching In A Dream
+3	5	3	–	Blink-182 – Up All Night
+2	2	1	5	Foster The People – Helena Beat
+1	1	1	7	Grouplove – Colours (2)
+Week ending 9/17/2011
+18	–	18	–	Coldplay – Paradise (debut)
+17	18	17	–	Cage The Elephant – Aberdeen
+16	15	15	–	Mutemath – Blood Pressure
+15	17	15	–	The Airborne Toxic Event – All I Ever Wanted
+14	16	13	–	Sleeper Agent – Get It Daddy
+13	13	12	–	Givers – Up Up Up
+12	10	7	–	Matt & Kim – Block After Block
+11	12	11	–	Wolf Gang – The King And All Of His Men
+10	9	9	–	The Kooks – Junk Of The Heart
+9	11	9	–	Death Cab For Cutie – Stay Young, Go Dancing
+8	7	6	–	Young The Giant – Cough Syrup
+7	8	7	–	Cults – Go Outside
+6	6	4	–	The Joy Formidable – Whirring
+5	4	2	–	Blink-182 – Up All Night
+4	5	4	–	The Naked And Famous – Punching In A Dream
+3	2	2	–	Red Hot Chili Peppers – The Adventures Of Rain Dance Maggie
+2	1	1	5	Foster The People – Helena Beat
+1	3	1	6	Grouplove – Colours (1)
+Week ending 9/10/2011
+18	–	18	–	Cage The Elephant – Aberdeen (debut)
+17	18	17	–	The Airborne Toxic Event – All I Ever Wanted
+16	13	13	–	Sleeper Agent – Get It Daddy
+15	–	15	–	Mutemath – Blood Pressure (debut)
+14	17	14	–	Viva Brother – Darling Buds Of May
+13	14	12	–	Givers – Up Up Up
+12	–	12	–	Wolf Gang – The King And All Of His Men (debut)
+11	15	11	–	Death Cab For Cutie – Stay Young, Go Dancing
+10	9	7	–	Matt & Kim – Block After Block
+9	10	9	–	The Kooks – Junk Of The Heart
+8	7	7	–	Cults – Go Outside
+7	6	6	–	Young The Giant – Cough Syrup
+6	5	4	–	The Joy Formidable – Whirring
+5	8	5	–	The Naked And Famous – Punching In A Dream
+4	2	2	–	Blink-182 – Up All Night
+3	3	1	5	Grouplove – Colours
+2	4	2	–	Red Hot Chili Peppers – The Adventures Of Rain Dance Maggie
+1	1	1	5	Foster The People – Helena Beat (5)
+Week ending 9/3/2011
+18	–	18	–	The Airborne Toxic Event – All I Ever Wanted (debut)
+17	18	17	–	Viva Brother – Darling Buds Of May
+16	15	14	–	Jane’s Addiction – Irresistible Force
+15	17	15	–	Death Cab For Cutie – Stay Young, Go Dancing
+14	16	12	–	Givers – Up Up Up
+13	14	13	–	Sleeper Agent – Get It Daddy
+12	13	12	–	Wolf Gang – Lions In Cages
+11	10	3	–	Coldplay – Every Teardrop Is A Waterfall
+10	11	10	–	The Kooks – Junk Of The Heart
+9	7	7	–	Matt & Kim – Block After Block
+8	6	6	–	The Naked And Famous – Punching In A Dream
+7	9	7	–	Cults – Go Outside
+6	8	6	–	Young The Giant – Cough Syrup
+5	5	4	–	The Joy Formidable – Whirring
+4	4	4	–	Red Hot Chili Peppers – The Adventures Of Rain Dance Maggie
+3	3	1	5	Grouplove – Colours
+2	2	2	–	Blink-182 – Up All Night
+1	1	1	4	Foster The People – Helena Beat (4)
+Week ending 8/27/2011
+18	–	18	–	Viva Brother – Darling Buds Of May (debut)
+17	–	17	–	Death Cab For Cutie – Stay Young, Go Dancing (debut)
+16	18	12	–	Givers – Up Up Up
+15	15	14	–	Jane’s Addiction – Irresistible Force
+14	17	14	–	Sleeper Agent – Get It Daddy
+13	–	13	–	Wolf Gang – Lions In Cages (debut)
+12	6	3	–	The Strokes – Taken For A Fool
+11	14	11	–	The Kooks – Junk Of The Heart
+10	9	3	–	Coldplay – Every Teardrop Is A Waterfall
+9	11	9	–	Cults – Go Outside
+8	12	8	–	Young The Giant – Cough Syrup
+7	7	7	–	Matt & Kim – Block After Block
+6	8	6	–	The Naked And Famous – Punching In A Dream
+5	4	4	–	Joy Formidable – Whirring
+4	5	4	–	Red Hot Chili Peppers – The Adventures Of Rain Dance Maggie
+3	2	1	5	Grouplove – Colours
+2	3	2	–	Blink-182 – Up All Night
+1	1	1	3	Foster The People – Helena Beat (3)
+Week ending 8/20/2011
+18	17	12	–	Givers – Up Up Up
+17	–	17	–	Sleeper Agent – Get it Daddy (debut)
+16	15	15	–	Pains Of Being Pure At Heart – Heart in Your Heartbreak
+15	14	14	–	Jane’s Addiction – Irresistible Force
+14	–	14	–	The Kooks – Junk of the Heart (debut)
+13	–	13	–	Polock – Fireworks (re-entry)
+12	18	12	–	Young the Giant – Cough Syrup
+11	13	11	–	Cults – Go Outside
+10	6	1	2	The Black Keys – Next Girl
+9	9	3	–	Coldplay – Every Teardrop is a Waterfall
+8	11	8	–	The Naked And Famous – Punching in a Dream
+7	8	7	–	Matt & Kim – Block After Block
+6	7	3	–	The Strokes – Taken For a Fool
+5	5	5	–	Red Hot Chili Peppers – Adventures of Rain Dance Maggie
+4	4	4	–	Joy Formidable – Whirring
+3	3	3	–	Blink-182 – Up All Night
+2	2	1	5	Grouplove – Colours
+1	1	1	2	Foster the People – Helena Beat (2)
+Week ending 8/13/2011
+18	–	18	–	Young the Giant – Cough Syrup (debut)
+17	13	12	–	Givers – Up Up Up
+16	14	14	–	Beastie Boys w/Santigold – Don’t Play No Game That I Can’t Win
+15	–	15	–	Pains Of Being Pure At Heart – Heart in Your Heartbreak (debut)
+14	15	14	–	Jane’s Addiction – Irresistible Force
+13	16	13	–	Cults – Go Outside
+12	9	9	–	311 – Sunset in July
+11	17	11	–	The Naked And Famous – Punching in a Dream
+10	11	8	–	Cage The Elephant – Around My Head
+9	8	3	–	Coldplay – Every Teardrop is a Waterfall
+8	10	8	–	Matt & Kim – Block After Block
+7	3	3	–	The Strokes – Taken For a Fool
+6	5	1	2	The Black Keys – Next Girl
+5	6	5	–	Red Hot Chili Peppers – Adventures of Rain Dance Maggie
+4	7	4	–	Joy Formidable – Whirring
+3	4	3	–	Blink-182 – Up All Night
+2	1	1	5	Grouplove – Colours
+1	2	1	1	Foster the People – Helena Beat (1)
+Week ending 8/6/2011
+18	18	18	–	Polock – Fireworks
+17	–	17	–	The Naked And Famous – Punching In A Dream (debut)
+16	14	14	–	Cults – Go Outside
+15	–	15	–	Jane’s Addiction – Irresistible Force (debut)
+14	15	14	–	Beastie Boys w/Santigold – Don’t Play No Game That I Can’t Win
+13	12	12	–	Givers – Up Up Up
+12	10	6	–	Foo Fighters – Walk
+11	9	8	–	Cage The Elephant – Around My Head
+10	16	10	–	Matt & Kim – Block After Block
+9	11	9	–	311 – Sunset In July
+8	5	3	–	Coldplay – Every Teardrop is a Waterfall
+7	7	7	–	Joy Formidable – Whirring
+6	8	6	–	Red Hot Chili Peppers – Adventures Of Rain Dance Maggie
+5	4	1	2	The Black Keys – Next Girl
+4	6	4	–	Blink-182 – Up All Night
+3	3	3	–	The Strokes – Taken For A Fool
+2	2	2	–	Foster the People – Helena Beat
+1	1	1	5	Grouplove – Colours (2)
+Week ending 7/30/2011
+18	–	18	–	Polock – Fireworks (debut)
+17	15	13	–	Incubus – Promises, Promises
+16	18	16	–	Matt & Kim – Block After Block
+15	16	15	–	Beastie Boys w/Santigold – Don’t Play No Game That I Can’t Win
+14	17	14	–	Cults – Go Outside
+13	10	1	6	Death Cab For Cutie – You Are A Tourist
+12	14	12	–	Givers – Up Up Up
+11	13	10	–	311 – Sunset In July
+10	6	6	–	Foo Fighters – Walk
+9	9	8	–	Cage The Elephant – Around My Head
+8	12	8	–	Red Hot Chili Peppers – The Adventures Of Rain Dance Maggie
+7	8	7	–	Joy Formidable – Whirring
+6	6	6	–	Blink-182 – Up All Night
+5	4	3	–	Coldplay – Every Teardrop Is A Waterfall
+4	1	1	2	The Black Keys – Next Girl
+3	5	3	–	The Strokes – Taken For A Fool
+2	3	2	–	Foster The People – Helena Beat
+1	2	1	4	Grouplove – Colours (1)
+Week ending 7/23/2011
+18	–	18	–	Matt & Kim – Block After Block (debut)
+17	14	14	–	Cults – Go Outside
+16	18	16	–	Beastie Boys ft. Santigold – Don’t Play No Game That I Can’t Win
+15	13	13	–	Incubus – Promises, Promises
+14	17	14	–	Givers – Up Up Up
+13	11	10	–	311 – Sunset In July
+12	–	12	–	Red Hot Chili Peppers – The Adventures Of Rain Dance Maggie (debut)
+11	5	4	–	The Last Royals – Crystal Vases
+10	6	1	6	Death Cab For Cutie – You Are A Tourist
+9	9	8	–	Cage The Elephant – Around My Head
+8	12	8	–	Joy Formidable – Whirring
+7	15	7	–	Blink-182 – Up All Night
+6	8	6	–	Foo Fighters -Walk
+5	10	5	–	The Strokes – Taken For A Fool
+4	4	3	–	Coldplay – Every Teardrop is a Waterfall
+3	3	3	–	Foster the People – Helena Beat
+2	2	1	3	Grouplove – Colours
+1	1	1	2	The Black Keys – Next Girl (2)
+Week ending 7/16/2011
+18	–	18	–	Beastie Boys ft. Santigold – Don’t Play No Game That I Can’t Win (debut)
+17	18	17	–	Givers – Up Up Up
+16	11	2	–	Manchester Orchestra – April Fool
+15	–	15	–	Blink-182 – Up All Night (debut)
+14	15	14	–	Cults – Go Outside
+13	16	13	–	Incubus –  Promises, Promises
+12	13	12	–	Joy Formidable – Whirring
+11	10	10	–	311 – Sunset In July
+10	12	10	–	The Strokes – Taken For A Fool
+9	9	8	–	Cage The Elephant – Around My Head
+8	7	7	–	Foo Fighters – Walk
+7	8	2	–	Danger Mouse & Daniele Luppi ft. Jack White – Two Against One
+6	5	1	6	Death Cab For Cutie – You Are A Tourist
+5	4	4	–	The Last Royals – Crystal Vases
+4	3	3	–	Coldplay – Every Teardrop is a Waterfall
+3	6	3	–	Foster the People – Helena Beat
+2	1	1	3	Grouplove – Colours
+1	2	1	1	The Black Keys – Next Girl (1)
+Week ending 7/9/2011
+18	–	18	–	Givers – Up Up Up (debut)
+17	14	1	2	The Naked And Famous – Young Blood
+16	15	15	–	Incubus – Promises Promises
+15	–	15	–	Cults – Go Outside (debut)
+14	11	1	1	The Airborne Toxic Event – Changing
+13	16	13	–	Joy Formidable – Whirring
+12	13	12	–	The Strokes – Taken For A Fool
+11	6	2	–	Manchester Orchestra – April Fool
+10	12	10	–	311 – Sunset In July
+9	10	8	–	Cage The Elephant – Around My Head
+8	5	2	–	Danger Mouse & Daniele Luppi ft. Jack White – Two Against One
+7	8	7	–	Foo Fighters -Walk
+6	9	6	–	Foster the People – Helena Beat
+5	4	1	6	Death Cab For Cutie – You Are A Tourist
+4	7	4	–	The Last Royals – Crystal Vases
+3	3	3	–	Coldplay – Every Teardrop is a Waterfall
+2	2	2	–	The Black Keys – Next Girl
+1	1	1	3	Grouplove – Colours (3)
+Week ending 7/2/2011
+18	18	18	–	Taking Back Sunday – Faith (When I Let You Down)
+17	12	12	–	Yuck – Get Away
+16	16	15	–	Joy Formidable – Whirring
+15	17	15	–	Incubus – Promises Promises
+14	14	1	2	The Naked And Famous – Young Blood
+13	15	13	–	The Strokes – Taken For A Fool
+12	13	12	–	311 – Sunset In July
+11	9	1	1	The Airborne Toxic Event – Changing
+10	8	8	–	Cage The Elephant – Around My Head
+9	11	9	–	Foster the People – Helena Beat
+8	10	8	–	Foo Fighters – Walk
+7	7	4	–	The Last Royals – Crystal Vases
+6	4	2	–	Manchester Orchestra – April Fool
+5	5	2	–	Danger Mouse & Daniele Luppi ft. Jack White – Two Against One
+4	2	1	6	Death Cab For Cutie – You Are A Tourist
+3	6	3	–	Coldplay – Every Teardrop is a Waterfall
+2	3	2	–	The Black Keys – Next Girl
+1	1	1	2	Grouplove – Colours (2)
+Week ending 6/25/2011
+18	18	18	–	Taking Back Sunday – Faith (When I Let you Down)
+17	15	15	–	Incubus – Promises Promises
+16	16	15	–	Joy Formidable – Whirring
+15	17	15	–	The Strokes – Taken For A Fool
+14	7	1	2	The Naked And Famous – Young Blood
+13	–	13	–	311 – Sunset In July (re-entry)
+12	14	12	–	Yuck – Get Away
+11	13	11	–	Foster The People – Helena Beat
+10	10	10	–	Foo Fighters – Walk
+9	6	1	1	The Airborne Toxic Event – Changing
+8	8	8	–	Cage The Elephant – Around My Head
+7	4	4	–	The Last Royals – Crystal Vases
+6	12	6	–	Coldplay – Every Teardrop Is A Waterfall
+5	2	2	–	Danger Mouse & Daniele Luppi ft. Jake White – Two Against One
+4	3	2	–	Manchester Orchestra – April Fool
+3	9	3	–	The Black Keys – Next Girl
+2	1	1	6	Death Cab For Cutie – You Are A Tourist
+1	5	1	1	Grouplove – Colours (1)
+Week ending 6/18/2011
+18	–	18	–	Taking Back Sunday – Faith (When I Let You Down) (debut)
+17	–	17	–	The Strokes – Taken For A Fool (debut)
+16	15	15	–	Joy Formidable – Whirring
+15	16	15	–	Incubus – Promises, Promises
+14	12	12	–	Yuck – Get Away
+13	14	13	–	Foster the People – Helena Beat
+12	13	12	–	Coldplay – Every Teardrop is a Waterfall
+11	9	4	–	Two Door Cinema Club – What You Know
+10	11	10	–	Foo Fighters – Walk
+9	10	9	–	The Black Keys – Next Girl
+8	8	8	–	Cage The Elephant – Around My Head
+7	5	1	2	The Naked And Famous – Young Blood
+6	3	1	1	The Airborne Toxic Event – Changing
+5	7	5	–	Grouplove – Colours
+4	6	4	–	The Last Royals – Crystal Vases
+3	2	2	–	Manchester Orchestra – April Fool
+2	4	2	–	Danger Mouse & Daniele Luppi ft. Jack White – Two Against One
+1	1	1	6	Death Cab For Cutie – You Are A Tourist (6)
+Week ending 6/11/2011
+18	–	18	–	311 – Sunset In July (debut)
+17	5	5	–	Beastie Boys – Make Some Noise
+16	–	16	–	Incubus – Promises, Promises (debut)
+15	15	15	–	Joy Formidable – Whirring
+14	14	14	–	Foster The People – Helena Beat
+13	18	13	–	Coldplay – Every Teardrop Is A Waterfall
+12	12	12	–	Yuck – Get Away
+11	16	11	–	Foo Fighters – Walk
+10	11	10	–	The Black Keys – Next Girl
+9	7	4	–	Two Door Cinema Club – What You Know
+8	10	8	–	Cage The Elephant – Around My Head
+7	9	7	–	Grouplove – Colours
+6	6	6	–	The Last Royals – Crystal Vases
+5	4	1	2	The Naked And Famous – Young Blood
+4	8	4	–	Danger Mouse & Daniele Luppi ft. Jack White – Two Against One
+3	3	1	1	The Airborne Toxic Event – Changing
+2	2	2	–	Manchester Orchestra – April Fool
+1	1	1	5	Death Cab For Cutie – You Are A Tourist (5)
+Week ending 6/4/2011
+18	–	18	–	Coldplay – Every Teardrop Is A Waterfall (debut)
+17	14	12	–	Arcade Fire – Month Of May
+16	18	16	–	Foo Fighters – Walk
+15	17	15	–	Joy Formidable – Whirring
+14	–	14	–	Foster The People – Helena Beat (debut)
+13	10	7	–	Incubus – Adolescents
+12	16	12	–	Yuck – Get Away
+11	15	11	–	The Black Keys – Next Girl
+10	13	10	–	Cage The Elephant – Around My Head
+9	12	9	–	Grouplove – Colours
+8	8	7	–	Danger Mouse & Daniele Luppi ft. Jack White – Two Against One
+7	6	4	–	Two Door Cinema Club – What You Know
+6	7	6	–	The Last Royals – Crystal Vases
+5	5	5	–	Beastie Boys – Make Some Noise
+4	4	1	2	The Naked And Famous – Young Blood
+3	2	1	1	The Airborne Toxic Event – Changing
+2	3	2	–	Manchester Orchestra – April Fool
+1	1	1	4	Death Cab For Cutie – You Are A Tourist (4)
+Week ending 5/28/2011
+18	–	18	–	Foo Fighters – Walk (debut)
+17	18	17	–	Joy Formidable – Whirring
+16	16	16	–	Yuck – Get Away
+15	–	15	–	The Black Keys – Next Girl (debut)
+14	12	12	–	Arcade Fire – Month Of May
+13	13	13	–	Cage The Elephant – Around My Head
+12	14	12	–	Grouplove – Colours
+11	11	1	3	The Strokes – Under Cover of Darkness
+10	9	7	–	Incubus – Adolescents
+9	8	4	–	Young The Giant – My Body
+8	7	7	–	Danger Mouse & Daniele Luppi ft. Jack White – Two Against One
+7	10	7	–	The Last Royals – Crystal Vases
+6	6	4	–	Two Door Cinema Club – What You Know
+5	5	5	–	Beastie Boys – Make Some Noise
+4	2	1	2	The Naked And Famous – Young Blood
+3	4	3	–	Manchester Orchestra – April Fool
+2	3	1	1	The Airborne Toxic Event – Changing
+1	1	1	3	Death Cab For Cutie – You Are A Tourist (3)
+Week ending 5/21/2011
+18	–	18	–	Joy Formidable – Whirring (debut)
+17	10	1	2	Foo Fighters – Rope
+16	–	16	–	Yuck – Get Away (debut)
+15	16	5	–	Foster The People – Pumped Up Kicks
+14	17	14	–	Grouplove – Colours
+13	–	13	–	Cage The Elephant – Around My Head (debut)
+12	15	12	–	Arcade Fire – Month Of May
+11	12	1	3	The Strokes – Under Cover Of Darkness
+10	11	10	–	The Last Royals – Crystal Vases
+9	7	7	–	Incubus – Adolescents
+8	8	4	–	Young The Giant – My Body
+7	9	7	–	Danger Mouse & Daniele Luppi ft. Jack White – Two Against One
+6	4	4	–	Two Door Cinema Club – What You Know
+5	5	5	–	Beastie Boys – Make Some Noise
+4	6	4	–	Manchester Orchestra – April Fool
+3	2	1	1	The Airborne Toxic Event – Changing
+2	3	1	2	The Naked And Famous – Young Blood
+1	1	1	2	Death Cab For Cutie – You Are A Tourist (2)
+Week ending 5/14/2011
+18	16	16	–	DOM – Living In America
+17	–	17	–	Grouplove – Colours (debut)
+16	17	5	–	Foster The People – Pumped Up Kicks
+15	–	15	–	Arcade Fire – Month Of May (debut)
+14	18	14	–	Biffy Clyro – Many Of Horror
+13	10	8	–	AWOLNATION – Sail
+12	11	1	3	The Strokes – Under Cover Of Darkness
+11	12	11	–	The Last Royals – Crystal Vases
+10	6	1	2	Foo Fighters – Rope
+9	13	9	–	Danger Mouse & Daniele Luppi ft. Jack White – Two Against One
+8	5	4	–	Young The Giant – My Body
+7	8	7	–	Incubus – Adolescents
+6	9	6	–	Manchester Orchestra – April Fool
+5	7	5	–	Beastie Boys – Make Some Noise
+4	4	4	–	Two Door Cinema Club – What You Know
+3	2	1	2	The Naked And Famous – Young Blood
+2	1	1	1	The Airborne Toxic Event – Changing
+1	3	1	1	Death Cab For Cutie – You Are A Tourist (1)
+Week ending 5/7/2011
+18	16	16	–	Biffy Clyro – Many of Horror
+17	17	5	–	Foster The People – Pumped Up Kicks
+16	18	16	–	DOM – Living In America
+15	13	1	3	The Black Keys – Howlin’ For You
+14	12	9	–	Peter, Bjorn & John – Second Chance
+13	14	13	–	Danger Mouse & Daniele Luppi ft. Jack White – Two Against One
+12	15	12	–	The Last Royals – Crystal Vases
+11	7	1	3	The Strokes – Under Cover Of Darkness
+10	11	8	–	AWOLNATION – Sail
+9	10	9	–	Manchester Orchestra – April Fool
+8	8	8	–	Incubus – Adolescents
+7	9	7	–	Beastie Boys – Make Some Noise
+6	4	1	2	Foo Fighters – Rope
+5	5	4	–	Young The Giant – My Body
+4	6	4	–	Two Door Cinema Club – What You Know
+3	3	3	–	Death Cab For Cutie – You Are A Tourist
+2	1	1	2	The Naked And Famous – Young Blood
+1	2	1	1	The Airborne Toxic Event – Changing (1)
+Week ending 4/30/2011
+18	–	18	–	DOM – Living In America (debut)
+17	16	5	–	Foster The People – Pumped Up Kicks
+16	–	16	–	Biffy Clyro – Many of Horror (debut)
+15	14	14	–	The Last Royals – Crystal Vases
+14	18	14	–	Danger Mouse & Daniele Luppi ft. Jack White – Two Against One
+13	10	1	3	The Black Keys – Howlin’ For You
+12	12	9	–	Peter, Bjorn & John – Second Chance
+11	9	8	–	AWOLNATION – Sail
+10	11	10	–	Manchester Orchestra – April Fool
+9	13	9	–	Beastie Boys – Make Some Noise
+8	8	8	–	Incubus – Adolescents
+7	6	1	3	The Strokes – Under Cover Of Darkness
+6	7	6	–	Two Door Cinema Club – What You Know
+5	4	4	–	Young The Giant – My Body
+4	2	1	2	Foo Fighters – Rope
+3	5	3	–	Death Cab For Cutie – You Are A Tourist
+2	3	2	–	The Airborne Toxic Event – Changing
+1	1	1	2	The Naked And Famous – Young Blood (2)
+Week ending 4/23/2011
+18	–	18	–	Danger Mouse & Daniele Luppi ft. Jack White – Two Against One (debut)
+17	18	11	–	Radiohead – Lotus Flower
+16	14	5	–	Foster The People – Pumped Up Kicks
+15	15	11	–	The Sounds – Something To Die For
+14	16	14	–	The Last Royals – Crystal Vases
+13	11	11	–	Beastie Boys – Make Some Noise
+12	12	9	–	Peter, Bjorn & John – Second Chance
+11	13	11	–	Manchester Orchestra – April Fool
+10	7	1	3	The Black Keys – Howlin’ For You
+9	10	8	–	AWOLNATION – Sail
+8	8	8	–	Incubus – Adolescents
+7	9	7	–	Two Door Cinema Club – What You Know
+6	6	1	3	The Strokes – Under Cover Of Darkness
+5	4	4	–	Death Cab For Cutie – You Are A Tourist
+4	5	4	–	Young The Giant – My Body
+3	3	3	–	The Airborne Toxic Event – Changing
+2	1	1	2	Foo Fighters – Rope
+1	2	1	1	The Naked And Famous – Young Blood (1)
+Week ending 4/16/2011
+18	18	11	–	Radiohead – Lotus Flower
+17	16	15	–	A Silent Film – Driven By A Beating Heart
+16	17	16	–	The Last Royals – Crystal Vases
+15	11	11	–	The Sounds – Something To Die For
+14	15	5	–	Foster The People – Pumped Up Kicks
+13	15	13	–	Manchester Orchestra – April Fool
+12	9	9	–	Peter Bjorn & John – Second Chance
+11	13	11	–	Beastie Boys – Make Some Noise
+10	8	8	–	AWOLNATION – Sail
+9	12	9	–	Two Door Cinema Club – What You Know
+8	10	8	–	Incubus – Adolescents
+7	7	1	3	The Black Keys – Howlin’ For You
+6	4	1	3	The Strokes – Under Cover Of Darkness
+5	5	4	–	Young The Giant – My Body
+4	6	4	–	Death Cab For Cutie – You Are A Tourist
+3	3	3	–	The Airborne Toxic Event – Changing
+2	2	2	–	The Naked And Famous – Young Blood
+1	1	1	2	Foo Fighters – Rope (2)
+Week ending 4/9/2011
+18	14	11	–	Radiohead – Lotus Flower
+17	–	17	–	The Last Royals – Crystal Vases (debut)
+16	17	15	–	A Silent Film – Driven By A Beating Heart
+15	–	15	–	Manchester Orchestra – April Fool (debut)
+14	16	5	–	Foster The People – Pumped Up Kicks
+13	–	13	–	Beastie Boys – Make Some Noise (debut)
+12	18	12	–	Two Door Cinema Club – What You Know
+11	15	11	–	The Sounds – Something To Die For
+10	–	10	–	Incubus – Adolescents (debut)
+9	10	9	–	Peter Bjorn & John- Second Chance
+8	8	8	–	AWOLNATION – Sail
+7	5	1	3	The Black Keys – Howlin’ For You
+6	9	6	–	Death Cab For Cutie – You Are A Tourist
+5	6	4	–	Young The Giant – My Body
+4	1	1	3	The Strokes – Under Cover of Darkness
+3	4	3	–	The Airborne Toxic Event – Changing
+2	3	2	–	The Naked And Famous – Young Blood
+1	2	1	1	Foo Fighters – Rope (1)
+Week ending 4/2/2011
+18	–	18	–	Two Door Cinema Club – What You Know (debut)
+17	15	15	–	A Silent Film – Driven By A Beating Heart
+16	16	5	–	Foster The People – Pumped Up Kicks
+15	18	15	–	The Sounds – Something To Die For
+14	12	11	–	Radiohead – Lotus Flower
+13	13	1	2	Arcade Fire – We Used To Wait
+12	14	12	–	Lykke Li – Get Some
+11	9	7	–	Rise Against – Help Is On The Way
+10	10	10	–	Peter, Bjorn & John – Second Chance
+9	–	9	–	Death Cab For Cutie – You Are A Tourist (debut)
+8	8	8	–	AWOLNATION – Sail
+7	6	1	2	Cage The Elephant – Shake Me Down
+6	4	4	–	Young The Giant – My Body
+5	3	1	3	The Black Keys – Howlin’ For You
+4	7	4	–	The Airborne Toxic Event – Changing
+3	5	3	–	The Naked And Famous – Young Blood
+2	2	2	–	Foo Fighters – Rope
+1	1	1	3	The Strokes – Under Cover of Darkness (3)
+Week ending 3/26/2011
+18	–	18	–	The Sounds – Something To Die For (debut)
+17	–	17	–	Graffiti6 – Stare Into The Sun (re-entry)
+16	12	5	–	Foster the People – Pumped Up Kicks
+15	16	15	–	A Silent Film – Driven By A Beating Heart
+14	17	14	–	Lykke Li – Get Some
+13	6	1	2	Arcade Fire – We Used To Wait
+12	11	11	–	Radiohead – Lotus Flower
+11	14	11	–	Manchester Orchestra – Simple Math
+10	13	10	–	Peter Bjorn & John – Second Chance
+9	9	7	–	Rise Against – Help Is On The Way
+8	10	8	–	AWOLNATION- Sail
+7	7	5	–	The Airborne Toxic Event – Changing
+6	5	1	2	Cage The Elephant – Shake Me Down
+5	8	5	–	The Naked And Famous – Young Blood
+4	4	4	–	Young the Giant – My Body
+3	2	1	3	The Black Keys – Howlin’ For You
+2	3	2	–	Foo Fighters – Rope
+1	1	1	2	The Strokes – Under Cover of Darkness (2)
+Week ending 3/19/2011
+18	–	18	–	White Lies – Bigger Than Us (debut)
+17	–	17	–	Lykke Li – Get Some (debut)
+16	17	16	–	A Silent Film- Driven By Their Beating Hearts
+15	14	1	2	Mumford & Sons- The Cave
+14	16	14	–	Manchester Orchestra- Simple Math
+13	13	13	–	Peter Bjorn & John- Second Chance
+12	8	5	–	Foster The People- Pumped Up Kicks
+11	12	11	–	Radiohead- Lotus Flower
+10	11	10	–	AWOLNATION- Sail
+9	10	7	–	Rise Against- Help Is on The Way
+8	9	8	–	The Naked and Famous- Young Blood
+7	7	5	–	The Airborne Toxic Event- Changing
+6	1	1	2	Arcade Fire- We Used To Wait
+5	6	1	2	Cage The Elephant- Shake Me Down
+4	5	4	–	Young The Giant- My Body
+3	4	3	–	Foo Fighters- Rope
+2	2	1	3	The Black Keys- Howlin’ For You
+1	2	1	1	The Strokes- Under Cover of Darkness (1)
+Week ending 3/12/2011
+18	14	10	–	Fitz & The Tantrums – Moneygrabber
+17	17	17	–	A Silent Film – Driven By Their Beating Hearts
+16	–	16	–	Manchester Orchestra – Simple Math (debut)
+15	16	6	–	Two Door Cinema Club – Something Good Can Work
+14	11	1	2	Mumford & Sons – The Cave
+13	18	13	–	Peter, Bjorn & John – Second Chance
+12	13	12	–	Radiohead – Lotus Flower
+11	12	11	–	AWOLNATION – Sail
+10	9	7	–	Rise Against – Help Is On The Way
+9	10	9	–	The Naked And Famous – Young Blood
+8	7	5	–	Foster the People – Pumped Up Kicks
+7	8	5	–	The Airborne Toxic Event – Changing
+6	3	1	2	Cage The Elephant – Shake Me Down
+5	4	4	–	Young The Giant – My Body
+4	6	4	–	Foo Fighters – Rope
+3	5	3	–	The Strokes – Under Cover of Darkness
+2	1	1	3	The Black Keys – Howlin’ For You
+1	2	1	2	Arcade Fire – We Used To Wait (1)
+Week ending 3/5/2011
+w/special guest host MARK HOPPUS
+18	–	18	–	Peter Bjorn & John – Second Chance (debut)
+17	–	17	–	A Silent Film – Driven By A Beating Heart (debut)
+16	13	6	–	Two Door Cinema Club – Something Good Can Work
+15	15	11	–	Middle Class Rut – New Low
+14	10	10	–	Fitz & The Tantrums – MoneyGrabber
+13	16	13	–	Radiohead – Lotus Flower
+12	12	12	–	AWOLNATION – Sail
+11	3	1	2	Mumford & Sons – The Cave
+10	14	10	–	The Naked And Famous – Young Blood
+9	7	7	–	Rise Against – Help Is On The Way
+8	5	5	–	The Airborne Toxic Event – Changing
+7	9	5	–	Foster the People – Pumped Up Kicks
+6	11	6	–	Foo Fighters – Rope
+5	6	5	–	The Strokes – Under Cover of Darkness
+4	4	4	–	Young the Giant – My Body
+3	3	1	2	Cage The Elephant – Shake Me Down
+2	1	1	1	Arcade Fire – We Used To Wait
+1	2	1	3	The Black Keys – Howlin’ For You (1)
+Week ending 2/26/2011
+18	15	14	–	Sleigh Bells – Rill Rill
+17	11	6	–	Kings of Leon – Pyro
+16	–	16	–	Radiohead – Lotus Flower (debut)
+15	13	11	–	Middle Class Rut – New Low
+14	14	12	–	The Naked & Famous – Young Blood
+13	10	6	–	Two Door Cinema Club – Something Good Can Work
+12	16	12	–	AWOLNATION – Sail
+11	–	11	–	Foo Fighters – Rope (debut)
+10	12	10	–	Fitz & The Tantrums – MoneyGrabber
+9	7	5	–	Foster the People – Pumped Up Kicks
+8	3	1	2	Mumford & Sons – The Cave
+7	8	7	–	Rise Against – Help Is On The Way
+6	9	6	–	The Strokes – Under Cover of Darkness
+5	6	5	–	The Airborne Toxic Event – Changing
+4	5	4	–	Young the Giant – My Body
+3	3	1	2	Cage The Elephant – Shake Me Down
+2	1	1	2	The Black Keys – Howlin’ For You
+1	2	1	1	Arcade Fire – We Used To Wait (1)
+Week ending 2/19/2011
+18	–	18	–	Graffiti 6 – Stare Into the Sun (debut)
+17	8	7	–	My Chemical Romance – Sing
+16	18	16	–	AWOLNATION – Sail
+15	17	14	–	Sleigh Bells – Rill Rill
+14	15	12	–	The Naked And Famous – Young Blood
+13	16	11	–	Middle Class Rut – New Low
+12	13	12	–	Fitz & The Tantrums – MoneyGrabber
+11	6	6	–	Kings of Leon – Pyro
+10	10	6	–	Two Door Cinema Club – Something Good Can Work
+9	14	9	–	The Strokes – Under Cover of Darkness
+8	11	8	–	Rise Against – Help Is On The Way
+7	9	5	–	Foster the People – Pumped Up Kicks
+6	7	6	–	The Airborne Toxic Event – Changing
+5	5	5	–	Young the Giant – My Body
+4	3	1	2	Mumford & Sons – The Cave
+3	1	1	2	Cage The Elephant – Shake Me Down
+2	4	2	–	Arcade Fire – We Used To Wait
+1	2	1	2	1. The Black Keys – Howlin’ For You (1)
+Week ending 2/12/2011
+18	18	18	–	AWOLNATION – Sail
+17	16	14	–	Sleigh Bells – Rill Rill
+16	14	11	–	Middle Class Rut – New Low
+15	12	12	–	The Naked And Famous – Young Blood
+14	–	14	–	The Strokes – Under Cover of Darkness (debut)
+13	17	13	–	Fitz & The Tantrums – MoneyGrabber
+12	11	10	–	Local Natives – Airplanes
+11	15	11	–	Rise Against – Help Is On The Way
+10	9	6	–	Two Door Cinema Club – Something Good Can Work
+9	13	5	–	Foster the People – Pumped Up Kicks
+8	8	7	–	My Chemical Romance – Sing
+7	10	7	–	The Airborne Toxic Event – Changing
+6	6	6	–	Kings of Leon – Pyro
+5	5	5	–	Young the Giant – My Body
+4	4	4	–	Arcade Fire – We Used To Wait
+3	3	1	2	Mumford & Sons – The Cave
+2	2	1	1	The Black Keys – Howlin’ For You
+1	1	1	2	Cage The Elephant – Shake Me Down (2)
+Week ending 2/5/2011
+18	18	18	–	AWOLNATION – Sail
+17	–	17	–	Fitz & The Tantrums – Moneygrabber (re-entry)
+16	16	14	–	Sleigh Bells – Rill Rill
+15	17	15	–	Rise Against – Help Is On The Way
+14	14	11	–	Middle Class Rut – New Low
+13	9	5	–	Foster the People – Pumped Up Kicks
+12	12	12	–	The Naked And Famous – Young Blood
+11	10	10	–	Local Natives – Airplanes
+10	15	10	–	The Airborne Toxic Event – Changing
+9	6	6	–	Two Door Cinema Club – Something Good Can Work
+8	7	7	–	My Chemical Romance – Sing
+7	5	3	–	Matt & Kim – Cameras
+6	11	6	–	Kings of Leon – Pyro
+5	8	5	–	Young the Giant – My Body
+4	4	4	–	Arcade Fire – We Used To Wait
+3	3	1	2	Mumford & Sons – The Cave
+2	2	1	1	The Black Keys – Howlin’ For You
+1	1	1	2	Cage The Elephant – Shake Me Down (2)
+Week ending 1/29/2011
+18	–	18	–	AWOLNATION – Sail (debut)
+17	–	17	–	Rise Against – Help Is On The Way (debut)
+16	15	14	–	Sleigh Bells – Rill Rill
+15	–	15	–	The Airbourne Toxic Event – Changing (debut)
+14	13	11	–	Middle Class Rut – New Low
+13	10	7	–	Ra Ra Riot – Boy
+12	14	12	–	The Naked And Famous – Young Blood
+11	16	11	–	Kings of Leon – Pyro
+10	11	10	–	Local Natives – Airplanes
+9	6	5	–	Foster the People – Pumped Up Kicks
+8	9	8	–	Young the Giant – My Body
+7	7	7	–	My Chemical Romance – Sing
+6	8	6	–	Two Door Cinema Club – Something Good Can Work
+5	5	3	–	Matt & Kim – Cameras
+4	4	4	–	Arcade Fire – We Used To Wait
+3	3	1	2	Mumford & Sons – The Cave
+2	1	1	1	The Black Keys – Howlin’ For You
+1	2	1	1	Cage The Elephant – Shake Me Down (1)
+Week ending 1/22/2011
+18	–	18	–	Cold War Kids – Louder Than Ever (debut)
+17	17	17	–	Fitz & The Tantrums – Moneygrabber
+16	–	16	–	Kings of Leon – Pyro (debut)
+15	14	14	–	Sleigh Bells – Rill Rill
+14	18	14	–	The Naked And Famous – Young Blood
+13	13	11	–	Middle Class Rut – New Low
+12	10	9	–	The Limousines – Internet Killed The Video Star
+11	12	11	–	Local Natives – Airplanes
+10	9	7	–	Ra Ra Riot – Boy
+9	11	11	–	Young the Giant – My Body
+8	7	3	–	Two Door Cinema Club – Something Good Can Work
+7	8	7	–	My Chemical Romance – Sing
+6	5	5	–	Foster the People – Pumped Up Kicks
+5	3	3	–	Matt & Kim – Cameras
+4	6	4	–	Arcade Fire – We Used To Wait
+3	1	1	2	Mumford & Sons – The Cave
+2	4	2	–	Cage The Elephant – Shake Me Down
+1	2	1	1	The Black Keys – Howlin For You (1)
+Week ending 1/15/2011
+18	–	18	–	The Naked And Famous – Young Blood (debut)
+17	18	17	–	Fitz & The Tantrums – Moneygrabber
+16	13	13	–	Jimmy Eat World – Coffee & Cigarettes
+15	14	14	–	Fences – Girls With Accents
+14	16	14	–	Sleigh Bells – Rill Rill
+13	11	11	–	Middle Class Rut – New Low
+12	12	12	–	Local Natives – Airplanes
+11	15	11	–	Young the Giant – My Body
+10	9	9	–	The Limousines – Internet Killed The Video Star
+9	7	7	–	Ra Ra Riot – Boy
+8	8	8	–	My Chemical Romance – Sing
+7	3	3	–	Two Door Cinema Club – Something Good Can Work
+6	10	6	–	Arcade Fire – We Used To Wait
+5	5	5	–	Foster the People – Pumped Up Kicks
+4	6	4	–	Cage The Elephant – Shake Me Down
+3	4	3	–	Matt & Kim – Cameras
+2	2	2	–	The Black Keys – Howlin For You
+1	1	1	2	1. Mumford & Sons – The Cave (2)
+Week ending 1/8/2011
+18	–	18	–	Fitz & The Tantrums – MoneyGrabber (debut)
+17	–	17	–	New Politics – Dignity (debut)
+16	–	16	–	Sleigh Bells – Rill Rill (debut)
+15	–	15	–	Young the Giant – My Body
+14	–	14	–	Fences – Girls With Accents
+13	–	13	–	Jimmy Eat World – Coffee & Cigarettes
+12	–	12	–	Local Natives – Airplanes
+11	–	11	–	Middle Class Rut – New Low
+10	–	10	–	Arcade Fire – We Used To Wait
+9	–	9	–	The Limousines – Internet Killed The Video Star
+8	–	8	–	My Chemical Romance – Sing
+7	–	7	–	Ra Ra Riot – Boy
+6	–	6	–	Cage The Elephant – Shake Me Down
+5	–	5	–	Foster the People – Pumped Up Kicks
+4	–	4	–	Matt & Kim – Cameras
+3	–	3	–	Two Door Cinema Club – Something Good Can Work
+2	–	2	–	The Black Keys – Howlin For You
+1	–	1	–	Mumford & Sons – The Cave (1)
