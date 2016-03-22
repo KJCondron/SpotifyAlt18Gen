@@ -596,10 +596,21 @@ object UAlt18 extends App {
    
    addTracks(uid, plid, distinctUris)
    
-   val byYr = alt18wTracks.toMap.mapValues( tracks => tracks.flatMap( tr => songs.flatMap( _.get(tr.title) ) ) )
+   val byYr = alt18wTracks.map( { case (x, tracks) => 
+     (x, tracks.flatMap( tr => songs.flatMap( _.get(tr.title) ) ).distinct )
+   } )
    
-   alt18wTracks.foreach( x=>println(x._1 + ":" +x._2.size) )
+   val alt18DTacks = alt18wTracks.map( { case(k,vs) => (k, vs.distinct)})   
+   val dupsByYear = alt18DTacks.map( { case(k,vs) => (k, vs.filter( v=>vs.count(_.title==v.title) > 1 ))}) 
+   
+   println("alt18w")
+   alt18wTracks.foreach( x=>println(x._1 + ":" +x._2.distinct.size) )
+   println("alt18DTacks")
+   alt18DTacks.foreach( x=>println(x._1 + ":" +x._2.size) )
+   println("By Year")
    byYr.foreach( x=>println(x._1 + ":" +x._2.size) )
+   println("Dups By Year")
+   dupsByYear.foreach( x=>println(x._1 + ":" +x._2.foreach(print)) )
    
    println("missing from orig set: " + alt18wTracks.foldLeft(0)( (acc,x)=> acc + x._2.count( y => !spotifySongs.contains(y.title) ) ))
          
