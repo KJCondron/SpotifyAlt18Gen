@@ -212,7 +212,11 @@ object UAlt18 extends App {
   val s = getSpotify(conn)
   
   //val alt18s = getUAlt18(conn,conn2)
+  
   val alt18s = UAlt18AnnualParser.getUAlt18Annual(conn3)
+  
+//  val fn = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\allShine.txt"""
+//  val alt18s = List((fn, UAlt18AnnualParser.getUAlt18Annual(fn)))
   
   def fn(gg:String, sep : String) = { 
       val x = clean(gg).trim .toLowerCase 
@@ -535,9 +539,14 @@ object UAlt18 extends App {
        case bre:BadRequestException => None
    }
    
+   val all18PLName = "all18new2"
+   val shineName = "allShine"
+   
+   val plname = all18PLName
+   
    println("get all18 pl")
-   val plid = getPL("all18new").map(_.getId).getOrElse(
-            s.createPlaylist(uid, "all18new").build.get.getId)
+   val plid = getPL(plname).map(_.getId).getOrElse(
+            s.createPlaylist(uid, plname).build.get.getId)
             
    println("playlist id:" + plid)
    
