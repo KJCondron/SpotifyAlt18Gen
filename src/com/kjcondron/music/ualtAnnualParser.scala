@@ -32,11 +32,7 @@ object UAlt18AnnualParser {
     }).toList
     
     val fin = pre + endYear.toString + "-2/"
-    val xx = (endYear.toString, getUALT18Table(fin, conn, true)) :: more ::: first
-    println("xx")
-    xx.foreach( x => println(x._1) )
-    
-    xx
+    (endYear.toString, getUALT18Table(fin, conn, true)) :: more ::: first
     
   }
 }
