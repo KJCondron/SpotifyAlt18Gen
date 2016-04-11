@@ -47,7 +47,9 @@ object UAlt18F {
    
   // if we have a token, and it is new enough we can setup the api using just that
   // the refresh token can be used with secret to get a new access token
-  def getSpotify(conn : HTTPWrapper) = {
+  def getSpotify(conn : HTTPWrapper) : Api = getSpotify 
+  
+  def getSpotify() : Api = {
              
     val _ref="AQC0OxT6ayAimF5iie5cfjU2PNBa0Fxc1T56tUfGtC57zn3peIrPfeuFom31Gt9uMJHpjiJf486TUdnMVPrtDXs6W-xch6fjzukOKfVjvZk7iIrjNxerlpHvj36w1JXjqYI" 
   
@@ -100,7 +102,7 @@ object UAlt18F {
   
   def compare2(str1 : String, str2 : String) = {
     
-    //println("Comparing:" + str1 + " and " + str2 + " " + compareScore(str1, str2) + " " + compareScore(str2, str1) + ":" + (compareScore(str1, str2)==1.0 || compareScore(str2, str1)==1.0)) 
+    println("Comparing:" + str1 + " and " + str2 + " " + compareScore(str1, str2) + " " + compareScore(str2, str1) + ":" + (compareScore(str1, str2)==1.0 || compareScore(str2, str1)==1.0)) 
         
     val sFilter = (x:Char) => x > 96 && x < 123 // filter out any non lower case letters
     val myRep = (s:String) => s.replace("&", "and").toLowerCase.filter(sFilter).trim // apply filter after toLower to remove anything outside [a-z]
@@ -210,6 +212,18 @@ object Util {
           }
         case t:Throwable => {println("count:" + count); throw t}
      }
+     
+  def getPLTracks(s : Api, uid : String, plid : String, offset : Int = 0, acc : List[PlaylistTrack] = List()) : 
+     List[PlaylistTrack] =
+   {
+      val currItems = s.getPlaylistTracks(uid, plid).offset(offset).build.get.getItems
+      
+      if(currItems.size == 0)
+        acc
+      else
+        getPLTracks(s, uid,plid,offset+100,acc++currItems)
+   }
+   
 }
     
 import com.kjcondron.music.Util.backOffLogic
@@ -217,7 +231,6 @@ import com.kjcondron.music.Util.backOffLogic
 object UAlt18 extends App {
   
   println("start")
-  
   
   val artistFileLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\artists.txt"""
   val artistFile = new File(artistFileLoc)
@@ -244,6 +257,14 @@ object UAlt18 extends App {
   //val alt18s = getUAlt18(conn,conn2)
   
   val alt18s = UAlt18AnnualParser.getUAlt18Annual(conn3)  // List(Year, List(Artist-SongName))
+  
+  val allLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\allsongs.txt"""
+  
+  val allsongsbuff = new BufferedWriter(new OutputStreamWriter(
+      new FileOutputStream(new File(allLoc)), "UTF-8"));
+  
+  alt18s.map(_._2).flatten.foreach( str => { allsongsbuff.write(str); allsongsbuff.newLine() } )
+  allsongsbuff.close
   
 //  val fn = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\allShine.txt"""
 //  val alt18s = List((fn, UAlt18AnnualParser.getUAlt18Annual(fn)))
@@ -458,8 +479,11 @@ object UAlt18 extends App {
 //   case _ : Throwable => NoSong(title)
 //   }
 //  
+  
+ // this function should be checking for exact match before using compare2 
  def findSongOnSpotify( title : String, alt18Artist : String, artist : Artist ) : SearchedSong = {
-                         val topTracks = backOffLogic(s.getTopTracksForArtist(artist.getId, "US").build.get)
+                         //val topTracks = backOffLogic(s.getTopTracksForArtist(artist.getId, "US").build.get)
+                         val topTracks  = findASong(artist.getName, title)
                          val matchingTracks = topTracks.filter { t => compare2(t.getName,title) }
                          if (matchingTracks.size >= 1)
                          {
@@ -615,19 +639,8 @@ object UAlt18 extends App {
             s.createPlaylist(uid, plname).build.get.getId)
             
    println("playlist id:" + plid)
-   
-   def getPLTracks(uid : String, plid : String, offset : Int = 0, acc : List[PlaylistTrack] = List()) : 
-     List[PlaylistTrack] =
-   {
-      val currItems = s.getPlaylistTracks(uid, plid).offset(offset).build.get.getItems
-      
-      if(currItems.size == 0)
-        acc
-      else
-        getPLTracks(uid,plid,offset+100,acc++currItems)
-   }
                
-   val pltracks = getPLTracks(uid, plid)
+   val pltracks = Util.getPLTracks(s, uid, plid)
    
    implicit class Wrapper1(_tr : PlaylistTrack) {
        def matches(_tr2 : Track) = _tr.getTrack.getId == _tr2.getId  
@@ -697,3 +710,45 @@ object UAlt18 extends App {
    conn3.dispose
    
 } // end app
+
+
+object CheckPlaylist extends App {
+
+  val s = getSpotify
+  val uid = backOffLogic(s.getMe.build.get.getId)
+   
+  val name1 = "all18new2"
+  val name2 = "all18new3"
+  
+  val pls = s.getPlaylistsForUser(uid).build.get.getItems
+  
+  println("got pls")
+  pls.foreach(p=>println(p.getName))
+  
+  val pl1 = pls.filter(_.getName == name1).head
+  val pl2 = pls.filter(_.getName == name2).head
+  
+  println("got playlists")
+  
+  val currItems1 = Util.getPLTracks(s, uid, pl1.getId)
+  val currItems2 = Util.getPLTracks(s, uid, pl2.getId)
+  
+  println("got tracks:" + currItems1.size + " " + currItems2.size)
+  
+  val prtr = (tr : PlaylistTrack) => { val track = tr.getTrack; println(track.getName +":" + track.getArtists.head.getName) }
+  
+  val dups = currItems1.filter( tr => currItems1.count( tr2 => tr2.getTrack.getId  == tr.getTrack.getId ) > 1 )    
+  if (dups.size == 0)
+    println("no dups")
+  else
+    dups.foreach(prtr)
+    
+  val missing = currItems1.filter( tr => currItems2.count( tr2 => tr2.getTrack.getId  == tr.getTrack.getId ) == 0 )    
+  
+  if (missing.size == 0)
+    println("no missing")
+  else
+    missing.foreach(prtr)
+  
+  
+} // end check playlist app
