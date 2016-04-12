@@ -13,6 +13,7 @@ import scala.collection.mutable.Buffer
 import java.io.BufferedWriter
 import java.io.OutputStreamWriter
 import com.wrapper.spotify.exceptions.BadRequestException
+import com.wrapper.spotify.exceptions.WebApiException
 import UAlt18Parser._
 import UAlt18F._
 
@@ -157,11 +158,13 @@ case class MyTrack(artist : String, title : String)
 // if you make this impl GenTraversableOnce then
 // you can use coll.flatten to remove NoSongs from List[SearchedSongs]
 // like you can with Option (clever huh?)
-sealed abstract class SearchedSong {
+sealed abstract class SearchedSong extends Ordered [SearchedSong] {
   override def toString = alt18Name
   def alt18Name : String
   def isFound : Boolean = false
   def equals(that:Any) : Boolean
+  
+  def compare (that: SearchedSong) = alt18Name.compare(that.alt18Name)
 }
 case class FoundSong(alt18Name : String, alt18Artist : String, track : Track) extends SearchedSong
 {
@@ -210,7 +213,11 @@ object Util {
               Thread sleep 4000
               backOffLogic(g, count+1)
           }
-        case t:Throwable => {println("count:" + count); throw t}
+//        case w:WebApiException => { 
+//          println("back off caught web api exception count:" + count)
+//          println(w.getMessage)
+//          throw w }
+        case t:Throwable => { println("back off caught other exception count:" + count); throw t }
      }
      
   def getPLTracks(s : Api, uid : String, plid : String, offset : Int = 0, acc : List[PlaylistTrack] = List()) : 
@@ -248,7 +255,7 @@ object UAlt18 extends App {
   val conn2 = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\Res\""")
   val conn3 = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\Res2\""")
   
-  def clean(s:String) = s.replace(160.toChar, 32.toChar).replace('’', ''') 
+  def clean(s:String) = s.replace(160.toChar, 32.toChar).replace('’', ''').replace("-","–").trim.toLowerCase
  
   println("getting spotify")
   
@@ -263,23 +270,23 @@ object UAlt18 extends App {
   val allsongsbuff = new BufferedWriter(new OutputStreamWriter(
       new FileOutputStream(new File(allLoc)), "UTF-8"));
   
-  alt18s.map(_._2).flatten.foreach( str => { allsongsbuff.write(str); allsongsbuff.newLine() } )
+  alt18s.map(_._2).flatten.map(clean).sorted.distinct.foreach( str => { allsongsbuff.write(str); allsongsbuff.newLine() } )
   allsongsbuff.close
   
 //  val fn = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\allShine.txt"""
 //  val alt18s = List((fn, UAlt18AnnualParser.getUAlt18Annual(fn)))
   
   def fn(gg:String, sep : String) = { 
-      val x = clean(gg).trim .toLowerCase 
+      val x = clean(gg).trim.toLowerCase 
       val at = x.split(" " +sep+ " ")
       val artist = at(0)
-      val title = if(at.size > 1) { at(1) } else { "" }
+      val title = if(at.size > 1) { at(1) } else { println("hmm: " + gg); "" }
     
       MyTrack(artist.toLowerCase, title)
   }
     
   val parseArtistAndTitle : PartialFunction[String, MyTrack] = {
-    case g if g.contains("-") => fn(g,"-")
+    case g if g.contains("-") => fn(g,"–") // sep both the same now because clean fixes it
     case g if g.contains("–") => fn(g,"–")
   }
   
@@ -293,7 +300,7 @@ object UAlt18 extends App {
   println("got distinct artists " + allTracksByArtist.size)
   
  def findArtist( name : String, filter : (String,String) => Boolean = (_,_)=>true ) = {
-    //println("SEARCHING FOR ARTIST: " + name)
+    println("SEARCHING FOR ARTIST: " + name)
     val fn = (nm:String) => {
       val srch = s.searchArtists(nm).build
       val res = srch.get
@@ -346,8 +353,9 @@ object UAlt18 extends App {
        (a, buf) 
      })
  
+     println("before possibles")
  val possibles = possibles1.map( {case (k,v) => (k, v.getOrElse(findArtist(k,compare))) } )
- 
+   println("after possibles")
  val (matchingArtistsBuf, nonMatchingArtists) = possibles.partition( _._2.size==1 )
  val matchingArtists = matchingArtistsBuf.mapValues { _.head }
  
@@ -735,7 +743,9 @@ object CheckPlaylist extends App {
   
   println("got tracks:" + currItems1.size + " " + currItems2.size)
   
-  val prtr = (tr : PlaylistTrack) => { val track = tr.getTrack; println(track.getName +":" + track.getArtists.head.getName) }
+  val prtr = (tr : PlaylistTrack) => { 
+    val track = tr.getTrack
+    println(track.getName +":" + track.getArtists.head.getName +":" + track.getId) }
   
   val dups = currItems1.filter( tr => currItems1.count( tr2 => tr2.getTrack.getId  == tr.getTrack.getId ) > 1 )    
   if (dups.size == 0)
@@ -752,3 +762,6 @@ object CheckPlaylist extends App {
   
   
 } // end check playlist app
+
+
+

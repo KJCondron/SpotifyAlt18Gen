@@ -105,12 +105,12 @@ jimmy eat world:Jimmy Eat World:3Ayl7mCk0nScecqOzvNp6s
 ra ra riot:Ra Ra Riot:6FIrstf3kHEg3zBOyLpvxD
 saint pepsi:Saint Pepsi:0x0u0jCVf5Jf4DNh45XPXL
 st. vincent:St. Vincent:7bcbShaqKdcyjnmv4Ix8j6
+fenech–soler:Fenech-Soler:5GqAhBdaiG5StP2EHhmw8B
 two door cinema club:Two Door Cinema Club:536BYVgOnRky0xjsPT96zl
 foster the people:Foster The People:7gP3bB2nilZXLfPHJhMdvc
 a silent film:A Silent Film:7HO5HS3yeokRBGVC4nSKIb
 vampire weekend:Vampire Weekend:5BvJzeQpmsdsFp4HGUYUEx
 the neighbourhood:The Neighbourhood:77SW9BnxLY8rJ0RciFqkHh
-∆ (alt-j):alt-J:3XHO7cRUPCLOr6jwp8vsx5
 zella day:Zella Day:100sLnojEpcadRx4edEBA6
 jamie t:Jamie T:3Rsr4Z96O6U3lToOiV3zBh
 skaters:SKATERS:0bR9pq2yeL2sbCBA1Jt3WT
@@ -162,7 +162,6 @@ coasts:Coasts:5OgSr6wQteRu9jek5JvnDQ
 morning parade:Morning Parade:6IQkN7kM66NACkh1RMGihG
 twenty one pilots:Twenty One Pilots:3YQKmKGau1PzlVlkL1iodx
 the temper trap:The Temper Trap:4W48hZAnAHVOC2c8WH8pcq
-fenech-soler:Fenech-Soler:5GqAhBdaiG5StP2EHhmw8B
 the hives:The Hives:4DToQR3aKrHQSSRzSz8Nzt
 blur:Blur:7MhMgCo0Bl0Kukl93PZbYS
 the shins:The Shins:4LG4Bs1Gadht7TCrMytQUO
@@ -244,6 +243,7 @@ waters:WATERS:4KKQvsAWZWMkS1QCuPnajG
 muse:Muse:12Chz98pHFMPJEknJQMWvI
 bδstille:Bastille:7EQ0qTo7fWT7DPxmxtSYEc
 odesza:ODESZA:21mKp7DqtSNHhCAU2ugvUw
+∆ (alt–j):alt-J:3XHO7cRUPCLOr6jwp8vsx5
 fitz & the tantrums:Fitz and The Tantrums:4AcHt3JxKy59IX7JNNlZn4
 panama:Panama:3W9UldYu0xJcaOAw2SUTDI
 robert delong:Robert DeLong:42crL07E4WPfVovyUtMpvC
