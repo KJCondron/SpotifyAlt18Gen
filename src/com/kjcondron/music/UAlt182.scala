@@ -149,6 +149,70 @@ class Spotify( spfy : Api ) {
      
   def getPLId(name : String) = getPL(name).map(_.getId).
     getOrElse(spfy.createPlaylist(uid, name).build.get.getId)
+    
+  def makePlaylists(
+      tracks : List[(String, List[String])],
+      cache : Option[Map[(String,String),(String,String)]],
+      logLocation : String,
+      bigPLName : String = "all18V2",
+      plPre : String = "alt18") = {
+  
+  val clean = (s:String) => s.replace(160.toChar, 32.toChar).replace('’', ''').replace("-","–").trim.toLowerCase
+  
+  val allsongsbuff = new BufferedWriter(new OutputStreamWriter(
+      new FileOutputStream(new File(logLocation)), "UTF-8"));
+  val allsongs = tracks.map(_._2).flatten.map(clean).sorted.distinct
+  allsongs.foreach( str => { allsongsbuff.write(str); allsongsbuff.newLine() } )
+  allsongsbuff.close
+  
+  def parse(gg:String) = { 
+      val at = gg.split(" – ")
+      val artist = at(0)
+      val title = if(at.size > 1) { at(1) } else { "" }
+      MyTrack(artist.toLowerCase, title)
+  }
+  
+  // parse.....we should throw out un-parseable maybe?
+  val parsed = allsongs.map(parse)  
+   
+  def makeTrack(name : String, id : String) = {
+    val tr = new Track
+    tr.setName(name)
+    tr.setId(id)
+    tr.setUri("spotify:track:"+id)
+    tr
+  }
+  
+  def makeOrGet(tr : MyTrack) = {
+    def fSOS = findSongOnSpotify2(tr) // closure that will only be called if req
+    val mt2 = ( cacheHit : (String,String) ) => FoundSong(tr.title, tr.artist, makeTrack(cacheHit._1, cacheHit._2)) 
+    cache.flatMap( _.get(tr.title,tr.artist).map(mt2)).getOrElse(fSOS)
+  }
+  
+  // find in cache or via spotify
+  val spotifySongs = parsed.map(makeOrGet)
+  
+  // report unfound songs
+  val (found, notFound) = spotifySongs.partition( x => x match {
+    case _ : FoundSong => true
+    case _ => false
+  })
+  
+  val f : PartialFunction[SearchedSong,FoundSong] = { case fs : FoundSong => fs }
+  val foundSongs = spotifySongs.collect(f)
+  
+  println("not Found:" + notFound.size)
+  notFound.foreach( ss => println(ss.alt18Name))
+   
+  val fInOne = clean andThen parse andThen makeOrGet
+  val step4 = tracks.map( { case (yr,tracks) => (yr, tracks.map(fInOne).sorted.distinct.collect(f) ) } )
+    
+  val mainPLId = getPLId(bigPLName)
+  add(mainPLId, foundSongs)
+  
+  step4.map( x => add( getPLId(plPre + x._1), x._2 ) )
+  
+  }
       
 }
 
@@ -195,6 +259,32 @@ object Spotify {
   }
 }
 
+class SongCache( loc : String )
+{
+    private val _theMap = load(loc)
+    
+    def get( key : MyTrack ) : Option[FoundSong] = 
+        _theMap.get(key.title, key.artist).map( 
+            x => FoundSong(key.title, key.artist, makeTrack(x._1, x._2)) )
+    
+    private def load(fileLoc : String) = {
+      io.Source.fromFile(fileLoc, "utf-8").getLines.map( line => { 
+        val entry = line.split(":")
+        if(entry.size != 4)  println(line)
+        ( (entry(0),entry(1)), (entry(2), entry(3)) )
+      }).toMap
+    }
+    
+    private def makeTrack(name : String, id : String) = {
+      val tr = new Track
+      tr.setName(name)
+      tr.setId(id)
+      tr.setUri("spotify:track:"+id)
+      tr
+    }
+  
+}
+
 import Util2._
 
 object BuildAllPlaylist2 extends App {
@@ -206,69 +296,30 @@ object BuildAllPlaylist2 extends App {
   val alt18s = UAlt18AnnualParser.getUAlt18Annual(conn)  // List(Year, List(Artist-SongName)) 
   conn.dispose
   
-  val allLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\allsongs2.txt"""
-  val allsongsbuff = new BufferedWriter(new OutputStreamWriter(
-      new FileOutputStream(new File(allLoc)), "UTF-8"));
-  
-  val clean = (s:String) => s.replace(160.toChar, 32.toChar).replace('’', ''').replace("-","–").trim.toLowerCase
-  
-  // clean up known equivalent characters and remove duplicates
-  val allsongs = alt18s.map(_._2).flatten.map(clean).sorted.distinct
-  allsongs.foreach( str => { allsongsbuff.write(str); allsongsbuff.newLine() } )
-  allsongsbuff.close
-  
-  def parse(gg:String) = { 
-      val at = gg.split(" – ")
-      val artist = at(0)
-      val title = if(at.size > 1) { at(1) } else { "" }
-      MyTrack(artist.toLowerCase, title)
-  }
-  
-  // parse.....we should throw out un-parseable maybe?
-  val parsed = allsongs.map(parse)  
-  
+  val fn = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\allShine.txt"""
+  val shines = List((fn, UAlt18AnnualParser.fromFile(fn)))
+ 
   val songFileLoc2 = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs2.txt"""
   val songFile2 = new File(songFileLoc2)
   val songCache2 = if ( songFile2.exists ) Some( loadExistingWithArtist(songFileLoc2) ) else None
+ 
+  val allLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\allsongs2.txt"""
   
-  def makeTrack(name : String, id : String) = {
-    val tr = new Track
-    tr.setName(name)
-    tr.setId(id)
-    tr.setUri("spotify:track:"+id)
-    tr
-  }
+  spotify.makePlaylists(alt18s, songCache2, allLoc, "all18V2", "alt18")
+}
+
+object BuildShinePlaylist2 extends App {
   
-  def makeOrGet(tr : MyTrack) = {
-    def fSOS = spotify.findSongOnSpotify2(tr) // closure that will only be called if req
-    val mt2 = ( cacheHit : (String,String) ) => FoundSong(tr.title, tr.artist, makeTrack(cacheHit._1, cacheHit._2)) 
-    songCache2.flatMap( _.get(tr.title,tr.artist).map(mt2)).getOrElse(fSOS)
-  }
+  val spotify = Spotify.create()
+
+  val fn = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\allShine.txt"""
+  val shines = List((fn, UAlt18AnnualParser.fromFile(fn)))
+ 
+  val songFileLoc2 = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs2.txt"""
+  val songFile2 = new File(songFileLoc2)
+  val songCache2 = if ( songFile2.exists ) Some( loadExistingWithArtist(songFileLoc2) ) else None
+ 
+  val allLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\allsongs2.txt"""
   
-  // find in cache or via spotify
-  val spotifySongs = parsed.map(makeOrGet)
-  
-  // report unfound songs
-  val (found, notFound) = spotifySongs.partition( x => x match {
-    case _ : FoundSong => true
-    case _ => false
-  })
-  
-  val f : PartialFunction[SearchedSong,FoundSong] = { case fs : FoundSong => fs }
-  val foundSongs = spotifySongs.collect(f)
-  
-  println("not Found:" + notFound.size)
-  notFound.foreach( ss => println(ss.alt18Name))
-   
-  val fInOne = clean andThen parse andThen makeOrGet
-  val step4 = alt18s.map( { case (yr,tracks) => (yr, tracks.map(fInOne).sorted.distinct.collect(f) ) } )
-    
-  val bigPLName = "all18V2"
-  val plPre = "alt18"
-  
-  val mainPLId = spotify.getPLId(bigPLName)
-  spotify.add(mainPLId, foundSongs)
-  
-  step4.map( x => spotify.add( spotify.getPLId(plPre + x._1), x._2 ) )
-  
+  spotify.makePlaylists(shines, songCache2, allLoc)
 }

@@ -9,14 +9,14 @@ import UAlt18Parser._
 import java.util.Calendar
 
 object UAlt18AnnualParser {
-  def getUAlt18Annual( address : String ) : List[String] =
+  def fromFile( address : String ) : List[String] =
     io.Source.fromFile(address, "utf-8").getLines.toList
     
   def getUAlt18Annual( conn : HTTPWrapper ) : List[(String, List[String])] =
   {
     val dts = List(2012,2011)
     val loc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\%d.txt"""
-    val first = dts.map (dt => (dt.toString,getUAlt18Annual(loc.format(dt))) )
+    val first = dts.map (dt => (dt.toString,fromFile(loc.format(dt))) )
     
     val pre = "http://theunofficialalt18countdownplaylists.com/previous-results/"
   
