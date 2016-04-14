@@ -31,20 +31,22 @@ what's in the box? (see whatcha got):boo radleys:What's In the Box? (See Whatcha
 i believe:booth & the bad angel:I Believe:1N5OKSWxpf4uhsTHkcUKKw
 swallowed:bush:Swallowed:6b5wEB3YE443xakokSftoZ
 monday morning:candyskins:Monday Morning:4mT0V7vE6mt4iJvZCYSFOh
+carnival:cardigans:Carnival:1RiMeaZialy6R8Ve49jeHi
 lovefool:cardigans:Lovefool - Radio Edit:0u4htORODiTK9vHVA89MQX
 rise and shine:cardigans:Rise & Shine:7owkL3y7gTcy3YPrcNh8Ki
 your new cuckoo:cardigans:Your New Cuckoo:6XgAG9QdYU21Ngl9CaPJgc
 alright:cast:Alright:0OObwZxGRtS1chmkrftTN1
 finetime:cast:Finetime - Home Cassette Demo:71aS824IwwicykEaCABXtO
-flying:cast:High Flying, Adored - Original Cast Recording/1979:36DiTmcDG2sUnZVMqZvnOg
+flying:cast:Flying:79qDQNlwkStyx8o9e6O5hk
 free me:cast:Free Me:6Fs1YarKowXeREK6kh9BU3
 guiding star:cast:Guiding Star:3TO7w828uE5Oy5XN0EANI7
-history:cast:History Has Its Eyes On You:1mGO8rwCE9zk7H06OxcU5m
+history:cast:History:2Bzk9Yf0tIpsZreTcFqXxd
 live the dream:cast:Live The Dream:6jNJYjMTGoDC4RtSSmyNXA
 sandstorm:cast:Sandstorm:321LpA0kXiu2nSzXxSbxwu
 walkaway:cast:Walkaway:2ULgZu8wPIhYycCUOdCjRm
 mulder and scully:catatonia:Mulder And Scully:4RAD0ENNSFiT31DoqT9HDm
 road rage:catatonia:Road Rage:0yjJw8pOEuGcGCST7xdn7U
+you've got a lot to answer for:catatonia:You've Got A Lot To Answer For:7vouL7ZBmDzywbK5LeIAYb
 how high:charlatans:How High - Live BBC Radio Wales In Concert 29/7/06:4hOsk3Y5KKmWXmCjlngl6L
 just when you're thinkin' things over:charlatans:Just When You’re Thinkin’ Things Over:0NLxpKJc98yqWAWEBFA8SO
 north country boy:charlatans:North Country Boy:3PdVyLjjIPcsWJGydNbPz8
@@ -68,18 +70,30 @@ if you're thinking of me:dodgy:If You're Thinking Of Me:0oQyjnR90hfC20iQVqbXp4
 in a room:dodgy:In A Room - Full Version:3klxTZLJvakGfSVUGuXLe5
 so let me go far:dodgy:So Let Me Go Far:46HWaI68o7f2wSYBR3fKzW
 staying out for the summer:dodgy:Staying Out For The Summer:3rGH0jq47Ze63D3cCbOoUB
+el president:drugstore:El President:1CLVKDnpYnB9c7odEKsloB
+anywhere:dubstar:Anywhere:1RH1ShGhp49P09GbgvYO2c
+elevator song:dubstar:The Elevator Song:4k266sex0QI0aMIw6LTT5a
+no more talk:dubstar:No More Talk:1dgH1KQLyuqYRxtOa9mWh3
+not so manic now:dubstar:Not So Manic Now:61G7ODt4aKQEqBOmUGYoMR
+save tonight:eagle eye cherry:Save Tonight:1t2Hq2WIBcZINOEnK6mdJG
 nothing lasts forever:echo & the bunnymen:Nothing Lasts Forever:7EN5SyIWXCsiBtYxwobDRS
+dark therapy:echobelly:Dark Therapy:0MQR1O7Q8Is3fSeG9jyezm
+great things:echobelly:Great Things:2q1JbWZkKf1G6SRIOYZpmG
+king of the kerb:echobelly:King of the Kerb:5Ox3G1oWT9qu7YLK1HJNy0
 a girl like you:edwyn collins:A Girl Like You:6XOINCZBv8Q7RXgNNiTwIN
 novocaine for the soul:eels:Novocaine For The Soul:0Jv0PJz6LZdCygPsFnML3a
 susan's house:eels:Susan's House:6OTRYD1mqDnUAR4tOdSnx9
 connection:elastica:Connection:53LZqMzQEnjBkFXPqOq0cD
 waking up:elastica:Waking Up:4Gz79kVUfXjvdChYYl2vh4
+look at you now:elcka:Look At You Now:5Rz8G1w8LregkVZ8V6VtPT
 for you:electronic:For You:50Tbom67ApBo6uwCUD4YY3
 forbidden city:electronic:Forbidden City:5nmSvthJ47B8mduo3vL5Ca
 getting away with it:electronic:Getting Away With It:0YZ7Q5i99vt9OEF8AEEaBV
+all you good good people:embrace:All You Good Good People:72TPbqNS18yOlXa5USPSSo
 the rockafeller skank:fatboy slim:The Rockafeller Skank:7mCQK9YB25WZw1saUjfL4e
 high:feeder:High:2yUEzYXAXQSTJIrYhWM2YS
 i think i'm paranoid:garbage:I Think I'm Paranoid:1uDJUFrLRHBRU6BY1h4Scy
+milk:garbage:Milk:3p5S0XHbYsTIJOqftXsCIn
 only happy when it rains:garbage:Only Happy When It Rains:0c1iL21nLuQNZTWiijOZUG
 push it:garbage:Push It:6OfzY5ebvLXKEE1Zmbk6cI
 queer:garbage:Queer:1rv9cX499pt0C7ws8ZEZQf
@@ -92,21 +106,30 @@ sleep well tonight:gene:Sleep Well Tonight:04zW5GUuSq6UVwdFFPdPoJ
 speak to me someone:gene:Speak To Me Someone:4j0WHfvLuVSJrjl7qi3zHy
 we could be kings:gene:We Could Be Kings:6TT4XoUt4GKpise7JJ1dtD
 where are they now?:gene:Where Are They Now?:1Fc2ynYq6qJVBFVDrXFj4s
+best regrets:geneva:Best Regrets:2m2BSlxQ3fXi2YqyMXEiAY
+no one speaks:geneva:No One Speaks:2wOZslS0d2rwh9a9ZesH4Y
 where i find my heaven:gigolo aunts:Where I Find My Heaven:6iKrd0XHH0re26nw9RYeUS
 follow you down:gin blossoms:Follow You Down:5yVqBhvmi3sBahhaSYpl27
+diamond dew:gorky's zygotic mynci:Diamond Dew:7vbj3AlRZs5fRkhx4aAz17
+patio song:gorky's zygotic mynci:Patio Song:6fNg0XJSCq1Dn8GEtoDxbB
+1962:grass show:1962:2pKVOnpVhFJwehKJpwJjg4
 welcome to paradise:green day:Welcome To Paradise:5kr3j5Clb9rjEposoMyLVt
 kinky afro:happy mondays:Kinky Afro:0wMz3M2SVjyY6e5kwxft3L
 step on:happy mondays:Step On:0xZuxFQjLWZnRMOFlFDsF5
 step into my world:hurricane #1:Step Into My World:6fbfURezK2NZW2LWfJucsF
+my star:ian brown:My Star:7bSNtkIJeaxyGs7qjkZ7gW
 dragging me down:inspiral carpets:Dragging Me Down:0tfxmG1z6INF7fzlXsdTt9
 destiny calling:james:Destiny Calling:3gAKJMJ1jdFt5Rk4UvhPz3
 she's a star:james:She's A Star:1K2ZK4Y62SVjjk7dC9bDsT
 sit down:james:Sit Down:0fYQdwOzZeIAeYVgrroLj1
-tomorrow:james:Tomorrow Is A Latter Day:2axqDC2tqyte9V9cm1BAy7
+tomorrow:james:Tomorrow:5sjvjkdu5K7Alljwiyyyxe
 international bright young thing:jesus jones:International Bright Young Thing:4xdXojWN3Uo5dMH3yWMHk3
 go:jocasta:Girls Are Evil - Stuttering Munx Go Deep Mix:2src58k0HncArSDw6Y9BSf
+love will tear us apart:joy division:Love Will Tear Us Apart - 2010 Remastered Version:1r8oPEXqnhUVgkUkJNqEuF
+punka:kenickie:Punka:2yTErvmzXrS0epevB7v25Q
 grateful when you're dead:kula shaker:Grateful When You're Dead / Jerry Was There:7MD6M0DqO3R9koXkCxKQmK
 tattva:kula shaker:Tattva:4i29BhzyX52me3XNatwkWe
+celebrate:levellers:Celebrate - Remastered Version:5PbOLyIhwUaMDcKwAUe1IC
 exodus (live):levellers:Exodus - Live:3hcI3ehMo6xEHh3HOsQIia
 fantasy:levellers:Fantasy:1QMeOKSr0e5IiVfAPNRv6S
 hope st.:levellers:Hope St.:0w58A5B5jH2upqvJOHKNK5
@@ -134,11 +157,16 @@ taxloss:mansun:Taxloss:2tuZEgbuYDo1g2pf09GPKC
 wide open space:mansun:Wide Open Space:5DxvM7QB0Qha4CksRkVHjK
 let's all go together:marion:Let's All Go Together - Live:6tJZeDeJKmfxninxFbccTx
 sleep:marion:Sleep - Live:6Jeas5ep3kaQfYL4wjQ2KP
-time:marion:The First Time:2P5Pc0jXvlfIHzm9fKSVJN
+time:marion:Time - Live:4PHBVbcAPs18l1fjwe4TvY
+being brave:menswear:Being Brave:2d5uy9GyVFVTXjyE2mlL0L
+sleeping in:menswear:Sleeping In:6kajPAYRHLTWXERa72NomG
+stardust:menswear:Stardust:1sAsLJCC6wSsnT4Gf4Zt9F
+we love you:menswear:We Love You:7GZBzcTJThYunxd89tR1jB
 the impression that i get:mighty mighty bosstones:The Impression That I Get:1ru5R5iSawvuMELqKXxLjS
 sweet lips:monaco:Sweet Lips:2JkcbuAoUvbMK8Cd8jPnJb
 what do you want from me?:monaco:What Do You Want From Me?:3H097K41pskob32JipdXzK
 alma matters:morrissey:Alma Matters:1f2D1QAOidg0ClSzpTQ1OH
+sparkle:my life story:Sparkle:40bmTGhjabY9xcvMT5Io9x
 big mistake:natalie imbruglia:Big Mistake:2nQNhsLpB0i4Bkol63jaFj
 regret:new order:Regret:2NphJ0mVP7y3qtLt5H5URY
 from a window:northern uproar:From a Window:5UBOLmvFOzdhWNTR3sTZGn
@@ -149,6 +177,7 @@ champagne supernova:oasis:Champagne Supernova - Remastered:40bynawzslg9U7ACq07fA
 cigarettes & alcohol:oasis:Cigarettes & Alcohol - Remastered:7bfWxsOmebxtPDPx0em9hq
 d'you know what i mean?:oasis:D'You Know What I Mean?:0y8X9bjwNsifo7z5UkjxpT
 don't look back in anger:oasis:Don't Look Back In Anger - Remastered:7CVYxHq1L0Z4G84jTDS6Jl
+fade away:oasis:Fade Away:3iEsRgmJTtVTpl1Z2Apcsz
 masterplan:oasis:The Masterplan - Remastered:3BFKNc9YZltqCYn7eSST4h
 morning glory:oasis:Morning Glory - Remastered:5AMgAzHqrO8cUGoYGr1CHb
 roll with it:oasis:Roll With It - Remastered:1708RCFvQZ88B2IiSTHz23
@@ -157,6 +186,8 @@ stand by me:oasis:Stand By Me:4h1dDOy7Za0Nmhb3UYBtMe
 whatever:oasis:Whatever - Remastered:6hqu7f96UPVAKCqiex5sgi
 wonderwall:oasis:Wonderwall - Remastered:5wj4E6IsrVtn8IBJQOd0Cl
 better day:ocean colour scene:Better Day:7tFQ7doCgBbCnIFI21aGUb
+hundred mile high city:ocean colour scene:Hundred Mile High City:5P2CWpIzIsjU8gxIy5Jtx8
+it's a beautiful thing:ocean colour scene:It's A Beautiful Thing - BBC In Concert:45XkhgITf4E1AknMtntSXO
 the circle:ocean colour scene:The Circle:3BUi7AZEzFqTMmLaQn7neF
 the day we caught the train:ocean colour scene:The Day We Caught The Train:4yLGqCJFoyrbhOvYVRqjU2
 the riverboat song:ocean colour scene:The Riverboat Song:1rysdI55Co155MvYBdtpuW
@@ -182,9 +213,11 @@ common people:pulp:Common People:2fXKyAyPrEa24c6PJyqznF
 disco 2000:pulp:Disco 2000:2aC8wwfrM0YeTAzzk8hxqC
 do you remember the first time?:pulp:Do You Remember The First Time?:6cMQG30IU2zryckWJu2FLh
 help the aged:pulp:Help The Aged:6v90ogq4aY6xoM4pY8nwzw
-mis:pulp:Mis-Shapes:7IgHTB9VMPwziPobbBbgfq
+mis–shapes:pulp:Mis-Shapes:0TnjxMTTsCKoqxkuNp43A6
 something changed:pulp:Something Changed:05FgZdqxXg40X0WG8MmWMA
+sorted for e's & wizz:pulp:Sorted For E's & Wizz:6OiWR0dBoVnd0NpD0kCijF
 underwear:pulp:Underwear:5pcDlqgygjWQ75QYLM7mdL
+this feeling:puressence:This Feeling:1TvmMPFb3DqGRqx6ZTDXfH
 fake plastic trees:radiohead:Fake Plastic Trees:045sp2JToyTaaKyXkGejPy
 just:radiohead:Just:4SE81CrzH0qPA8KHqM9Syz
 karma police:radiohead:Karma Police:3SVAN3BRByDmHOhKyIDxfC
@@ -195,9 +228,12 @@ place your hands:reef:Place Your Hands:29OrKlVi8EM1u8VDIlF4qO
 yer old:reef:Yer Old:7HK3KkZCQOkm5FAJKgA50D
 drop dead gorgeous:republica:Drop Dead Gorgeous:253PaikJ4dv2naUFa4VeJW
 ready to go:republica:Ready to Go:5Qt8U8Suu7MFH1VcJr17Td
+untouchable:rialto:Untouchable:4MolVgoicmTQI9Q8WbFms6
 on a rope:rocket from the crypt:On A Rope:4Tkxvxb3cEV9uM4oXcWQ4s
-i don't know:ruth:I Don't Know:047Ip9c6dijAJfuwloV3NF
 anymore:sarah cracknell:Anymore:2sKeKYvBF6v6QQK28LkSq6
+blinded by the sun:seahorses:Blinded By The Sun:4S7yha4rQKQkMGFfXM12x5
+love is the law:seahorses:Love Is The Law:1pmlA7CcHABOF7zkzn7Xdf
+love me and leave me:seahorses:Love Me and Leave Me:1ODajYZgaaMBNGc0BjMLu0
 bully boy:shed seven:Bully Boy:0SffAijpmrc2KJ4VovN5ox
 chasing rainbows:shed seven:Chasing Rainbows:4IFC2bM8SquqQYOu9tiQ8C
 getting better:shed seven:Getting Better:6PSCFrRHCSplANim0QOEY4
@@ -224,6 +260,7 @@ what do i do now?:sleeper:What Do I Do Now:6sXcuiHsTHyYxHVz1l0UIm
 6 underground:sneaker pimps:6 Underground - Nellee Hooper Mix:4OchoJP9f6qiSycrX8iV9Z
 post modern sleaze:sneaker pimps:Post-Modern Sleaze:2REfF3lymDv9uKzkwyxTpH
 burden in my hand:soundgarden:Burden In My Hand:1iArQTuOzxvrtniGmkyy92
+the ballad of tom jones:space featuring cerys:The Ballad Of Tom Jones:03hqDHqrGHIC6U7fxdUp7P
 avenging angels:space:Avenging Angels:3OZyOebry7kGgYOSrzteXh
 begin again:space:Begin Again:1XavGniaH7WsjzBroXHl13
 female of the species:space:Female Of The Species:4oWmifC8SThccLseeRcKVj
@@ -245,6 +282,8 @@ stay together:suede:Stay Together:0X3r2Q68U25MsRoOvEy5Zx
 the wild ones:suede:The Wild Ones:3hLDdmkhisfvi7QNVPv2L4
 trash:suede:Trash:6TpSOyVi66jbTj3xBMjl0u
 summertime:sundays:Summertime:4TwaeQT1YTeBUBRB8NeSCo
+play it cool:super furry animals:Play It Cool:37YxpH4Y0dYvgCHdmhb5jd
+something 4 the weekend:super furry animals:Something 4 The Weekend:5rvy7glNYmhpiLUaiEELn2
 alright:supergrass:Alright:5xC8uOesnn0udeXAYlAnoY
 caught by the fuzz:supergrass:Caught By the Fuzz:0iAcyO7WLhnC7WOTOpjGv1
 going out:supergrass:Going Out:11nBivWLLI07YgCP1z4KDb
@@ -270,15 +309,21 @@ shine on:the house of love:Shine On:0jPprFhDpOfkK3AmgYUCKg
 if i could talk i'd tell you:the lemonheads:If I Could Talk I'd Tell You:0CgcFwodLi7ldrBNgi3ZRW
 change:the lightning seeds:Change:3T7DsGTBzNVym0te9JjKug
 breathe:the prodigy:Breathe:5oPUBUzrAnwvlmMzl1VW7Y
+love is the law:the seahorses:Love Is The Law:1pmlA7CcHABOF7zkzn7Xdf
 how soon is now?:the smiths:How Soon Is Now? - 2011 Remastered Version:1YrnDTqvcnUKxAIeXyaEmU
 love spreads:the stone roses:Love Spreads:6JvEXmRh3l2acBzvqavgT9
+lazy lover:the supernaturals:Lazy Lover:1xSA8WHTvOaf1aypo1W2ys
 you and me song:the wannadies:You & Me Song:1Yhgn4qRfFThM0AHoKaZ3k
 the size of a cow:the wonder stuff:The Size Of A Cow:4Mxxf9LBIfqNNA90L7j4FR
-more than us:travis:More Than You'll Ever Know - Remastered:1l4fUoHcq97zvaKFus0D1Y
+race:tiger:Eye of the Tiger - 128 Bpm - Seat Climbing / 70-75% Hf Intensity:4veDqpQoMUGMXWWuRrp6ph
+more than us:travis:More Than Us:4a5LTqMQQ1sycnc2ZdwX71
 tied to the 90s:travis:Tied To The 90's:6Y1s8uGxjDeFbMQszwnwqM
 u16 girls:travis:U16 Girls:1HOsCrDxwwdNd2mkTm2CK9
 born slippy:underworld:Born Slippy (Nuxx):7xQYVjs4wZNdCwO0EeAWMC
+hit:wannadies:Hit:2Tx4eIbsllv4odFZMVUeRq
+might be stars:wannadies:Might Be Stars:19R1oF6LyAtDUqvBy8tXah
 shorty:wannadies:Shorty - Live:40dDCCwEF3mG1ETT4hZLr4
 you and me song:wannadies:You & Me Song:1Yhgn4qRfFThM0AHoKaZ3k
+hurricane:warm jets:Here Comes the Warm Jets - Punkrok Mix:4DANMpsvuJSblhmQzlNR3n
 twinkle:whipping boy:Twinkle:5hQIXBqfnxJav8LUzirjZW
 your woman:white town:Your Woman:4ACxa9buEUnOdYEoPcnMpi

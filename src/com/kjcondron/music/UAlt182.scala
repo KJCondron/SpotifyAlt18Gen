@@ -34,6 +34,12 @@ object Util2 {
               Thread sleep 4000
               backOffLogic(g, count+1)
           }
+        case b:BadRequestException if(count < 10) => {
+              val msg = b.getMessage
+              println(s"backing off $msg:" + count)
+              Thread sleep 4000
+              backOffLogic(g, count+1)
+          }
         case s:ServerErrorException if(count < 10) => {
               println("backing off (ServerErrorException):" + count)
               Thread sleep 4000
@@ -63,7 +69,7 @@ object funcs {
     ms * 1.0 / lstr2.size
   }
   
-  def compare2(str1 : String, str2 : String) = {
+  def compare2(str1 : String, str2 : String, threshhold : Double = 1.0) = {
     
     println("Comparing:" + str1 + " and " + str2 + " " + compareScore(str1, str2) + " " + compareScore(str2, str1) + ":" + (compareScore(str1, str2)==1.0 || compareScore(str2, str1)==1.0)) 
         
@@ -75,11 +81,62 @@ object funcs {
       
     myRep(str1) == myRep(str2) || 
       dropParenClause(str1) == dropParenClause(str2) ||
-      compareScore(str1, str2) == 1.0 ||
-      compareScore(str2, str1) == 1.0
+      compareScore(str1, str2) >= threshhold ||
+      compareScore(str2, str1) >= threshhold
   }
   
 }
+
+// if you make this impl GenTraversableOnce then
+// you can use coll.flatten to remove NoSong2s from List[SearchedSong2s]
+// like you can with Option (clever huh?)
+sealed abstract class SearchedSong2 extends Ordered [SearchedSong2] {
+  override def toString = alt18Name
+  def alt18Name : String
+  def isFound : Boolean = false
+  def equals(that:Any) : Boolean
+  
+  def compare (that: SearchedSong2) = alt18Name.compare(that.alt18Name)
+}
+case class FoundSong2(alt18Name : String, alt18Artist : String, track : Track) extends SearchedSong2
+{
+  def spotifyName = track.getName 
+  def spotifyId = track.getId
+  def spotifyArtist(api : Api) =
+    try
+    {
+      val tr = Util.backOffLogic(api.getTrack(spotifyId).build().get)
+      /*val artists = track.getArtists
+      println("got artists")
+      val optH = artists.headOption
+      println("maybe got head")
+      val nm = optH.map(_.getName).getOrElse("NO_ARTIST")
+      println("got name")*/
+      tr.getArtists.head.getName
+    }
+    catch
+    {
+      case t:Throwable => "ERROR"
+    }
+  
+  override def isFound = true
+  override def equals(that:Any) : Boolean = 
+    that match {
+    case fs : FoundSong2 => fs.track.getId == track.getId
+    case _ => false
+  }
+}
+case class NoSong2(tr : MyTrack) extends SearchedSong2 {
+  
+  override def alt18Name : String = tr.title
+ 
+  override def equals(that:Any) : Boolean = 
+    that match {
+    case ns : NoSong => ns.alt18Name == alt18Name
+    case _ => false
+  }
+}
+
 
 import funcs._
 import Util2._
@@ -88,44 +145,69 @@ class Spotify( spfy : Api ) {
   
   val uid = spfy.getMe.build.get.getId
   
-  def findASong(artist : String, title : String) : java.util.List[Track] = 
+  def findSong(artist : String, title : String, mkt : String = "US"): List[Track] = 
   {
      val str = s"track:$title artist:$artist"
-     val items = backOffLogic(spfy.searchTracks(str).market("US").build.get.getItems)
+     val items = backOffLogic(spfy.searchTracks(str).market("GB").build.get.getItems)
      if(items.size == 0 && (title.contains( "(" ) || artist.contains( "(" )))
-       findASong(artist.takeWhile(_!='('),title.takeWhile(_!='('))
+       findByTitle(artist.takeWhile(_!='('),title.takeWhile(_!='('))
      else
-       items
+       items.toList
   }
   
-  def findSpotify( tr : MyTrack ) : SearchedSong = {
-    println("Looking for:" + tr.title + " by " + tr.artist)
-    val topTracks  = findASong(tr.artist, tr.title)
+  def findByTitle(title : String, mkt : String = "GB"): List[Track] = 
+  {
+     val str = s"track:$title"
+     backOffLogic(spfy.searchTracks(str).market("US").build.get.getItems).toList 
+  }
+  
+  def findSpotify( tr : MyTrack ) : SearchedSong2 = {
+    //println("Looking for:" + tr.title + " by " + tr.artist)
+    val topTracks  = findSong(tr.artist, tr.title)
     val matchingTracks = topTracks.filter { t => compare2(t.getName,tr.title) }
     if (matchingTracks.size >= 1)
     {
       println("found:" + matchingTracks.head.getName +":"+matchingTracks.head.getArtists.head.getName )
-      FoundSong(tr.title, tr.artist, matchingTracks.head) 
+      FoundSong2(tr.title, tr.artist, matchingTracks.head) 
     }
     else
-      NoSong(tr.title)
+      NoSong2(tr)
   }
   
+  def NoSongLookup( nss : List[NoSong2] ) : Map[String, List[(NoSong2, List[Track])]] = {
+    val temp = nss.map( ns => {
+      val topTracks = findSong(ns.tr.artist, ns.tr.title)
+      if(topTracks.size == 0) {
+        val titleOnly = findByTitle(ns.tr.title)
+        if(titleOnly.size == 0)
+           ("Remove", (ns, List()))
+        else
+           ("Titles", (ns, titleOnly))
+      }
+      else
+        ("Spotify Returned", (ns, topTracks))
+    })
+    
+    val ret = temp.groupBy(f => f._1).mapValues( g => g.map (_._2) )
+    ret
+  }
+       
   def getPLTracks(plid : String, offset : Int = 0, acc : List[PlaylistTrack] = List()) : 
     List[PlaylistTrack] =
   {
-      val currItems = spfy.getPlaylistTracks(uid, plid).offset(offset).build.get.getItems    
+      val currItemsBld = spfy.getPlaylistTracks(uid, plid).offset(offset).build
+      val currItems = backOffLogic(currItemsBld.get.getItems)
       if(currItems.size == 0)
           acc
       else
           getPLTracks(plid,offset+100,acc++currItems)
   }
   
-  def add(plid : String, tracks : Iterable[FoundSong]) : Unit =  
+  def add(plid : String, tracks : Iterable[FoundSong2]) : Unit =  
   {
     val pltracks = getPLTracks(plid)
     implicit class Wrapper1(_tr : PlaylistTrack) { def matches(_tr2 : Track) = _tr.getTrack.getId == _tr2.getId }
-    def closure2( _fs : FoundSong ) = pltracks.exists( _.matches(_fs.track) )
+    def closure2( _fs : FoundSong2 ) = pltracks.exists( _.matches(_fs.track) )
     val newtracks2 = tracks.filterNot( closure2 )
     val newPLTrackUris2 = newtracks2.map(_.track.getUri).toList
     val distinctUris = newPLTrackUris2.distinct
@@ -144,7 +226,7 @@ class Spotify( spfy : Api ) {
   def getPL(name : String) = Try( {
      println("trying to get:" + name)
      val plpage = backOffLogic( spfy.getPlaylistsForUser(uid).build.get )
-     val pls = plpage.getItems.filter(_.getName == name)
+     val pls = backOffLogic( plpage.getItems.filter(_.getName == name) )
      pls.head } ).toOption
      
   def getPLId(name : String) = getPL(name).map(_.getId).
@@ -187,14 +269,11 @@ class Spotify( spfy : Api ) {
     // find in cache or via spotify
     val spotifySongs = parsed.map( makeOrGet )
     
-    val f : PartialFunction[SearchedSong,FoundSong] = { case fs : FoundSong => fs }
+    val f : PartialFunction[SearchedSong2,FoundSong2] = { case fs : FoundSong2 => fs }
     val foundSongs = spotifySongs.collect(f)
     
-    val nf : PartialFunction[SearchedSong,NoSong] = { case ns : NoSong => ns }
+    val nf : PartialFunction[SearchedSong2,NoSong2] = { case ns : NoSong2 => ns }
     val notFound = spotifySongs.collect(nf)
-    
-    println("not Found:" + notFound.size)
-    notFound.foreach( ss => println(ss.alt18Name))
      
     val fInOne = clean andThen parse andThen makeOrGet
     val step4 = tracks.map( { case (yr,tracks) => (yr, tracks.map(fInOne).sorted.distinct.collect(f) ) } )
@@ -204,9 +283,8 @@ class Spotify( spfy : Api ) {
     
     step4.map( x => add( getPLId(plPre + x._1), x._2 ) )
     
-    foundSongs
-  }
-      
+    (notFound, foundSongs)
+  }    
 }
 
 object Spotify {
@@ -275,7 +353,7 @@ object SongCache {
       tr
     }
     
-    def outputCache( loc : String, fss : List[FoundSong] ) =
+    def outputCache( loc : String, fss : List[FoundSong2] ) =
     {
       val cacheFile = new BufferedWriter(new OutputStreamWriter(
           new FileOutputStream(loc), "UTF-8"));
@@ -292,12 +370,12 @@ object SongCache {
 
 class SongCache private ( private val _theMap : Option[Map[(String,String),(String,String)]])
 {
-    def getOrElse( key : MyTrack )( f : => SearchedSong ) = 
+    def getOrElse( key : MyTrack )( f : => SearchedSong2 ) = 
       get(key).getOrElse(f)
     
-    def get( key : MyTrack ) : Option[FoundSong] = 
+    def get( key : MyTrack ) : Option[FoundSong2] = 
         _theMap.flatMap(_.get(key.title, key.artist)).map( 
-            x => FoundSong(key.title, key.artist, SongCache.makeTrack(x._1, x._2)) )
+            x => FoundSong2(key.title, key.artist, SongCache.makeTrack(x._1, x._2)) )
      
      // maybe one day we can use this
      def update( key : (String,String), value : (String,String)) = {
@@ -322,7 +400,7 @@ object BuildAllPlaylist extends App {
   val logLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\allsongs2.txt"""
   
   val cache = SongCache(cacheLoc)
-  val songs = spotify.makePlaylists(alt18s, cache, logLoc, "all18V2", "alt18")
+  val (nf, songs) = spotify.makePlaylists(alt18s, cache, logLoc, "all18V2", "alt18")
   
   val newCacheLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs3.txt"""
   SongCache.outputCache(newCacheLoc, songs)
@@ -346,18 +424,25 @@ object BuildShinePlaylist extends App {
         List(first) ::: split(rest)
   }
   
-  val shinea = split(as)
   val shines = split(as).map( s=> (s.head, s.tail.collect( { case s : String if(s != "CD1" && s != "CD2") => s } ) ) )
   
-//  val shines = List(("_all", UAlt18AnnualParser.fromFile(fn)))
-// 
   val songFileLoc2 = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\shineCache.txt"""
   val logLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\shineLog.txt"""
-//  
+
   val cache = SongCache(songFileLoc2)
-  val songs = spotify.makePlaylists(shines, cache, logLoc, "AllShine", "")
-//  
+  val (nf, songs) = spotify.makePlaylists(shines, cache, logLoc, "AllShine", "")
+  println("Found: " + songs.size + " songs")
   val newCacheLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\shineCache.txt"""
   SongCache.outputCache(newCacheLoc, songs)
-//  
+  
+  println("NotFound: " + nf.size + " songs")
+  
+  spotify.NoSongLookup(nf).foreach( { case (desc, nss) => {
+    println(desc + ":" + nss.size)
+    nss.foreach(f => {
+        println(f._1.tr.title + " by " + f._1.tr.artist)
+        //f._2.foreach( tr => println(tr.getName + ":" + tr.getArtists.head.getName))
+      })
+  }})
+  
 }
