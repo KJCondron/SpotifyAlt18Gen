@@ -148,22 +148,22 @@ class Spotify( spfy : Api ) {
   def findSong(artist : String, title : String, mkt : String = "US"): List[Track] = 
   {
      val str = s"track:$title artist:$artist"
-     val items = backOffLogic(spfy.searchTracks(str).market("GB").build.get.getItems)
+     val items = backOffLogic(spfy.searchTracks(str).market(mkt).build.get.getItems)
      if(items.size == 0 && (title.contains( "(" ) || artist.contains( "(" )))
        findByTitle(artist.takeWhile(_!='('),title.takeWhile(_!='('))
      else
        items.toList
   }
   
-  def findByTitle(title : String, mkt : String = "GB"): List[Track] = 
+  def findByTitle(title : String, mkt : String = "US"): List[Track] = 
   {
      val str = s"track:$title"
-     backOffLogic(spfy.searchTracks(str).market("US").build.get.getItems).toList 
+     backOffLogic(spfy.searchTracks(str).market(mkt).build.get.getItems).toList 
   }
   
-  def findSpotify( tr : MyTrack ) : SearchedSong2 = {
+  def findSpotify( tr : MyTrack, mkt : String = "US" ) : SearchedSong2 = {
     //println("Looking for:" + tr.title + " by " + tr.artist)
-    val topTracks  = findSong(tr.artist, tr.title)
+    val topTracks  = findSong(tr.artist, tr.title, mkt)
     val matchingTracks = topTracks.filter { t => compare2(t.getName,tr.title) }
     if (matchingTracks.size >= 1)
     {
@@ -203,7 +203,7 @@ class Spotify( spfy : Api ) {
           getPLTracks(plid,offset+100,acc++currItems)
   }
   
-  def add(plid : String, tracks : Iterable[FoundSong2]) : Unit =  
+  def addToPL(plid : String, tracks : Iterable[FoundSong2]) : Unit =  
   {
     val pltracks = getPLTracks(plid)
     implicit class Wrapper1(_tr : PlaylistTrack) { def matches(_tr2 : Track) = _tr.getTrack.getId == _tr2.getId }
@@ -236,8 +236,18 @@ class Spotify( spfy : Api ) {
       tracks : List[(String, List[String])],
       cache : SongCache,
       logLocation : String,
-      bigPLName : String = "all18V2",
-      plPre : String = "alt18") = {
+      bigPLName : String,
+      plPre : String,
+      mkt : String = "US") = 
+        oMakePlaylists(tracks, Some(cache), logLocation, bigPLName, plPre, mkt)
+  
+  def oMakePlaylists(
+      tracks : List[(String, List[String])],
+      cache : Option[SongCache],
+      logLocation : String,
+      bigPLName : String,
+      plPre : String,
+      mkt : String = "US") = {
   
     val clean = (s:String) => s.replace(160.toChar, 32.toChar).replace('’', ''').replace("-","–").trim.toLowerCase
     
@@ -265,7 +275,7 @@ class Spotify( spfy : Api ) {
       tr
     }
      
-    val makeOrGet = (tr : MyTrack) => cache.getOrElse(tr)(findSpotify(tr))
+    val makeOrGet = (tr : MyTrack) => cache.flatMap( _.get(tr) ).getOrElse(findSpotify(tr,mkt))
     // find in cache or via spotify
     val spotifySongs = parsed.map( makeOrGet )
     
@@ -279,9 +289,9 @@ class Spotify( spfy : Api ) {
     val step4 = tracks.map( { case (yr,tracks) => (yr, tracks.map(fInOne).sorted.distinct.collect(f) ) } )
       
     val mainPLId = getPLId(bigPLName)
-    add(mainPLId, foundSongs)
+    addToPL(mainPLId, foundSongs)
     
-    step4.map( x => add( getPLId(plPre + x._1), x._2 ) )
+    step4.map( x => addToPL( getPLId(plPre + x._1), x._2 ) )
     
     (notFound, foundSongs)
   }    
@@ -435,9 +445,14 @@ object BuildShinePlaylist extends App {
   val newCacheLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\shineCache.txt"""
   SongCache.outputCache(newCacheLoc, songs)
   
-  println("NotFound: " + nf.size + " songs")
+  println("NotFound In US: " + nf.size + " songs")
   
-  spotify.NoSongLookup(nf).foreach( { case (desc, nss) => {
+  // now try "GB" market....when everything is in the cache this is a bit of a waste
+  val (nf2, songs2) = spotify.makePlaylists(shines, cache, logLoc, "AllShine", "", "GB")
+  
+  println("NotFound: " + nf2.size + " songs")
+  
+  spotify.NoSongLookup(nf2).foreach( { case (desc, nss) => {
     println(desc + ":" + nss.size)
     nss.foreach(f => {
         println(f._1.tr.title + " by " + f._1.tr.artist)
