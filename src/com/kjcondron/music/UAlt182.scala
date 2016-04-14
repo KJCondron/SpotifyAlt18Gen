@@ -98,7 +98,7 @@ class Spotify( spfy : Api ) {
        items
   }
   
-  def findSongOnSpotify2( tr : MyTrack ) : SearchedSong = {
+  def findSpotify( tr : MyTrack ) : SearchedSong = {
     println("Looking for:" + tr.title + " by " + tr.artist)
     val topTracks  = findASong(tr.artist, tr.title)
     val matchingTracks = topTracks.filter { t => compare2(t.getName,tr.title) }
@@ -152,66 +152,59 @@ class Spotify( spfy : Api ) {
     
   def makePlaylists(
       tracks : List[(String, List[String])],
-      cache : Option[Map[(String,String),(String,String)]],
+      cache : SongCache,
       logLocation : String,
       bigPLName : String = "all18V2",
       plPre : String = "alt18") = {
   
-  val clean = (s:String) => s.replace(160.toChar, 32.toChar).replace('’', ''').replace("-","–").trim.toLowerCase
-  
-  val allsongsbuff = new BufferedWriter(new OutputStreamWriter(
-      new FileOutputStream(new File(logLocation)), "UTF-8"));
-  val allsongs = tracks.map(_._2).flatten.map(clean).sorted.distinct
-  allsongs.foreach( str => { allsongsbuff.write(str); allsongsbuff.newLine() } )
-  allsongsbuff.close
-  
-  def parse(gg:String) = { 
-      val at = gg.split(" – ")
-      val artist = at(0)
-      val title = if(at.size > 1) { at(1) } else { "" }
-      MyTrack(artist.toLowerCase, title)
-  }
-  
-  // parse.....we should throw out un-parseable maybe?
-  val parsed = allsongs.map(parse)  
-   
-  def makeTrack(name : String, id : String) = {
-    val tr = new Track
-    tr.setName(name)
-    tr.setId(id)
-    tr.setUri("spotify:track:"+id)
-    tr
-  }
-  
-  def makeOrGet(tr : MyTrack) = {
-    def fSOS = findSongOnSpotify2(tr) // closure that will only be called if req
-    val mt2 = ( cacheHit : (String,String) ) => FoundSong(tr.title, tr.artist, makeTrack(cacheHit._1, cacheHit._2)) 
-    cache.flatMap( _.get(tr.title,tr.artist).map(mt2)).getOrElse(fSOS)
-  }
-  
-  // find in cache or via spotify
-  val spotifySongs = parsed.map(makeOrGet)
-  
-  // report unfound songs
-  val (found, notFound) = spotifySongs.partition( x => x match {
-    case _ : FoundSong => true
-    case _ => false
-  })
-  
-  val f : PartialFunction[SearchedSong,FoundSong] = { case fs : FoundSong => fs }
-  val foundSongs = spotifySongs.collect(f)
-  
-  println("not Found:" + notFound.size)
-  notFound.foreach( ss => println(ss.alt18Name))
-   
-  val fInOne = clean andThen parse andThen makeOrGet
-  val step4 = tracks.map( { case (yr,tracks) => (yr, tracks.map(fInOne).sorted.distinct.collect(f) ) } )
+    val clean = (s:String) => s.replace(160.toChar, 32.toChar).replace('’', ''').replace("-","–").trim.toLowerCase
     
-  val mainPLId = getPLId(bigPLName)
-  add(mainPLId, foundSongs)
-  
-  step4.map( x => add( getPLId(plPre + x._1), x._2 ) )
-  
+    val allsongsbuff = new BufferedWriter(new OutputStreamWriter(
+        new FileOutputStream(new File(logLocation)), "UTF-8"));
+    val allsongs = tracks.map(_._2).flatten.map(clean).sorted.distinct
+    allsongs.foreach( str => { allsongsbuff.write(str); allsongsbuff.newLine() } )
+    allsongsbuff.close
+    
+    def parse(gg:String) = { 
+        val at = gg.split(" – ")
+        val artist = at(0)
+        val title = if(at.size > 1) { at(1) } else { "" }
+        MyTrack(artist.toLowerCase, title)
+    }
+    
+    // parse.....we should throw out un-parseable maybe?
+    val parsed = allsongs.map(parse)  
+     
+    def makeTrack(name : String, id : String) = {
+      val tr = new Track
+      tr.setName(name)
+      tr.setId(id)
+      tr.setUri("spotify:track:"+id)
+      tr
+    }
+     
+    val makeOrGet = (tr : MyTrack) => cache.getOrElse(tr)(findSpotify(tr))
+    // find in cache or via spotify
+    val spotifySongs = parsed.map( makeOrGet )
+    
+    val f : PartialFunction[SearchedSong,FoundSong] = { case fs : FoundSong => fs }
+    val foundSongs = spotifySongs.collect(f)
+    
+    val nf : PartialFunction[SearchedSong,NoSong] = { case ns : NoSong => ns }
+    val notFound = spotifySongs.collect(nf)
+    
+    println("not Found:" + notFound.size)
+    notFound.foreach( ss => println(ss.alt18Name))
+     
+    val fInOne = clean andThen parse andThen makeOrGet
+    val step4 = tracks.map( { case (yr,tracks) => (yr, tracks.map(fInOne).sorted.distinct.collect(f) ) } )
+      
+    val mainPLId = getPLId(bigPLName)
+    add(mainPLId, foundSongs)
+    
+    step4.map( x => add( getPLId(plPre + x._1), x._2 ) )
+    
+    foundSongs
   }
       
 }
@@ -221,7 +214,7 @@ object Spotify {
   val builder = Api.builder.clientId("20212105b1764ecb81a226fca7796b4b")
                           .clientSecret("57a3b615f9be4b17b61361da94b35204")
   
-  def create() : Spotify = {
+  def apply() : Spotify = {
     
     val _ref="AQC0OxT6ayAimF5iie5cfjU2PNBa0Fxc1T56tUfGtC57zn3peIrPfeuFom31Gt9uMJHpjiJf486TUdnMVPrtDXs6W-xch6fjzukOKfVjvZk7iIrjNxerlpHvj36w1JXjqYI" 
   
@@ -259,20 +252,19 @@ object Spotify {
   }
 }
 
-class SongCache( loc : String )
-{
-    private val _theMap = load(loc)
-    
-    def get( key : MyTrack ) : Option[FoundSong] = 
-        _theMap.get(key.title, key.artist).map( 
-            x => FoundSong(key.title, key.artist, makeTrack(x._1, x._2)) )
-    
-    private def load(fileLoc : String) = {
-      io.Source.fromFile(fileLoc, "utf-8").getLines.map( line => { 
+object SongCache {
+  
+  def apply( oMap : Option[Map[(String,String),(String,String)]] ) : SongCache = new SongCache(oMap)
+  def apply( loc : String ) : SongCache = apply(load(loc))
+  
+  private def load(fileLoc : String) = {
+      val songFile = new File(fileLoc)
+      val oFile = if (songFile.exists) Some(fileLoc) else None
+      oFile.map( f => io.Source.fromFile(f, "utf-8").getLines.map( line => { 
         val entry = line.split(":")
         if(entry.size != 4)  println(line)
         ( (entry(0),entry(1)), (entry(2), entry(3)) )
-      }).toMap
+      }).toMap)
     }
     
     private def makeTrack(name : String, id : String) = {
@@ -282,44 +274,90 @@ class SongCache( loc : String )
       tr.setUri("spotify:track:"+id)
       tr
     }
-  
+    
+    def outputCache( loc : String, fss : List[FoundSong] ) =
+    {
+      val cacheFile = new BufferedWriter(new OutputStreamWriter(
+          new FileOutputStream(loc), "UTF-8"));
+      
+      fss.foreach (
+        fs => {
+          cacheFile.write( fs.alt18Name + ":" + fs.alt18Artist + ":" + fs.spotifyName + ":" + fs.spotifyId)
+          cacheFile.newLine
+        }
+      )
+      cacheFile.close
+    }
+}
+
+class SongCache private ( private val _theMap : Option[Map[(String,String),(String,String)]])
+{
+    def getOrElse( key : MyTrack )( f : => SearchedSong ) = 
+      get(key).getOrElse(f)
+    
+    def get( key : MyTrack ) : Option[FoundSong] = 
+        _theMap.flatMap(_.get(key.title, key.artist)).map( 
+            x => FoundSong(key.title, key.artist, SongCache.makeTrack(x._1, x._2)) )
+     
+     // maybe one day we can use this
+     def update( key : (String,String), value : (String,String)) = {
+      val currMap : Map[(String,String),(String,String)] = _theMap.getOrElse(Map()) 
+      val newMap = currMap + (key -> value)
+      SongCache(Some(newMap))
+    }
 }
 
 import Util2._
 
-object BuildAllPlaylist2 extends App {
+object BuildAllPlaylist extends App {
   
-  val spotify = Spotify.create()
+  val spotify = Spotify()
 
   // get names - titles from ualt18
   val conn = new HTTPWrapper("""C:\Users\Karl\Documents\UALT18\Res3\""")
   val alt18s = UAlt18AnnualParser.getUAlt18Annual(conn)  // List(Year, List(Artist-SongName)) 
   conn.dispose
   
-  val fn = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\allShine.txt"""
-  val shines = List((fn, UAlt18AnnualParser.fromFile(fn)))
- 
-  val songFileLoc2 = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs2.txt"""
-  val songFile2 = new File(songFileLoc2)
-  val songCache2 = if ( songFile2.exists ) Some( loadExistingWithArtist(songFileLoc2) ) else None
- 
-  val allLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\allsongs2.txt"""
+  val cacheLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs2.txt"""
+  val logLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\allsongs2.txt"""
   
-  spotify.makePlaylists(alt18s, songCache2, allLoc, "all18V2", "alt18")
+  val cache = SongCache(cacheLoc)
+  val songs = spotify.makePlaylists(alt18s, cache, logLoc, "all18V2", "alt18")
+  
+  val newCacheLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs3.txt"""
+  SongCache.outputCache(newCacheLoc, songs)
+  
 }
 
-object BuildShinePlaylist2 extends App {
+object BuildShinePlaylist extends App {
   
-  val spotify = Spotify.create()
+  val spotify = Spotify()
 
   val fn = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\allShine.txt"""
-  val shines = List((fn, UAlt18AnnualParser.fromFile(fn)))
- 
-  val songFileLoc2 = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs2.txt"""
-  val songFile2 = new File(songFileLoc2)
-  val songCache2 = if ( songFile2.exists ) Some( loadExistingWithArtist(songFileLoc2) ) else None
- 
-  val allLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\allsongs2.txt"""
   
-  spotify.makePlaylists(shines, songCache2, allLoc)
+  val as = UAlt18AnnualParser.fromFile(fn)
+  
+  def split( xs : List[String] ) : List[List[String]] = {
+      val first = xs.takeWhile( _.trim.size>0)
+      val rest = xs.dropWhile( _.trim.size>0).drop(1)
+      if(rest.size==0)
+        List(first)
+      else
+        List(first) ::: split(rest)
+  }
+  
+  val shinea = split(as)
+  val shines = split(as).map( s=> (s.head, s.tail.collect( { case s : String if(s != "CD1" && s != "CD2") => s } ) ) )
+  
+//  val shines = List(("_all", UAlt18AnnualParser.fromFile(fn)))
+// 
+  val songFileLoc2 = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\shineCache.txt"""
+  val logLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\shineLog.txt"""
+//  
+  val cache = SongCache(songFileLoc2)
+  val songs = spotify.makePlaylists(shines, cache, logLoc, "AllShine", "")
+//  
+  val newCacheLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\shineCache.txt"""
+  SongCache.outputCache(newCacheLoc, songs)
+//  
 }

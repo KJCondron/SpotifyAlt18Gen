@@ -1,3 +1,4 @@
+Shine
 Blur - Parklife
 Oasis - Cigarettes & Alcohol
 New Order - Regret
@@ -18,6 +19,8 @@ Charlatans - Weirdo
 Jesus Jones - International Bright Young Thing
 Dinosaur Jr. - Feel The Pain
 The House Of Love - Shine On
+
+Shine Too
 Oasis - Some Might Say
 Paul Weller - The Changingman
 Ash - Girl from Mars
@@ -38,6 +41,8 @@ Suede - Stay Together
 Happy Mondays - Kinky Afro
 Joy Division - Love Will Tear Us Apart '95
 Pulp - Underwear
+
+Shine 3
 Pulp - Common People
 Oasis - Roll With It
 Supergrass - Alright
@@ -58,6 +63,8 @@ Marion - Let's All Go Together
 Shed Seven - Where Have You Been Tonight?
 Wannadies - Might Be Stars
 Happy Mondays - Step On
+
+Shine 4
 Cast - Sandstorm
 Pulp - Mis - Shapes
 Supergrass - Mansize Rooster
@@ -79,6 +86,9 @@ Cardigans - Carnival
 Dubstar - Anywhere
 Smokin' Mojo Filters - Come Together
 Oasis & Friends - Fade Away
+
+Shine 5
+CD1
 Ash - Goldfinger
 Shed Seven - Going For Gold
 Dodgy - In A Room
@@ -101,6 +111,7 @@ Blameless - Breathe (A Little Deeper)
 Gin Blossoms - Follow You Down
 Cardigans - Rise And Shine
 Wannadies - You And Me Song
+CD2
 Oasis - Don't Look Back In Anger
 Pulp - Sorted For E's & Whizz
 Ash - Oh Yeah
@@ -121,6 +132,9 @@ Whipping Boy - Twinkle
 Folk Implosion - Natural One
 Salt - Bluster
 Garbage - Queer
+
+Shine 6
+CD1
 Paul Weller - Peacock Suit
 Charlatans - One To Another
 Manic Street Preachers - A Design for Life
@@ -140,6 +154,7 @@ Joyrider - Rush Hour
 Boo Radleys - What's In The Box? (See Whatcha Got)
 Presidents Of The United States Of America - Lump
 Rocket From The Crypt - On A Rope
+CD2
 Cranberries - Free To Decide
 Electronic - Forbidden City
 Oasis - Champagne Supernova
@@ -161,6 +176,9 @@ Bawl - Beyond Safe Ways
 Sussed - One In A Million
 Kenickie - Punka
 Placebo - 36 Degrees
+
+Shine 7
+CD1
 Cast - Flying
 Suede - Beautiful Ones
 Manic Street Preachers - Everything Must Go
@@ -182,6 +200,7 @@ Echobelly - Great Things
 Sleeper - Nice Guy Eddie
 My Life Story - Sparkle
 Oasis - Morning Glory
+CD2
 Garbage featuring Tricky - Milk
 Sneaker Pimps - 6 Underground
 Dodgy - If You're Thinking Of Me
@@ -202,6 +221,9 @@ Radiohead - Street Spirit (Fade Out)
 Dubstar - Not So Manic Now
 Catatonia - You've Got A Lot To Answer For
 The Aloof - One Night Stand
+
+Shine 8
+CD1
 Cast - Free Me
 Charlatans - North Country Boy
 Bush - Swallowed
@@ -222,6 +244,7 @@ Gorky's Zygotic Mynci - Diamond Dew
 The Divine Comedy - Everybody Knows (Except You)
 Dodgy - Found You
 Oasis - Masterplan
+CD2
 Suede - Lazy
 Blur - Beetlebum
 Depeche Mode - It's No Good
@@ -242,6 +265,9 @@ Wannadies - Hit
 Supergrass - Caught By The Fuzz
 Intastella - Skyscraper
 Audioweb - Bankrobber
+
+Shine 9
+CD1
 Oasis - D'You Know What I Mean?
 Suede - Filmstar
 Paul Weller - Heavy Soul (Part 1)
@@ -261,6 +287,7 @@ Monaco - Sweet Lips
 James - Tomorrow
 Reef - Come Back Brighter
 Radiohead - Paranoid Android
+CD2
 Seahorses - Blinded By The Sun
 Cast - Guiding Star
 Echo & The Bunnymen - Nothing Lasts Forever
@@ -281,6 +308,9 @@ Spiritualized - Electricity
 Cornershop - Brimful Of Asha
 Ruth - Fear Of Flying
 Eels - Susan's House
+
+Shine Best of 97
+CD1
 Pulp - Help The Aged
 Oasis - Stand by Me
 Ash - A Life Less Ordinary
@@ -299,6 +329,7 @@ Gene - We Could Be Kings
 Skunk Anansie - Brazen (Weep)
 Rialto - Monday Morning 5.19
 Radiohead - Paranoid Android
+CD2
 Black Grape - Get Higher
 Supergrass - Richard III
 Placebo - Nancy Boy
@@ -319,6 +350,9 @@ Sleeper - She's A Good Girl
 Teenage Fanclub - Ain't That Enough
 Super Furry Animals - Play It Cool
 3 Colours Red - Sixty Mile Smile
+
+Shine 10
+CD1
 Garbage - I Think I'm Paranoid
 Catatonia - Road Rage
 Eagle - Eye Cherry - Save Tonight
@@ -338,6 +372,7 @@ Primal Scream - Burning Wheel
 Mighty Mighty Bosstones - The Impression That I Get
 Chumbawamba - Amnesia
 Cornershop - Brimful Of Asha (Norman Cook Remix)
+CD2
 Pulp - A Little Soul
 Radiohead - Karma Police
 Bernard Butler - Stay
@@ -355,9 +390,11 @@ Ocean Colour Scene featuring PP Arnold - It's A Beautiful Thing
 Stereophonics - Local Boy in the Photograph
 Space & Cerys Matthews - The Ballad Of Tom Jones
 Lilys - A Nanny In Manhattan
-Levellers - Celebrate
+Levellers - Celebrate1
 Symposium - Blue
+
 Best Of Shine
+CD1
 Pulp - Common People
 Placebo - Nancy Boy
 Supergrass - Richard III
@@ -375,6 +412,7 @@ Boo Radleys - Wake Up Boo!
 Paul Weller - The Changingman
 The Wannadies - You And Me Song
 Oasis - All Around the World
+CD2
 Oasis - Wonderwall
 James - Sit Down
 Embrace - All You Good Good People
@@ -393,4 +431,4 @@ Eels - Novocaine For The Soul
 Primal Scream - Loaded
 Cornershop - Brimful Of Asha
 The Prodigy - Breathe
-Underworld - Born Slippy .NUXX
+Underworld - Born Slippy
