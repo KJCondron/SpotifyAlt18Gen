@@ -150,7 +150,7 @@ class Spotify( spfy : Api ) {
      val str = s"track:$title artist:$artist"
      val items = backOffLogic(spfy.searchTracks(str).market(mkt).build.get.getItems)
      if(items.size == 0 && (title.contains( "(" ) || artist.contains( "(" )))
-       findByTitle(artist.takeWhile(_!='('),title.takeWhile(_!='('))
+       findSong(artist.takeWhile(_!='('),title.takeWhile(_!='('),mkt)
      else
        items.toList
   }
@@ -248,7 +248,7 @@ class Spotify( spfy : Api ) {
       bigPLName : String,
       plPre : String,
       mkt : String = "US") = {
-  
+
     val clean = (s:String) => s.replace(160.toChar, 32.toChar).replace('’', ''').replace("-","–").trim.toLowerCase
     
     val allsongsbuff = new BufferedWriter(new OutputStreamWriter(
@@ -410,7 +410,7 @@ object BuildAllPlaylist extends App {
   val logLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\allsongs2.txt"""
   
   val cache = SongCache(cacheLoc)
-  val (nf, songs) = spotify.makePlaylists(alt18s, cache, logLoc, "all18V2", "alt18")
+  val (nf, songs) = spotify.makePlaylists(alt18s, cache, logLoc, "all18V2", "alt18", "US")
   
   val newCacheLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs3.txt"""
   SongCache.outputCache(newCacheLoc, songs)
