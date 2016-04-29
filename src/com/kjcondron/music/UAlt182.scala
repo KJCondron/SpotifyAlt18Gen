@@ -163,12 +163,16 @@ class Spotify( spfy : Api ) {
   
   def findSpotify( tr : MyTrack, mkt : String = "US" ) : SearchedSong2 = {
     //println("Looking for:" + tr.title + " by " + tr.artist)
-    val topTracks  = findSong(tr.artist, tr.title, mkt)
-    val matchingTracks = topTracks.filter { t => compare2(t.getName,tr.title) }
-    if (matchingTracks.size >= 1)
-    {
-      println("found:" + matchingTracks.head.getName +":"+matchingTracks.head.getArtists.head.getName )
-      FoundSong2(tr.title, tr.artist, matchingTracks.head) 
+    if(tr.artist.size > 0 && tr.title.size > 0){
+      val topTracks  = findSong(tr.artist, tr.title, mkt)
+      val matchingTracks = topTracks.filter { t => compare2(t.getName,tr.title) }
+      if (matchingTracks.size >= 1)
+      {
+        println("found:" + matchingTracks.head.getName +":"+matchingTracks.head.getArtists.head.getName )
+        FoundSong2(tr.title, tr.artist, matchingTracks.head) 
+      }
+      else
+        NoSong2(tr)
     }
     else
       NoSong2(tr)
@@ -225,12 +229,15 @@ class Spotify( spfy : Api ) {
   
   def getPL(name : String) = Try( {
      println("trying to get:" + name)
-     val plpage = backOffLogic( spfy.getPlaylistsForUser(uid).build.get )
+     val plpage = backOffLogic( spfy.getPlaylistsForUser(uid).limit(50).build.get )
      val pls = backOffLogic( plpage.getItems.filter(_.getName == name) )
      pls.head } ).toOption
      
   def getPLId(name : String) = getPL(name).map(_.getId).
-    getOrElse(spfy.createPlaylist(uid, name).build.get.getId)
+    getOrElse({
+      println("creating:" + name)
+      spfy.createPlaylist(uid, name).build.get.getId
+    })
     
   def makePlaylists(
       tracks : List[(String, List[String])],
@@ -274,8 +281,7 @@ class Spotify( spfy : Api ) {
       tr.setUri("spotify:track:"+id)
       tr
     }
-     
-    val makeOrGet = (tr : MyTrack) => cache.flatMap( _.get(tr) ).getOrElse(findSpotify(tr,mkt))
+    val makeOrGet = (tr :MyTrack) => cache.flatMap( _.get(tr) ).getOrElse(findSpotify(tr,mkt))
     // find in cache or via spotify
     val spotifySongs = parsed.map( makeOrGet )
     
@@ -412,7 +418,7 @@ object BuildAllPlaylist extends App {
   val cache = SongCache(cacheLoc)
   val (nf, songs) = spotify.makePlaylists(alt18s, cache, logLoc, "all18V2", "alt18")
   
-  val newCacheLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs3.txt"""
+  val newCacheLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs2.txt"""
   SongCache.outputCache(newCacheLoc, songs)
   
 }

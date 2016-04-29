@@ -126,8 +126,10 @@ trainwreck 1979:death from above 1979:Trainwreck 1979:06vOVdH94mIEjIgIhHdhdO
 brazil:declan mckenna:Brazil:5ftdTvmQjjsL23t7jxADfI
 magnets (feat. lorde):disclosure:Magnets:7nRmfGNhHKEEu5o8yFXLXt
 default:django django:Default:45u89A07YEku6NRlwyvkLJ
+too soon:dma's:Too Soon:2mjeDagOCXIsjiVgh8FEKJ
 living in america:dom:Living In America:3f1yAg2u74Wn8Jj14zhJGS
 home:dotan:Home:0ZUMBOzlwNXfVE4Z8lSrsd
+drugs:dreamers:DRUGS:21qKs2K0O9MCK9qVeHpEO0
 wolves:dreamers:Wolves (You Got Me):15p4RFj5ZLC197ErxycTKv
 return to the moon (political song for didi bloome to sing, with crescendo):el vy:Return to the Moon (Political Song for Didi Bloome to Sing, with Crescendo):1pKeRK6rB2lsIzCySm4NUg
 this head i hold:electric guest:This Head I Hold:7pJo9G3BaTgYAxrhiENJGg
@@ -417,6 +419,7 @@ a heavy abacus:the joy formidable:A Heavy Abacus:18bMfoScYmenFKMristSDI
 whirring:the joy formidable:Whirring:2XbqxKjCnE9YWfPRqwgtPq
 runaways:the killers:Runaways:6svrEn54rNuEo7Ta5dJslc
 shot at the night:the killers:All These Things That I've Done:0kYUrLVQOfx21xuXu7OGrT
+doing it to death:the kills:Doing It To Death:2TIkFs5pxXInJ2galj2rBx
 bad habit:the kooks:Bad Habit:3huV7eiNpaQlCB3LbZi9bB
 junk of the heart:the kooks:Junk of the Heart (Happy):2jZgzSxNSg1hTCq0ewWHGJ
 crystal vases:the last royals:Crystal Vases:2QW2vMUvF71qNmM2AAYKUJ
@@ -474,7 +477,7 @@ changing of the seasons:two door cinema club:Changing Of The Seasons:4Bvwg6cdVpJ
 sleep alone:two door cinema club:Sleep Alone:33CehYfkie4ugV2gWaTKlM
 something good can work:two door cinema club:Something Good Can Work:1aGvLFHJ2shKqO9uycaUcW
 what you know:two door cinema club:What You Know:6jrMVRReY24qzCfe1BRrww
-song for someone:u2:I Still Haven't Found What I'm Looking For - Remastered:72AO8u6lcjKp0CBeaPZT8I
+song for someone:u2:Song For Someone:6PmvNS601Mcd2H0UcqMWb0
 a taste of silver:until the ribbon breaks:A Taste of Silver:3HGaAiNXw4Yoq2KlIhfsbo
 the wild life:vacationer:The Wild Life:6GgeC18ctRUmplzNx8ro86
 diane young:vampire weekend:Diane Young:104pmtTQOlmW8Zt2BipGKH
@@ -485,4 +488,36 @@ mess is mine:vance joy:Mess Is Mine:29jtZGdgpE2lWm2mkIt6HS
 riptide:vance joy:Riptide:3JvrhDOgAt6p7K8mDyZwRd
 breaking up my bones:vinyl theatre:Breaking Up My Bones:7k1pfmKI7t0AprW7SEdFpC
 darling buds of may:viva brother:Darling Buds Of May:4zhJ75mSGaUwyFwlsgoIOz
-anna sun:walk the moon:Anna S
+anna sun:walk the moon:Anna Sun:3e0yTP5trHBBVvV32jwXqF
+different colors:walk the moon:Different Colors:3RRRDZig4RNJhVGfwwOOFZ
+shut up and dance:walk the moon:Shut Up and Dance:4kbj5MwxO1bq9wjT5g9HaA
+tightrope:walk the moon:Tightrope:44psOy0D0SP8rcIiUgKgBs
+got to my head:waters:Got to My Head:6gl1RMroY6D821Bfn8PMaO
+way too much:wavves:Way Too Much:1nnc8EICgGMHfrr6Z1Fzkf
+back to the shack:weezer:Back To The Shack:42YgaJLCehufTbH2orwBHM
+da vinci:weezer:Da Vinci:18eR1w9NXigoppVRpdc4yk
+king of the world:weezer:King Of The World:5vBuxtwitUimHR2gBOnJYR
+thank god for girls:weezer:Thank God For Girls:6CqP4h7ecdCWZj1eBufqbj
+bigger than us:white lies:Bigger Than Us:793Nw23V2uDDvpPozit3C2
+thunder clatter:wild cub:Thunder Clatter:6JugKFXssO9L2tN8omeTPt
+lions in cages:wolf gang:Lions In Cages:3Ufbnur2EwjNQoVKyoX1ue
+the king and all his men:wolf gang:The King And All Of His Men:6QU4xwSi2X8np8qo7JJb34
+the king and all of his men:wolf gang:The King And All Of His Men:6QU4xwSi2X8np8qo7JJb34
+renegades:x ambassadors:Renegades:0fYVliAYKHuPmECRs1pbRf
+unsteady:x ambassadors:Unsteady:7lGKEWMXVWWTt3X71Bv44I
+sacrilege:yeah yeah yeahs:Sacrilege:2pQZ9g4vaFNXO42kMe8e3w
+high:young rising sons:High:4gTwPFGhIIlYtlo59jbVUB
+amerika:young the giant:Amerika:4Z9MTyi3hsR9GzU7egzgcS
+apartment:young the giant:Apartment:165lX6DbMhTzqODVZKLmkm
+cough syrup:young the giant:Cough Syrup:1UqhkbzB1kuFwt2iy4h29Q
+it's about time:young the giant:It's About Time:7LDy0zN3tVio4sG4lRNtBg
+mind over matter:young the giant:Mind Over Matter:5Az8KU81g2aLBbJN67F2CI
+my body:young the giant:My Body:1KDYN3odJHnj9pqGHN3FVs
+pressure:youngblood hawke:Pressure:5WogLWsJcMPOrffEXA7x5X
+we come running:youngblood hawke:We Come Running:4Xv41B0BJRcMBJYpavNDfD
+get away:yuck:Get Away:4vD4GNg2RwuuKkH8CWoxXB
+hypnotic:zella day:Hypnotic:2zsWRxMcUdGjj8TnWkVKw0
+breezeblocks:∆ (alt–j):Breezeblocks:3n69hLUdIsSa1WlRmjMZlW
+every other freckle:∆ (alt–j):Every Other Freckle:6BVBkKpZK09NmifUMZqj1z
+left hand free:∆ (alt–j):Left Hand Free:4iEOVEULZRvmzYSZY2ViKN
+tessellate:∆ (alt–j):Tessellate:1o22EcqsCANhwYdaNOSdwS
