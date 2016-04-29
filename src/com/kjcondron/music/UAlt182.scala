@@ -162,7 +162,7 @@ class Spotify( spfy : Api ) {
   }
   
   def findSpotify( tr : MyTrack, mkt : String = "US" ) : SearchedSong2 = {
-    //println("Looking for:" + tr.title + " by " + tr.artist)
+    println("Looking for:" + tr.title + " by " + tr.artist)
     if(tr.artist.size > 0 && tr.title.size > 0){
       val topTracks  = findSong(tr.artist, tr.title, mkt)
       val matchingTracks = topTracks.filter { t => compare2(t.getName,tr.title) }
@@ -466,4 +466,26 @@ object BuildShinePlaylist extends App {
       })
   }})
   
+}
+
+object BuildBillboardPlaylist extends App {
+  
+  val spotify = Spotify()
+
+  val fn = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\GreatestAdultPopSongs.txt"""
+  
+  val as = UAlt18AnnualParser.fromFile(fn)
+  
+  val songFileLoc2 = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\bbCache.txt"""
+  val logLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\bbLog.txt"""
+
+  val cache = SongCache(songFileLoc2)
+  val (nf, songs) = spotify.makePlaylists(List(("BBAdultPop",as)), cache, logLoc, "BBAdultPop", "")
+  println("Found: " + songs.size + " songs")
+  val newCacheLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\bbCache.txt"""
+  SongCache.outputCache(newCacheLoc, songs)
+  
+  println("NotFound: " + nf.size + " songs")
+  nf.foreach(println)
+   
 }
