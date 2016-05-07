@@ -49,3 +49,5 @@ target
 .tmpBin
 acc.tmp
 .cache-main
+*.log
+

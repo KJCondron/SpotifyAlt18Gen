@@ -413,7 +413,7 @@ object BuildAllPlaylist extends App {
   conn.dispose
   
   val cacheLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs2.txt"""
-  val logLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\allsongs2.txt"""
+  val logLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\allsongs2.log"""
   
   val cache = SongCache(cacheLoc)
   val (nf, songs) = spotify.makePlaylists(alt18s, cache, logLoc, "all18V2", "alt18", "US")
