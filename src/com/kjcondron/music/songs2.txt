@@ -25,11 +25,11 @@ conqueror:aurora:Conqueror:5yqJhxkeQoyGrBjVWhXlqN
 wake me up (feat. aloe blacc):avicii:Wake Me Up:4h8VwCb1MTGoLKueQ1WgbD
 i feel it:avid dancer:I Feel It:7xy4zWufOPUI6RDG0l4nZL
 i want to see you dance:avid dancer:I Want To See You Dance:7u1vkJNEyHsd65YKB0qspv
-hollow moon (bad wolf):awolnation:Woman Woman:7oaBv3Bx1ySw1QOY0yUxzQ
+hollow moon (bad wolf):awolnation:Hollow Moon (Bad Wolf):29NdNrQxzMkOyqV8WFYQ0X
 kill your heroes:awolnation:Kill Your Heroes:23hln7JvLtFTXa0kZLAVRY
 not your fault:awolnation:Not Your Fault:630brCzcLTQ3WEspOnZvec
 sail:awolnation:Sail:5xhQChGGhKLWqBqX4XhtYE
-thiskidsnotalright:awolnation:Sail:5xhQChGGhKLWqBqX4XhtYE
+thiskidsnotalright:awolnation:THISKIDSNOTALRIGHT:0ESptRacCBJUeBMSPleIP8
 forest whitaker:bad books:Forest Whitaker:2kW59AS9OrpFsuXbi2939R
 cardiac arrest:bad suns:Cardiac Arrest:1zxXEG06gL5D4AHO2DhLxe
 sister of pearl:baio:Sister Of Pearl:0lYRAsWNDdUhGMftqH0RVG
@@ -57,7 +57,7 @@ river:bishop briggs:River:7lNQ4YZEAZc1nvfSNPzSvU
 wild horses:bishop:Wild Horses:795gWShJqWUwxm3W6koQxg
 i wanna get better:bleachers:I Wanna Get Better:1BwhFXqoIsePt21WyWIttb
 rollercoaster:bleachers:Rollercoaster:5L95vS64rG1YMIFm1hLjyZ
-after midnight:blink 182:Dammit:1iZTuY3wspO4DxFXBD58WX
+after midnight:blink 182:After Midnight:27H8WsrkD5catdc3a2fCLV
 up all night:blink 182:Up all Night:0sqQ9N6hY0ieocwrgxgJ9F
 bored to death:blink–182:Bored To Death:34hoCwSsssai61QCqzGYtX
 octopus:bloc party:Octopus:6RWD3IqVp47rOZF5GaTuNv
@@ -92,7 +92,7 @@ gold:chet faker:Gold:1oPenAfTz9oa1RWNBGy0tO
 change:churchill:Change:331q5cdwo9aq7ih6bSpoOa
 clearest blue:chvrches:Clearest Blue:3aUfWeMesfVs2niopKjNxV
 leave a trace:chvrches:Leave A Trace:01DidSmPasiXdPhDVuaULL
-recover:chvrches:Leave A Trace - Goldroom Remix:5Lt0L3Hc2eSZXPIOGWXcd8
+recover:chvrches:Recover:4QQg6DXsx6G3lv3W4A15CZ
 the mother we share:chvrches:The Mother We Share:3PvzvltQZLIKk9YgoMP3Yq
 t–shirt weather:circa waves:T-Shirt Weather:2EPwH1bWUcre7x8I00EAky
 true romance:citizens!:True Romance:7tSOoKUQqKbpYfEJ9pe9TS
@@ -203,7 +203,7 @@ i bet my life:imagine dragons:I Bet My Life:15DrrIod12Tc2IoMaHiwlQ
 it's time:imagine dragons:It's Time:6BtmXhTJMM9sBTHeYYASGz
 its time:imagine dragons:It's Time:6BtmXhTJMM9sBTHeYYASGz
 radioactive:imagine dragons:Radioactive:4G8gkOterJn0Ywt6uhqbhp
-roots:imagine dragons:Shots - Broiler Remix:4XLm8FNvaTlmTAZmSrrV82
+roots:imagine dragons:Roots:4GITtbZtRCQXhWLMXrWXHt
 peaches:in the valley below:Peaches:0JsRZWdSquAQtgyJO8mhLA
  promises, promises:incubus:Promises, Promises:0534jmQ0dYChW5MSzYXNVr
 adolescents:incubus:Adolescents:1LiHz1habAqQcFnXI73Qbt
@@ -221,7 +221,7 @@ irresistible force:jane's addiction:Irresistible Force:0D7r6CIGNRvs0IvsDOunZr
 coffee & cigarettes:jimmy eat world:Coffee And Cigarettes:2vcDC8uI4NkP4LLh1srClK
 i will steal you back:jimmy eat world:I Will Steal You Back:32Cimaqis8qkGRMACGsOkh
 whirring:joy formidable:Whirring:2XbqxKjCnE9YWfPRqwgtPq
-now:joywave:Somebody New:2vcfImyMOQjYhnKOVkjoIR
+now:joywave:Now:2UbzSDEYP8eCg5K2a8d3PM
 somebody new:joywave:Somebody New:2vcfImyMOQjYhnKOVkjoIR
 tongues (feat. kopps):joywave:Tongues:5mCprFWOqe0jB96v9RhLBo
 gone:jr jr:Gone:3mxMrdo3fJjDbb64nagoXR
@@ -277,7 +277,7 @@ genghis khan:miike snow:Genghis Khan:6yHczwGhD6R0Mh1fe6IHkG
 flashed junk mind:milky chance:Flashed Junk Mind:5mpLcXEsk3jjzLFGuNKk5I
 stolen dance:milky chance:Stolen Dance:6vECYJHxYmm3Ydt3fF01pE
 lampshades on fire:modest mouse:Lampshades on Fire:5jJ69cMDMC0aeWPjZo6VP2
-the ground walks, with time in a box:modest mouse:Dashboard:0Fe3WxeO6lZZxj7ytvbDUh
+the ground walks, with time in a box:modest mouse:The Ground Walks, with Time in a Box:5o5R70FLhegu7hpsTHAybE
 goons (baby, all i need):mona:Goons (Baby, I Need It All):5EtvhyF9mrMHRc8QxU0B7F
 goons (baby, i need it all):mona:Goons (Baby, I Need It All):5EtvhyF9mrMHRc8QxU0B7F
 headlights:morning parade:Headlights:5j9YTnKXf3wH4JTkRwCx0y
@@ -329,9 +329,9 @@ i'll be allright:passion pit:I'll Be Alright:2oq2dbjW3sxOY0BscMWd7Q
 i'll be alright:passion pit:I'll Be Alright:2oq2dbjW3sxOY0BscMWd7Q
 lifted up (1985):passion pit:Lifted Up (1985):0WjvB0SzNvgmuM46UjcMr8
 take a walk:passion pit:Take a Walk:4Sfa7hdVkqlM8UW5LsSY3F
-until we can't (let's go):passion pit:All I Want:4QaeQX43q3OdWE4JQxomF8
-mind your manners:pearl jam:Black - Kaufman Astoria Studios - MTV Unplugged - New York, NY 3/16/1992:0DUaFpOFS5H8LbswpbcP2m
-sirens:pearl jam:Black - Kaufman Astoria Studios - MTV Unplugged - New York, NY 3/16/1992:0DUaFpOFS5H8LbswpbcP2m
+until we can't (let's go):passion pit:Until We Can't (Let's Go):0RnWcmby0uEKmTsfw4R0ZZ
+mind your manners:pearl jam:Mind Your Manners:2PdxbK3d0ZS58dD8jRqR6L
+sirens:pearl jam:Sirens:1cAMXz9mnvrqyQLSG4KeeE
 say my name (feat. benjamin joseph):peking duk:Say My Name:3vawSGtTPXSU3ICUuxVww1
 second chance:peter bjorn & john:Second Chance:2p5ieZMPXzUSec8yaiGTvY
 second chance:peter, bjorn & john:Second Chance:2p5ieZMPXzUSec8yaiGTvY
@@ -346,7 +346,7 @@ water:ra ra riot & rostam:Water:79CB8J23CERN6uJzL2Ah9k
 boy:ra ra riot:Boy:2fzFS7hThb7AbkddM9nap1
 let go (feat. kele & mndr):rac:Let Go:3V0W5CfNDMiTKg93wuLFxJ
 lotus flower:radiohead:Lotus Flower:22cmWcCul4Px0b4rnC4fxo
-adventures of rain dance maggie:red hot chili peppers:Scar Tissue:2QOMGq8wVTZbLmh7McrvgF
+adventures of rain dance maggie:red hot chili peppers:The Adventures Of Rain Dance Maggie:0PgNhIg5n0UAOBVn43b8b6
 monarchy of roses:red hot chili peppers:Monarchy Of Roses:16Bf9uR4PI2dCoXDIjs0cP
 the adventures of rain dance maggie:red hot chili peppers:The Adventures Of Rain Dance Maggie:0PgNhIg5n0UAOBVn43b8b6
 help is on the way:rise against:Help Is On The Way:09jPXOz0LS0kpqmkQRaFPO
@@ -380,7 +380,7 @@ waves:sleeper agent:Waves:5CZ8wS7xGYnINCp80Ag957
 comeback kid:sleigh bells:Comeback Kid:4LGj8ogmMfflkfvaQU8iaI
 rill rill:sleigh bells:Rill Rill:4rc6aeLJCWqZ3GBW5rU1P1
 dreaming:smallpools:Dreaming:6cMswWRv4lAU3mh5lclgCc
-karaoke:smallpools:Dreaming - The Chainsmokers Remix:6lOsjTvgGL08uRf2nKrSed
+karaoke:smallpools:Karaoke:2uV2tyFZ0Eex2Lsc8shIfN
 no tell:smoke & jackal:No Tell:0dxux8mB4H9NkWdqZTI6gk
 reverse:somekindawonderful:Reverse:2keA3HBsHHs9GuRzBdzNFp
 do you:spoon:Do You:08a6PhXyXeN3lv1DCKW9qY
@@ -423,7 +423,7 @@ go right ahead:the hives:Go Right Ahead:1KvJY0dBhENKdYqDpytE9p
 a heavy abacus:the joy formidable:A Heavy Abacus:18bMfoScYmenFKMristSDI
 whirring:the joy formidable:Whirring:2XbqxKjCnE9YWfPRqwgtPq
 runaways:the killers:Runaways:6svrEn54rNuEo7Ta5dJslc
-shot at the night:the killers:All These Things That I've Done:0kYUrLVQOfx21xuXu7OGrT
+shot at the night:the killers:Shot At The Night:2aZ2Co4NeQRsqWcU930zHT
 doing it to death:the kills:Doing It To Death:2TIkFs5pxXInJ2galj2rBx
 bad habit:the kooks:Bad Habit:3huV7eiNpaQlCB3LbZi9bB
 junk of the heart:the kooks:Junk of the Heart (Happy):2jZgzSxNSg1hTCq0ewWHGJ
