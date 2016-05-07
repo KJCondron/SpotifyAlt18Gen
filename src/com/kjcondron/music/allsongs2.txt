@@ -127,8 +127,15 @@ death from above 1979 – trainwreck 1979
 declan mckenna – brazil
 disclosure – magnets (feat. lorde)
 django django – default
+<<<<<<< HEAD
 dom – living in america
 dotan – home
+=======
+dma's – too soon
+dom – living in america
+dotan – home
+dreamers – drugs
+>>>>>>> origin/annual
 dreamers – wolves
 el vy – return to the moon (political song for didi bloome to sing, with crescendo)
 electric guest – this head i hold
@@ -418,6 +425,10 @@ the joy formidable – a heavy abacus
 the joy formidable – whirring
 the killers – runaways
 the killers – shot at the night
+<<<<<<< HEAD
+=======
+the kills – doing it to death
+>>>>>>> origin/annual
 the kooks – bad habit
 the kooks – junk of the heart
 the last royals – crystal vases
@@ -494,6 +505,10 @@ waters – got to my head
 wavves – way too much
 weezer – back to the shack
 weezer – da vinci
+<<<<<<< HEAD
+=======
+weezer – king of the world
+>>>>>>> origin/annual
 weezer – thank god for girls
 white lies – bigger than us
 wild cub – thunder clatter
@@ -504,6 +519,10 @@ x ambassadors – renegades
 x ambassadors – unsteady
 yeah yeah yeahs – sacrilege
 young rising sons – high
+<<<<<<< HEAD
+=======
+young the giant – amerika
+>>>>>>> origin/annual
 young the giant – apartment
 young the giant – cough syrup
 young the giant – it's about time
