@@ -266,13 +266,19 @@ class Spotify( spfy : Api ) {
     
     def parse(gg:String) = { 
         val at = gg.split(" – ")
-        val artist = at(0)
-        val title = if(at.size > 1) { at(1) } else { "" }
-        MyTrack(artist.toLowerCase, title)
+        if(at.size > 1) { 
+          val artist = at(0)
+          val title = at(1)
+          Some(MyTrack(artist.toLowerCase, title))
+        }
+        else
+          None
     }
     
-    // parse.....we should throw out un-parseable maybe?
-    val parsed = allsongs.map(parse)  
+    val pParse : PartialFunction[String,MyTrack] = Function.unlift((parse _))
+    
+    // parse.....removing un-parseable
+    val parsed = allsongs.collect(pParse)  
      
     def makeTrack(name : String, id : String) = {
       val tr = new Track
@@ -282,22 +288,25 @@ class Spotify( spfy : Api ) {
       tr
     }
     val makeOrGet = (tr :MyTrack) => cache.flatMap( _.get(tr) ).getOrElse(findSpotify(tr,mkt))
-    // find in cache or via spotify
-    val spotifySongs = parsed.map( makeOrGet )
-    
     val f : PartialFunction[SearchedSong2,FoundSong2] = { case fs : FoundSong2 => fs }
-    val foundSongs = spotifySongs.collect(f)
-    
     val nf : PartialFunction[SearchedSong2,NoSong2] = { case ns : NoSong2 => ns }
+    
+    /// find in cache or via spotify  - As a 'one' liner
+    val fInOne = new PartialFunction[String,SearchedSong2] {
+      def isDefinedAt( s : String ) = pParse.isDefinedAt(clean(s))
+      def apply(s:String) = myApply(s) 
+      val myApply = clean andThen pParse andThen makeOrGet
+    }
+    val step4 = tracks.map( { case (yr,tracks) => (yr, tracks.collect(fInOne).sorted.distinct.collect(f) ) } )  
+    step4.map( x => addToPL( getPLId(plPre + x._1), x._2 ) )
+    ///////////////////////
+        
+    // find in cache or via spotify - The 'easy'...but this is on the flattened list! so only creates big PL
+    val spotifySongs = parsed.map( makeOrGet )    
+    val foundSongs = spotifySongs.collect(f)
     val notFound = spotifySongs.collect(nf)
-     
-    val fInOne = clean andThen parse andThen makeOrGet
-    val step4 = tracks.map( { case (yr,tracks) => (yr, tracks.map(fInOne).sorted.distinct.collect(f) ) } )
-      
     val mainPLId = getPLId(bigPLName)
     addToPL(mainPLId, foundSongs)
-    
-    step4.map( x => addToPL( getPLId(plPre + x._1), x._2 ) )
     
     (notFound, foundSongs)
   }    
