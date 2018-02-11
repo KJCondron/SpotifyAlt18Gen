@@ -14,14 +14,14 @@ object UAlt18AnnualParser {
     
   def getUAlt18Annual( conn : HTTPWrapper ) : List[(String, List[String])] =
   {
-    val dts = List(2012,2011)
+    val dts = List(2018,2012,2011)
     val loc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\%d.txt"""
     val first = dts.map (dt => (dt.toString,fromFile(loc.format(dt))) )
     
     val pre = "http://theunofficialalt18countdownplaylists.com/previous-results/"
   
     val stYear = 2013
-    val endYear = Calendar.getInstance().get(Calendar.YEAR)
+    val endYear = 2017 //Calendar.getInstance().get(Calendar.YEAR)
     
     val years = (endYear to stYear by -1)
     

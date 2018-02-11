@@ -1,4 +1,5 @@
 sunset in july:311:Sunset In July:003z5LtGJ2cdJARKIO9LgL
+critical mistakes:888:Critical Mistakes:0L0Fq1BEatmTzQ96R5GuVX
 danny, dakota & the wishing well:a silent film:Danny, Dakota & the Wishing Well:6RcWF8i6EpRgd59nOILccq
 driven by a beating heart:a silent film:Driven By A Beating Heart:4XzLrtUDPERdMsFrOoZqTt
 driven by their beating hearts:a silent film:Driven By A Beating Heart:4XzLrtUDPERdMsFrOoZqTt
@@ -7,7 +8,9 @@ don't wanna fight:alabama shakes:Don't Wanna Fight:1xmctspTzQxisNXKY6Gxf6
 believer:american authors:Believer:64ybTt8CKxPdeXBNnu08Op
 best day of my life:american authors:Best Day Of My Life:5Hroj5K7vLpIG4FNCRIjbP
 luck:american authors:Luck:4gHD93RNqEhEh2NkYzl3x6
+girlfriend:anderson east:Girlfriend:0usJbmjMMRdC89y8sUsldR
 cecilia and the satellite:andrew mcmahon in the wilderness:Cecilia And The Satellite:1MSM3Fo2fvnwVqMcz8Jhjq
+fire escape:andrew mcmahon in the wilderness:Fire Escape:1dZU1g6eehl9nUix7b0vu3
 high dive:andrew mcmahon in the wilderness:High Dive:0yi1iSwJo4IwSpXFOyH2bx
 strange attractor:animal kingdom:Strange Attractor:6edUoGZ9cHF7IfYIRKzWDV
 afterlife:arcade fire:Afterlife:6D43oUO6nImERk2psfXdNY
@@ -39,6 +42,7 @@ beggin for thread:banks:Beggin For Thread:4PvD06Pmbm2rHG2JjSlElF
 shine a light:banners:Shine A Light:2nZco160YsPJdiTPq396aq
 bad blood:bastille:Bad Blood:2HHiH52OPxe8qyVO7N4uH7
 flaws:bastille:Flaws:67wABU4SjBlnDHB0KiU3HL
+good grief:bastille:Good Grief:542gZt6dUt1e0WL0QbIvZJ
 pompeii:bastille:Pompeii:3gbBpTdY8lnQwqxNCcf795
 2am:bear hands:2AM:5274O2wzp4yDsvuEKHTm22
 agora:bear hands:Agora:1e5HZmpttPyXSqaNQiJU2j
@@ -47,6 +51,7 @@ don't play no game that i can't win:beastie boys ft. santigold:Don't Play No Gam
 don't play no game that i can't win:beastie boys w/santigold:Don't Play No Game That I Can't Win (featuring Santigold):7BKEIdzH1EuGoDxhyxHL9V
 make some noise:beastie boys:Make Some Noise:2Bz2Q1JNwwPj40T9AvzE7f
 dreams:beck:Dreams:4mqVUkv3epcKid8O9tlgtl
+wow:beck:Wow:6TZq6cRTBPPTkKK88w06dV
 the party line:belle and sebastian:The Party Line:05wFHt1ZAsFU8GKbHV7nxo
 black chandelier:biffy clyro:Black Chandelier:1oFMlFBjzs9xs9ZgLaPK7B
 many of horror:biffy clyro:Many Of Horror:1auUyL63z3sWnBhooTnz31
@@ -65,7 +70,9 @@ waves:blondfire:Waves:2xkvUlusNLKbZTpmj6l5IC
 where the kids are:blondfire:Where the Kids Are:5lr3XZzwDWafUbMNsShnyB
 young heart:blondfire:Young Heart:1ABqPr4YBPd51PvcruHIqV
 under the westway:blur:Under the Westway:4ZMWXY7l7LtqaoEAKTDg9M
+tearing me up:bob moses:Tearing Me Up:72AfoN1wsvI9aGsR1WaRxD
 shuffle:bombay bicycle club:Shuffle:4yYvWFUWMaKMXtoJKJnmZk
+i am a nightmare:brand new:I Am a Nightmare:71xWNCgyWTFoQp0jogBxVn
 can't deny my love:brandon flowers:Can't Deny My Love:52wkxz0pUQVw7LhrtJ9pWE
 train:brick+mortar:Train:0Qq6F27oDjGtdKjPjMD0gU
 holding on for life:broken bells :Holding on for Life:757PJjXAgywxrYkdhMkEV9
@@ -90,16 +97,19 @@ come home:chappo:Come Home:229137QCrGaoOBf3IpTxtT
 doses & mimosas:cherub:Doses & Mimosas:44CZRkOxv7UItaAUmh8PgN
 gold:chet faker:Gold:1oPenAfTz9oa1RWNBGy0tO
 change:churchill:Change:331q5cdwo9aq7ih6bSpoOa
+bury it (feat. hayley williams):chvrches:Bury It:35yJgLFoyT39UGJhyeNhzb
 clearest blue:chvrches:Clearest Blue:3aUfWeMesfVs2niopKjNxV
 leave a trace:chvrches:Leave A Trace:01DidSmPasiXdPhDVuaULL
 recover:chvrches:Recover:4QQg6DXsx6G3lv3W4A15CZ
 the mother we share:chvrches:The Mother We Share:3PvzvltQZLIKk9YgoMP3Yq
+apocalypse:cigarettes after sex:Apocalypse:3AVrVz5rK8Hrqo9YGiVGN5
 t–shirt weather:circa waves:T-Shirt Weather:2EPwH1bWUcre7x8I00EAky
 true romance:citizens!:True Romance:7tSOoKUQqKbpYfEJ9pe9TS
 fire escape:civil twilight:Fire Escape:0GzgGU8hdvilKK2Wa5sy36
 hollow life:coast modern:Hollow Life:6Uaz0UV4y7EPdviYUDWwlu
 a rush of blood:coasts:A Rush Of Blood:4uUtaoM2HRLNJZBdw3IVua
 run:coin:Run:6szw2Y2ywtth0oc7ODN3Tz
+talk too much:coin:Talk Too Much:7FX3ZWE70VRjsprg5oeECc
 all this could be yours:cold war kids:All This Could Be Yours:2bVZ9Mbq0roH4gJpGdioaH
 first:cold war kids:First:0aGSUNleFqs5HNEJcwqvXJ
 louder than ever:cold war kids:Louder Than Ever:6585iOVmxbeajz410jnW8C
@@ -111,6 +121,7 @@ magic:coldplay:Magic:23khhseCLQqVMCIT1WMAns
 paradise:coldplay:Paradise:6nek1Nin9q48AVZcWs9e9D
 2 heads:coleman hell:2 Heads:5RK8kePPbYkBqMu1e23zuv
 silhouettes:colony house:Silhouettes:612JlaWJl5l6VIrcBck5QB
+you & i:colony house:You & I:5WYy2vLEJO1y7c49xxW1Bi
 at home:crystal fighters:At Home:3dXNrqnhNUPdrkvnj8TjvX
 go outside:cults:Go Outside:0VnLohgzwLEleLmo19Z8B0
 doin' it right (feat. panda bear):daft punk:Doin' it Right:36c4JohayB9qd64eidQMBi
@@ -126,11 +137,13 @@ underneath the sycamore:death cab for cutie:Underneath The Sycamore:38x5Xwz3mkH6
 you are a tourist:death cab for cutie:You Are A Tourist:2bD1AW4yqiCurGCva6r88a
 trainwreck 1979:death from above 1979:Trainwreck 1979:06vOVdH94mIEjIgIhHdhdO
 brazil:declan mckenna:Brazil:5ftdTvmQjjsL23t7jxADfI
+isombard:declan mckenna:Isombard:7tW9pGcZoNgnLKCyQX3Jva
 magnets (feat. lorde):disclosure:Magnets:7nRmfGNhHKEEu5o8yFXLXt
 default:django django:Default:45u89A07YEku6NRlwyvkLJ
 too soon:dma's:Too Soon:2mjeDagOCXIsjiVgh8FEKJ
 living in america:dom:Living In America:3f1yAg2u74Wn8Jj14zhJGS
 home:dotan:Home:0ZUMBOzlwNXfVE4Z8lSrsd
+sweet disaster:dreamers :Sweet Disaster:7bEDDsy2LFC0KSqhZp5nPE
 drugs:dreamers:DRUGS:21qKs2K0O9MCK9qVeHpEO0
 wolves:dreamers:Wolves (You Got Me):15p4RFj5ZLC197ErxycTKv
 return to the moon (political song for didi bloome to sing, with crescendo):el vy:Return to the Moon (Political Song for Didi Bloome to Sing, with Crescendo):1pKeRK6rB2lsIzCySm4NUg
@@ -138,6 +151,7 @@ this head i hold:electric guest:This Head I Hold:7pJo9G3BaTgYAxrhiENJGg
 40 watt:elel:40 Watt:0nrLEEv6ldfFaYe5gkG61Z
 ex's & oh's:elle king:Ex's & Oh's:70eDxAyAraNTiD6lx2ZEnH
 under the influence:elle king:Under the Influence:5rFwX4Xi0WmdtM6qlaPUWy
+high and low:empire of the sun:High And Low:4idXqwDDENjWPbkrEy1w47
 black soap:ex cops:Black Soap:4BpJ6i8k3eS4JSL4SMu4O9
 girls with accents:fences:Girls With Accents:13RQa1XAhd0mfnfGc5Tn8N
 last forever:fenech–soler:Last Forever:1M5P4fB2GpN3CP2P3zmPyE
@@ -155,6 +169,7 @@ what the water gave me:florence + the machine:What The Water Gave Me:3RiOPzAvhNK
 give it all:foals:Give It All:1dawtCVI1A3nYxJX32lBH2
 mountain at my gates:foals:Mountain At My Gates:53L6A3I9vf7rgEZnMzx54E
 my number:foals:My Number:4c9WmjVlQMr0s1IjbYO52Z
+what went down:foals:What Went Down:5h27GYpKZWWhFov8fOunF6
 rope:foo fighters:Rope:7v0mtl6oInUtHOmTk2b0gC
 something from nothing:foo fighters:Something From Nothing:6REiraH7Pe3akd0mkFA4l9
 these days:foo fighters:These Days:2kN05N1AQQplsgFweFAqYb
@@ -166,6 +181,7 @@ don't stop (color the walls):foster the people:Don't Stop (Color on the Walls):4
 helena beat:foster the people:Helena Beat:4VbDJMkAX3dWNBdn3KH6Wx
 houdini:foster the people:Houdini:5Fli1xRi01bvCjsZvKWro0
 pumped up kicks:foster the people:Pumped up Kicks:7w87IxuO7BDcJ3YUqCyMTT
+sit next to me:foster the people:Sit Next to Me:14aqr8yZODpQyuqhSxLMTV
 right action:franz ferdinand:Right Action:2LUDnlO2OY57M9DkX2OjHu
 some nights:fun.:Some Nights:6t6oULCRS6hnI7rm0h5gwl
 we are young:fun.:We Are Young (feat. Janelle Monáe) - feat. Janelle Monae:7a86XRg84qjasly9f6bPSD
@@ -178,9 +194,11 @@ no shows:gerard way:No Shows:7dtGJHOBbVDwIWDQU38WhJ
 up up up:givers:Up Up Up:0BRvYS2qu4nVi9bF7MgyOq
 black mambo:glass animals:Black Mambo:63OC8cNa4ZnFB3bbvbWCOc
 gooey:glass animals:Gooey:1gk3FhAV07q9Jg77UxnVjX
+life itself:glass animals:Life Itself:2cKBRXAja8JIgF2gSmrMke
 eyes wide open:gotye:Eyes Wide Open:6h2q5GhVc9itEB6NqOEMd4
 somebody that i used to know:gotye:Somebody That I Used To Know:4wCmqSrbyCgxEXROQE6vtV
 stare into the sun:graffiti6:Stare Into The Sun:0vXdd32H6j8ggGapOHfan1
+bang bang:green day:Bang Bang:0Z2wvNROelCrTqUM28RLYt
 oh love:green day:Oh Love:1qIgyDoc2rwtq8w49jeWL8
 flesh without blood:grimes:Flesh without Blood:4ZcGbQ5dOKX6rJk4yvza9R
 colours:grouplove:Colours:6gSKswfcoWvaadqvuMF3Y7
@@ -189,6 +207,7 @@ itchin' on a photograph:grouplove:Itchin' On A Photograph:01nkjRsgpYwtbH94l7y4cg
 shark attack:grouplove:Shark Attack:0i4ggi1qGPbr8OqaKBm5iY
 tongue tied:grouplove:Tongue Tied:0GO8y8jQk1PkHzS31d699N
 ways to go:grouplove:Ways To Go:57nNNkgk768QVXq3uHxu5e
+welcome to your life:grouplove:Welcome To Your Life:6uF5q1IM4nXjh4Hw3pY4Cw
 forever:haim:Forever:2319gHincsCeSmc19Efi2j
 the wire:haim:The Wire:6golelYKuy85o3u0cxIxFK
 the game is changing us:hands:The Game is Changing Us:5gt21btxXJ1exgi5B0nHfy
@@ -210,6 +229,7 @@ adolescents:incubus:Adolescents:1LiHz1habAqQcFnXI73Qbt
 promises promises:incubus:Promises, Promises:0534jmQ0dYChW5MSzYXNVr
 promises, promises:incubus:Promises, Promises:0534jmQ0dYChW5MSzYXNVr
 all the rage back home:interpol:All The Rage Back Home:41g3tCnqP8yTauiPQPndVO
+connected by love:jack white:Connected By Love:43k9FQxDYsmbgaOJSsmntK
 lazaretto:jack white:Lazaretto:3T76zPJz3tWL27FrjJe2ot
 love interruption:jack white:Love Interruption:3s3ciLHOXE1xVqGkdxwHPs
 sixteen saltines:jack white:Sixteen Saltines:3XBPCbTU9rSGuyuK7Xbj4B
@@ -220,11 +240,13 @@ loud places (feat. romy):jamie xx:Loud Places:2JQm8NNpFkwvhuKH3yhuC9
 irresistible force:jane's addiction:Irresistible Force:0D7r6CIGNRvs0IvsDOunZr
 coffee & cigarettes:jimmy eat world:Coffee And Cigarettes:2vcDC8uI4NkP4LLh1srClK
 i will steal you back:jimmy eat world:I Will Steal You Back:32Cimaqis8qkGRMACGsOkh
+sure and certain:jimmy eat world:Sure and Certain:0LIuCaB4eoxSkzA5ZcUyZI
 whirring:joy formidable:Whirring:2XbqxKjCnE9YWfPRqwgtPq
 now:joywave:Now:2UbzSDEYP8eCg5K2a8d3PM
 somebody new:joywave:Somebody New:2vcfImyMOQjYhnKOVkjoIR
 tongues (feat. kopps):joywave:Tongues:5mCprFWOqe0jB96v9RhLBo
 gone:jr jr:Gone:3mxMrdo3fJjDbb64nagoXR
+take it all back:judah & the lion:Take It All Back:4bRfMTaUtQn1QvowPx47ZD
 busy earnin':jungle:Busy Earnin':07tOsOR7E9zW89v2FqzsdG
 sheila put the knife down:junior prom:Sheila Put The Knife Down:2FmeP6ubsT5h0JmGRm7eG5
 coming home:kaiser chiefs:Coming Home:2rqpjPhtTMFmhJmGWhck70
@@ -233,7 +255,9 @@ bubblegum:kevin devine & the goddamn band:Bubblegum:55qmfbCYRXF8IpBfev27oT
 pyro:kings of leon:Pyro:0Xy9xPPs2zRRFqljGqKXel
 supersoaker:kings of leon:Supersoaker:4cQIbDqCZrHknxlDUjRHZ0
 temple:kings of leon:Temple:30SjdIdTMhBSe33nFnBFkC
+waste a moment:kings of leon:Waste A Moment:4abm3RbYBcQlrxdV1ObjUj
 cut it out:kitten:Cut It Out:7G2A6ygvm8wOhdXsGzU8t4
+washed up together:knox hamilton:Washed Up Together:394fSwicFotuONejRw2qRH
 work it out:knox hamilton:Work It Out:7pGF4OaISqBBnONPzt1mGN
 all i want:kodaline:All I Want:2PwXOevGUSkU8qaYZjgLq2
 i'm only joking:kongos:I'm Only Joking:3iag81mU7BylirRwRYXd8E
@@ -245,14 +269,17 @@ loud(y):lewis del mar:Loud(y):2Df8M8sO1zhC71p2XQRwpj
 get closer:life in film:Get Closer:0VvkFg7u6qUofCtrF7IO8s
 overdose:little daylight:Overdose:0RDobfQ4AtlQ4EBKkiQkln
 airplanes:local natives:Airplanes:6qsArsTq6WoqtUFUe1e15W
+fountain of youth:local natives:Fountain Of Youth:46exzPPGwXU9Xcoz5u618b
 heavy feet:local natives:Heavy Feet:0BmNElDPN8uGmJtCwPY5fH
 royals:lorde:Royals:2dLLR6qlu5UJ5gk0dKz0h3
 team:lorde:Team:3G6hD9B2ZHOsgf4WfNu7X1
 tennis court:lorde:Tennis Court:74fpNVAJrKGQuqHETi4WSt
 yellow flicker beat:lorde:Yellow Flicker Beat:0Nf53RDPZEjFrQE4B5n6Vf
+broken:lovelytheband:broken:2fZZPs9gwlUoAMJRayBWMk
 ho hey:lumineers:Ho Hey:0W4Kpfp1w2xkY3PrV714B7
 get some:lykke li:Get Some:5LbCx9z3eq83JVoJ74tnmt
 do it, try it:m83:Do It, Try It:4AA5FlsCy79Kpj7olWfruc
+go! (feat. mai lan):m83:Go! (feat. Mai Lan):09zN9QBOHe8795UVOvEtnt
 midnight city:m83:Midnight City:1eyzqe2QqGZUmfcPZtrIyt
 reunion:m83:Reunion:7zZkPiqHnL7icGGb4Almf6
 paris:magic man:Paris:4EaO2XR7gWaHq8DW7nu1iY
@@ -261,13 +288,16 @@ april fool:manchester orchestra:April Fool:54y95K9BYVRAzFpgDCN9ls
 every stone:manchester orchestra:Every Stone:55EPOPSKPxuPymqTUcr5OV
 make it to me (feat. grouplove):manchester orchestra:make it to me:6dwbyJUYSdNsuLAi8lEaVk
 simple math:manchester orchestra:Simple Math:43nIGHt7hkR2vfwIjesDon
+the moth:manchester orchestra:The Moth:0vF9RAGwgYtfO1Aajwb7et
 top notch:manchester orchestra:Top Notch:3wE5hYHNjlvwVDB9beBGZD
 virgin:manchester orchestra:Virgin:3B76M4dKWsTGBso062Ar0a
+astronaut (something about your love):mansionair:Astronaut - Something About Your Love:4sG6J4S2FCuMr3oooYAwFS
 daffodils (feat. kevin parker):mark ronson:Daffodils:1v0ufp7FLTFcykUGOmFZKa
 block after block:matt & kim:Block After Block:5oi4ncC9yeW4dDY5oXzVTf
 cameras:matt & kim:Cameras:7vLeZPIeblZLz04hLRRAES
 let's go:matt & kim:Let’s Go:2PlP2rRrgSz8lC7MpH3e4e
 get it:matt and kim:Get It:4ptlAXjTGJgjrxGQ7EGn4W
+haunting me:matt and kim:Haunting Me:0DecB3JfgjWNmI1zFkJlAL
 breathing underwater:metric:Breathing Underwater:3V1sX80FB5C1D0azCC1DII
 the shade:metric:The Shade:4KUHVpbphp6DHeSL7x4hh4
 youth without youth:metric:Youth Without Youth:4g4tGG0OrgCdHhin0W5mSs
@@ -276,6 +306,7 @@ new low:middle class rut:New Low:5slsTb7v8UncTK7Ko1TjEA
 genghis khan:miike snow:Genghis Khan:6yHczwGhD6R0Mh1fe6IHkG
 flashed junk mind:milky chance:Flashed Junk Mind:5mpLcXEsk3jjzLFGuNKk5I
 stolen dance:milky chance:Stolen Dance:6vECYJHxYmm3Ydt3fF01pE
+everybody gets high:missio:Everybody Gets High:3nH3Gtm9GQVfiaYDr4AXji
 lampshades on fire:modest mouse:Lampshades on Fire:5jJ69cMDMC0aeWPjZo6VP2
 the ground walks, with time in a box:modest mouse:The Ground Walks, with Time in a Box:5o5R70FLhegu7hpsTHAybE
 goons (baby, all i need):mona:Goons (Baby, I Need It All):5EtvhyF9mrMHRc8QxU0B7F
@@ -283,6 +314,7 @@ goons (baby, i need it all):mona:Goons (Baby, I Need It All):5EtvhyF9mrMHRc8QxU0
 headlights:morning parade:Headlights:5j9YTnKXf3wH4JTkRwCx0y
 hurricane:ms mr:Hurricane:35aNHKBZWXXbL9KQK7O5Nk
 think of you:ms mr:Think of You:1WwID3mnP9C6M1zhZPceCe
+silver lining:mt. joy:Silver Lining:2fpDrL2Vpee0JnM6AoUFvl
 there will be time:mumford & sons & baaba maal:There Will Be Time:5DVKKqwLGjvK9ojz3zLjB7
 believe:mumford & sons:Believe:4A57CXs3jAmyNTMAwWaV53
 i will wait:mumford & sons:I Will Wait:2JHBMVs8E7bJJBLkXpKgHn
@@ -301,17 +333,21 @@ light up:mutemath:Light Up:2IVGLHQF91tDAImE25elWD
 sing:my chemical romance:SING:1mX6SYJ1ZpcoxQUiER8wOI
 i need never get old:nathaniel rateliff & the night sweats:I Need Never Get Old:4bhTJfVPynHxot7dlVNgq7
 s.o.b.:nathaniel rateliff & the night sweats:S.O.B.:1hWQvA6oGVJ2mAVsZ59AaV
+you worry me:nathaniel rateliff & the night sweats:You Worry Me:0gqxf8wrEkewjmZB7OT4mL
 everybody talks:neon trees:Everybody Talks:3528IXKpbb7OMjdjWYlbfD
 sleeping with a friend:neon trees:Sleeping With A Friend:0K1KOCeJBj3lpDYxEX9qP2
 dignity:new politics:Dignity:0SvNqkF6EX3dePmcd4i3j7
 harlem:new politics:Harlem:573latfTMO7SpGtStVrQx5
 tonight you're perfect:new politics:Tonight You're Perfect:3ym8RPF4EQPqtW0v8G44BT
 contagious:night riots:Contagious:1N3OTRDeaeTcybizwQ6vB3
+nothing personal:night riots:Nothing Personal:04WFKaQNQcH23eezAMbPsH
 when you were mine (feat. tegan & sara):night terrors of 1927:When You Were Mine (feat. Tegan & Sara):4dgbuxsN3QsJpif84MQ0d1
 came back haunted:nine inch nails:Came Back Haunted:0jem8KSDqhiOoIWIqrJZbI
 aka..what a life:noel gallagher's high flying birds:AKA...What A Life!:5mljJfOTZR3nF4ExmRLTjv
 pumpin' blood:nonono:Pumpin Blood:7ti4qMC7xYQeh1uRzj5XuM
+broken machine:nothing but thieves:Broken Machine:1lpxUd0kkSbVbYoUS7hLJJ
 trip switch:nothing but thieves:Trip Switch:1uqU0nq6DCbJMktSlUvQV8
+wake up call:nothing but thieves:Wake Up Call:55pU8utrZ0WxtvWKW1FjXY
 away frm u:oberhofer:Away Frm U:5jru2pJXqZaWSaWwlWjhOw
 say my name (feat. zyra):odesza:Say My Name (feat. Zyra):1LeItUMezKA1HdCHxYICed
 little talks:of monsters & men:Little Talks:3a2tuvXCHbW5nuUckuHkKT
@@ -335,18 +371,22 @@ sirens:pearl jam:Sirens:1cAMXz9mnvrqyQLSG4KeeE
 say my name (feat. benjamin joseph):peking duk:Say My Name:3vawSGtTPXSU3ICUuxVww1
 second chance:peter bjorn & john:Second Chance:2p5ieZMPXzUSec8yaiGTvY
 second chance:peter, bjorn & john:Second Chance:2p5ieZMPXzUSec8yaiGTvY
+you don't get me high anymore:phantogram :You Don’t Get Me High Anymore:1OJbm4cSz8P8sXtQzC6j2O
 black out days:phantogram:Black Out Days:2IWtloZYQDcP8Ashwx8QEF
 fall in love:phantogram:Fall In Love:5imUTBF35uIoABlV9g9da2
 entertainment:phoenix:Entertainment:16cITuCC0GPy6Zq1eluYaj
 trying to be cool:phoenix:Trying To Be Cool:0djnjvuq3Lg71aZ3UK61D3
 fireworks:polock:Fireworks:5VkVXZdVa4Cq5zsMfqRCdR
+vice:pop etc:Vice:6jaNYdmt07Kg32XBcgS154
 what am i becoming?:pop etc:What Am I Becoming?:0aTsRTMdA1vUNPE87i3sNE
+live in the moment:portugal. the man:Live In The Moment:60eOMEt3WNVX1m1jmApmnX
 my god is the sun:queens of the stone age:My God Is The Sun:1Pc3gTtQG4Cq1x81NcXtCN
 water:ra ra riot & rostam:Water:79CB8J23CERN6uJzL2Ah9k
 boy:ra ra riot:Boy:2fzFS7hThb7AbkddM9nap1
 let go (feat. kele & mndr):rac:Let Go:3V0W5CfNDMiTKg93wuLFxJ
 lotus flower:radiohead:Lotus Flower:22cmWcCul4Px0b4rnC4fxo
 adventures of rain dance maggie:red hot chili peppers:The Adventures Of Rain Dance Maggie:0PgNhIg5n0UAOBVn43b8b6
+dark necessities:red hot chili peppers:Dark Necessities:1cjiLJacTKtJbdCtMk1XeV
 monarchy of roses:red hot chili peppers:Monarchy Of Roses:16Bf9uR4PI2dCoXDIjs0cP
 the adventures of rain dance maggie:red hot chili peppers:The Adventures Of Rain Dance Maggie:0PgNhIg5n0UAOBVn43b8b6
 help is on the way:rise against:Help Is On The Way:09jPXOz0LS0kpqmkQRaFPO
@@ -360,6 +400,7 @@ wild:royal teeth:Wild:62tW8h5l2UrgqvdbhZaXL1
 run or hide:run river north:Run or Hide:0gL2wxDmyNN71eEuCQUUfX
 i love you:said the whale:I Love You:5Yihfvz56HKVjPJQm2uHbJ
 cold cold man:saint motel:Cold Cold Man:6RKGBcDtgzXx21zUjpeu6F
+move:saint motel:Move:61brtUJwrAQjyZjWpMBRXf
 my type:saint motel:My Type:2Iq6HhIquO7JKr0KfTNLzU
 fiona coyne:saint pepsi:Fiona Coyne:3x3lq0IUkLEv4apfJxwgwd
 run:san cisco:RUN:0NEgLKReA7npnfiJeUHP8q
@@ -387,6 +428,8 @@ do you:spoon:Do You:08a6PhXyXeN3lv1DCKW9qY
 dancing on glass:st. lucia:Dancing On Glass:0aersVHlGGXcHeRvHtuaSt
 elevate:st. lucia:Elevate:5BxVRqpZi6tIhAap1ZjzVD
 digital witness:st. vincent:Digital Witness:5L16tlSHNt93RiiRiCc8ya
+los ageless:st. vincent:Los Ageless:2qTy3hGSbxoSenKmlKGHFw
+everybody wants to be famous:superorganism:Everybody Wants To Be Famous:16TnprliADBNA3YJFaNM2c
 figuring it out:swmrs:Figuring It Out:6OJIxY0IuuODWx52er0SAe
 coffee:sylvan esso:Coffee:71cUqXJ3h1r0Ees6YdENLU
 faith (when i let you down):taking back sunday:Faith [When I Let You Down]:2Yp2vaMnQ1fEI2mdCTmrdh
@@ -395,6 +438,7 @@ closer:tegan & sara:Closer:4dTVgHZFPlaq9nPbLVVLSG
 get me golden:terraplane sun:Get Me Golden:4Fb5Z7sMoFqdisaJBq7Q4u
 chocolate:the 1975:Chocolate:44Ljlpy44mHvLJxcYUvTK0
 love me:the 1975:Love Me:5GbNhfhPM1se8BftcBCYxp
+somebody else:the 1975:Somebody Else:5hc71nKsUgtwQ3z52KEKQk
 the city:the 1975:The City:0bmJ2sqxKOk0l36Ctd0Fcs
 all i ever wanted:the airborne toxic event:All I Ever Wanted:539jh98saoApaX0XpsaRq5
 changing:the airborne toxic event:Changing:6M23RkYPbVR91c4iWVNkcl
@@ -419,7 +463,10 @@ get hurt:the gaslight anthem:Get Hurt:5EeMYgfcEoRLnxw6CUUVfm
 “45”:the gaslight anthem:"45":25Sd73fleKUVPNqITPZkn1
 beware the dog:the griswolds:Beware the Dog:6bsYM7B72YM9IaLdPBAu7I
 if you wanna stay:the griswolds:If You Wanna Stay:6cfPJNoqJsiikMm2TmpiwT
+out of my head:the griswolds:Out Of My Head:1FMhjKZO2L2fNB08Ik1iBs
+all we ever knew:the head and the heart:All We Ever Knew:5wrGviDHdJ2MYgDRow14cu
 go right ahead:the hives:Go Right Ahead:1KvJY0dBhENKdYqDpytE9p
+you & me:the hunna:You & Me:5zb8kcWQZEoWQ8eLODJxS4
 a heavy abacus:the joy formidable:A Heavy Abacus:18bMfoScYmenFKMristSDI
 whirring:the joy formidable:Whirring:2XbqxKjCnE9YWfPRqwgtPq
 runaways:the killers:Runaways:6svrEn54rNuEo7Ta5dJslc
@@ -434,6 +481,7 @@ turn off this song and go outside:the lonely forest:Turn Off This Song and Go Ou
 ophelia:the lumineers:Ophelia:3qhobDAfBcVoOWZP8Ck8R2
 stubborn love:the lumineers:Stubborn Love:3ekNuTF3UpOvIZCfiejpnC
 live while i breathe:the moth & the flame:Live While I Breathe:5Hp8O63DmyM64BqGmUE1fZ
+red flag:the moth & the flame:Red Flag:0kn7zLOW8fSCz8c54yHtJR
 young & unafraid:the moth & the flame:Young & Unafraid:5MXTJktozOCF1KInWzVH5B
 i'm good:the mowgli's:I'm Good:5KQDGl3vAkNGyfvSbaW89E
 san francisco:the mowgli's:San Francisco:2eQOMQkStoRUQyq6HGh1iG
@@ -443,6 +491,7 @@ girls like you:the naked & famous:Girls Like You:5mEyCUtI36Jmu2KNQQ4jaw
 young blood:the naked & famous:Young Blood:25nzKGDiua1lE9Qo5V19GL
 girls like you:the naked and famous:Girls Like You:5mEyCUtI36Jmu2KNQQ4jaw
 hearts like ours:the naked and famous:Hearts Like Ours:1GzeyDrul7da45BQASLiKL
+higher:the naked and famous:Higher:2Kpoeflreypc9B2iQeawu2
 punching in a dream:the naked and famous:Punching In A Dream:5PtEpuVX03k9bOUwilL5EO
 young blood:the naked and famous:Young Blood:25nzKGDiua1lE9Qo5V19GL
 don't swallow the cap:the national:Don't Swallow the Cap:0QEHU0ZccfSXYUpF2iVUab
@@ -450,14 +499,18 @@ afraid:the neighbourhood:Afraid:7brQHA2CgQpcMBiOlfiXYb
 cry baby:the neighbourhood:Cry Baby:0EfsDEYaSjGYd66Pr881nq
 female robbery:the neighbourhood:Female Robbery:4BDnfINTlfJPmLp1UV6CXt
 r.i.p. 2 my youth:the neighbourhood:R.I.P. 2 My Youth:07VBqWH6NG8L2ad3l84UKk
+scary love:the neighbourhood:Scary Love:3kl0x96aqexH75Xukmz2Mo
 sweater weather:the neighbourhood:Sweater Weather:2QjOHCTQ1Jl3zawyYOpxh6
 a tattered line of string:the postal service:A Tattered Line of String:64ZutGB9OXDUDho6bcttqb
+rebel heart:the shelters:Rebel Heart:2VsLaBtuqVC3HlJ97A0LLO
 simple song:the shins:Simple Song:48bo7uexDvAThcRDvEB2W7
 something to die for:the sounds:Something To Die For (MF/MB/ Remix):51D0hcbamol5924yYRQDd0
+oblivius:the strokes:OBLIVIUS:2tjqgiScVM3VoZBYGPC2Dm
 one way trigger:the strokes:One Way Trigger:5GKVcvTgnFYtfh25qKQtRg
 taken for a fool:the strokes:Taken for a Fool:6SdAztAqklk1zAmUHhU4N7
 under cover of darkness:the strokes:Under Cover of Darkness:6u0x5ad9ewHvs3z6u9Oe3c
 spirits:the strumbellas:Spirits:0VhDlpezWuAgOnfOCx2fRv
+we don't know:the strumbellas:We Don't Know:3jteX7TMc7cPzIUCxHjqHe
 could have been me:the struts:Could Have Been Me:7bjgoIjY4tl0KVexQVpANn
 kiss this:the struts:Kiss This:3Zm5SMUA3JH98Aty7Zc0xr
 what a shame:the strypes:What A Shame:4JSPNLWjSCV96a8BeAACmK
@@ -465,7 +518,9 @@ need your love:the temper trap:Need Your Love:2qECpTF1Sr9CpDVM2JFs8k
 trembling hands:the temper trap:Trembling Hands:1RmbJuUUXafxb6kEZigEcg
 give me a try:the wombats:Give Me A Try:0gohFCf3LlExQw41BfajZg
 jump into the fog:the wombats:Jump Into The Fog:3l8dM1wjgFh98jpiq5ZCe7
+turn:the wombats:Turn:4GxWee692irccH1QOmRRLl
 your body is a weapon:the wombats:Your Body Is A Weapon:5VCOAW6rjaZvJrVB8x6Uau
+favorite liar:the wrecks:Favorite Liar:2fOmsaSjCncWDVJ1N8S2TZ
 chained:the xx:Chained:1zQX8Tf3fRYw8Djxh5kUKq
 sunset:the xx:Sunset:7DImv0qWPEiAYUPJ0yKuDd
 work around it:them swoops:Work Around It:4wIIwcCc5jSRun947db46P
@@ -474,14 +529,17 @@ unkinder (a tougher love):thumpers:Unkinder (A Tougher Love):0b1XqXtY1dMlTsS3ZRQ
 carter & cash:tor miller:Carter & Cash:1xjv6x4lj8m2Vx1WYJzPye
 habits (stay high):tove lo:Habits (Stay High):6YL5zD4SggAZAQcdPv5r0C
 happy idiot:tv on the radio:Happy Idiot:63mnZ0zF5fBwJzYg2pDo9e
+heathens:twenty one pilots:Heathens:6i0V12jOa3mr6uu4WYhUBr
 ride:twenty one pilots:Ride:2Z8WuEywRWYTKe1NybPQEW
 stressed out:twenty one pilots:Stressed Out:3CRDbSIZ4r5MsZ0YwxuEkn
 tear in my heart:twenty one pilots:Tear In My Heart:3bnVBN67NBEzedqQuWrpP4
 free:twin atlantic:Free:78xNTF3ctVK8KAwEZMLt2q
+bad decisions:two door cinema club:Bad Decisions:3S0HgYaRFtzkteQ1OsIDhg
 changing of the seasons:two door cinema club:Changing Of The Seasons:4Bvwg6cdVpJOHRRUKZBDAp
 sleep alone:two door cinema club:Sleep Alone:33CehYfkie4ugV2gWaTKlM
 something good can work:two door cinema club:Something Good Can Work:1aGvLFHJ2shKqO9uycaUcW
 what you know:two door cinema club:What You Know:6jrMVRReY24qzCfe1BRrww
+i feel like i'm drowning:two feet:I Feel Like I'm Drowning:42zJqS8TW1Lpsa186of3OY
 song for someone:u2:Song For Someone:6PmvNS601Mcd2H0UcqMWb0
 a taste of silver:until the ribbon breaks:A Taste of Silver:3HGaAiNXw4Yoq2KlIhfsbo
 the wild life:vacationer:The Wild Life:6GgeC18ctRUmplzNx8ro86
@@ -504,6 +562,7 @@ da vinci:weezer:Da Vinci:18eR1w9NXigoppVRpdc4yk
 king of the world:weezer:King Of The World:5vBuxtwitUimHR2gBOnJYR
 thank god for girls:weezer:Thank God For Girls:6CqP4h7ecdCWZj1eBufqbj
 bigger than us:white lies:Bigger Than Us:793Nw23V2uDDvpPozit3C2
+throw down your guns:wild belle:Throw Down Your Guns:1uT1uVaWu3ND6m9yjRvQdq
 thunder clatter:wild cub:Thunder Clatter:6JugKFXssO9L2tN8omeTPt
 lions in cages:wolf gang:Lions In Cages:3Ufbnur2EwjNQoVKyoX1ue
 the king and all his men:wolf gang:The King And All Of His Men:6QU4xwSi2X8np8qo7JJb34
@@ -518,6 +577,7 @@ cough syrup:young the giant:Cough Syrup:1UqhkbzB1kuFwt2iy4h29Q
 it's about time:young the giant:It's About Time:7LDy0zN3tVio4sG4lRNtBg
 mind over matter:young the giant:Mind Over Matter:5Az8KU81g2aLBbJN67F2CI
 my body:young the giant:My Body:1KDYN3odJHnj9pqGHN3FVs
+something to believe in:young the giant:Something To Believe In:4EYvEheGn4usgCp0sxYJhD
 pressure:youngblood hawke:Pressure:5WogLWsJcMPOrffEXA7x5X
 we come running:youngblood hawke:We Come Running:4Xv41B0BJRcMBJYpavNDfD
 get away:yuck:Get Away:4vD4GNg2RwuuKkH8CWoxXB
@@ -526,3 +586,4 @@ breezeblocks:∆ (alt–j):Breezeblocks:3n69hLUdIsSa1WlRmjMZlW
 every other freckle:∆ (alt–j):Every Other Freckle:6BVBkKpZK09NmifUMZqj1z
 left hand free:∆ (alt–j):Left Hand Free:4iEOVEULZRvmzYSZY2ViKN
 tessellate:∆ (alt–j):Tessellate:1o22EcqsCANhwYdaNOSdwS
+sober up (feat. rivers cuomo):﻿ajr:Sober Up:2QCndYqRherBtKjBpyySC6
