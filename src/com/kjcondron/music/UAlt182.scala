@@ -196,13 +196,24 @@ class Spotify(spfy: Api) {
       else
         getPLTracks(plid, offset + 100, acc ++ currItems)
     }
-
+  
+  def getOtherPLTracks(uuid : String, plid: String) = 
+    {
+      val currItemsBld = spfy.getPlaylistTracks(uuid, plid).build
+      val currItems = backOffLogic(currItemsBld.get.getItems)
+      currItems
+    }
+  
+  def getPLName(uuid : String, plid : String) = 
+    spfy.getPlaylist(uuid, plid).build().get.getName
+  
   def addToPL(plid: String, tracks: Iterable[FoundSong2]): Unit =
     {
       val pltracks = getPLTracks(plid)
       implicit class Wrapper1(_tr: PlaylistTrack) { def matches(_tr2: Track) = _tr.getTrack.getId == _tr2.getId }
       def closure2(_fs: FoundSong2) = pltracks.exists(_.matches(_fs.track))
       val newtracks2 = tracks.filterNot(closure2)
+      println("adding " + newtracks2.size + " new tacks")
       val newPLTrackUris2 = newtracks2.map(_.track.getUri).toList
       val distinctUris = newPLTrackUris2.distinct
       addTracks(uid, plid, distinctUris)
@@ -418,6 +429,30 @@ object BuildAllPlaylist extends App {
   val newCacheLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs2.txt"""
   SongCache.outputCache(newCacheLoc, songs)
 
+}
+
+object MyPlaylistsFromUnofficalPlaylist extends App {
+
+  val spotify = Spotify()
+  
+  val uuid = "tyler_v2"
+  val plid = "0wBkw63jf90ZoQIHz759No"
+      
+  // get tracks
+  val tracks = spotify.getOtherPLTracks(uuid, plid)
+  
+  // get year for this playlist
+  val plName = spotify.getPLName(uuid, plid)
+  val idx = plName.indexOf("20")
+  val year = plName.substring(idx,idx+4)
+  
+  // convert to "foundsong type", for use with generic addToPL function
+  val fs = tracks.map( plt => FoundSong2(plt.getTrack.getName, plt.getTrack.getArtists.head.getName, plt.getTrack))
+  
+  // add to all and annual playlist
+  spotify.addToPL(spotify.getPLId("all18V2"), fs)
+  spotify.addToPL(spotify.getPLId("alt18"++year), fs)
+  
 }
 
 object BuildShinePlaylist extends App {
