@@ -214,6 +214,7 @@ class Spotify(spfy: Api) {
       def closure2(_fs: FoundSong2) = pltracks.exists(_.matches(_fs.track))
       val newtracks2 = tracks.filterNot(closure2)
       println("adding " + newtracks2.size + " new tacks")
+      newtracks2.foreach {  x => println(x.alt18Artist + ":" + x.alt18Name) }
       val newPLTrackUris2 = newtracks2.map(_.track.getUri).toList
       val distinctUris = newPLTrackUris2.distinct
       addTracks(uid, plid, distinctUris)
