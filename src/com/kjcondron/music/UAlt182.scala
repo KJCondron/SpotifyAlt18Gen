@@ -421,13 +421,13 @@ object BuildAllPlaylist extends App {
   val alt18s = UAlt18AnnualParser.getUAlt18Annual(conn) // List(Year, List(Artist-SongName)) 
   conn.dispose
 
-  val cacheLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs2.txt"""
-  val logLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\allsongs2.log"""
+  val cacheLoc = """C:\Users\KJCon\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs2.txt"""
+  val logLoc = """C:\Users\KJCon\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\allsongs2.log"""
 
   val cache = SongCache(cacheLoc)
   val (nf, songs) = spotify.makePlaylists(alt18s, cache, logLoc, "all18V2", "alt18", "US")
 
-  val newCacheLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs2.txt"""
+  val newCacheLoc = """C:\Users\KJCon\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs2.txt"""
   SongCache.outputCache(newCacheLoc, songs)
 
 }
@@ -437,9 +437,10 @@ object MyPlaylistsFromUnofficalPlaylist extends App {
   val spotify = Spotify()
   
   val uuid = "tyler_v2"
-  val plid = "0wBkw63jf90ZoQIHz759No"
+  val plids = List("0wBkw63jf90ZoQIHz759No","7HPqQZHYXLlFnu6ssfZfga")
       
   // get tracks
+  plids.map( plid => {
   val tracks = spotify.getOtherPLTracks(uuid, plid)
   
   // get year for this playlist
@@ -453,7 +454,7 @@ object MyPlaylistsFromUnofficalPlaylist extends App {
   // add to all and annual playlist
   spotify.addToPL(spotify.getPLId("all18V2"), fs)
   spotify.addToPL(spotify.getPLId("alt18"++year), fs)
-  
+  })
 }
 
 object BuildShinePlaylist extends App {

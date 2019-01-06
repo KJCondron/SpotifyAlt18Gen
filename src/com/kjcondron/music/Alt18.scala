@@ -10,7 +10,7 @@ import com.kjcondron.web.HTTPWrapper
 
 object Alt18 extends App {
   
-  val conn = new HTTPWrapper("""C:\Users\Karl\Documents\ALT18\""")
+  val conn = new HTTPWrapper("""C:\Users\KJCon\Documents\ALT18\""")
   
   def getALT18( address : String ) : List[String] = {
     
