@@ -197,11 +197,18 @@ class Spotify(spfy: Api) {
         getPLTracks(plid, offset + 100, acc ++ currItems)
     }
   
-  def getOtherPLTracks(uuid : String, plid: String) = 
+  def getOtherPLTracks(uuid : String, plid: String) : List[PlaylistTrack] = 
     {
       val currItemsBld = spfy.getPlaylistTracks(uuid, plid).build
-      val currItems = backOffLogic(currItemsBld.get.getItems)
-      currItems
+      val currItems : List[PlaylistTrack] = backOffLogic(currItemsBld.get.getItems).toList
+      val currItems2 = if(currItems.size()==100) {
+         val currItemsBld2 = spfy.getPlaylistTracks(uuid, plid).offset(100).build
+         currItems ++ backOffLogic(currItemsBld2.get.getItems)
+      }
+      else
+        currItems
+        
+        currItems2
     }
   
   def getPLName(uuid : String, plid : String) = 
@@ -213,7 +220,7 @@ class Spotify(spfy: Api) {
       implicit class Wrapper1(_tr: PlaylistTrack) { def matches(_tr2: Track) = _tr.getTrack.getId == _tr2.getId }
       def closure2(_fs: FoundSong2) = pltracks.exists(_.matches(_fs.track))
       val newtracks2 = tracks.filterNot(closure2)
-      println("adding " + newtracks2.size + " new tacks")
+      println("adding " + newtracks2.size + " new tracks out of " + tracks.size)
       newtracks2.foreach {  x => println(x.alt18Artist + ":" + x.alt18Name) }
       val newPLTrackUris2 = newtracks2.map(_.track.getUri).toList
       val distinctUris = newPLTrackUris2.distinct
@@ -437,7 +444,7 @@ object MyPlaylistsFromUnofficalPlaylist extends App {
   val spotify = Spotify()
   
   val uuid = "tyler_v2"
-  val plids = List("0wBkw63jf90ZoQIHz759No","7HPqQZHYXLlFnu6ssfZfga")
+  val plids = List("0wBkw63jf90ZoQIHz759No","7HPqQZHYXLlFnu6ssfZfga","3oQSkHECYyWQZNpQIoxaNV")
       
   // get tracks
   plids.map( plid => {
@@ -448,8 +455,14 @@ object MyPlaylistsFromUnofficalPlaylist extends App {
   val idx = plName.indexOf("20")
   val year = plName.substring(idx,idx+4)
   
+  println(year)
+  
   // convert to "foundsong type", for use with generic addToPL function
-  val fs = tracks.map( plt => FoundSong2(plt.getTrack.getName, plt.getTrack.getArtists.head.getName, plt.getTrack))
+  val fs = tracks.map( 
+      plt => FoundSong2(
+          plt.getTrack.getName,
+          plt.getTrack.getArtists.head.getName,
+          plt.getTrack))
   
   // add to all and annual playlist
   spotify.addToPL(spotify.getPLId("all18V2"), fs)
