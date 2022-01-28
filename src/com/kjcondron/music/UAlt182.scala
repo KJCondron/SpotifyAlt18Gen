@@ -1,11 +1,11 @@
 package com.kjcondron.music
 
-import com.wrapper.spotify._
-import com.wrapper.spotify.models.Track
-import com.wrapper.spotify.models.PlaylistTrack
+import com.wrapper.spotify.SpotifyApi
+import com.wrapper.spotify.model_objects.specification.Track
+import com.wrapper.spotify.model_objects.specification.PlaylistTrack
 
-import com.wrapper.spotify.exceptions.BadRequestException
-import com.wrapper.spotify.exceptions.ServerErrorException
+import com.wrapper.spotify.exceptions.detailed.BadRequestException
+import com.wrapper.spotify.exceptions._
 
 import scala.collection.JavaConversions.asScalaBuffer
 import scala.collection.JavaConversions.seqAsJavaList
@@ -40,7 +40,7 @@ object Util2 {
         Thread sleep 4000
         backOffLogic(g, count + 1)
       }
-      case s: ServerErrorException if (count < 10) => {
+      case s: SpotifyWebApiException if (count < 10) => {
         println("backing off (ServerErrorException):" + count)
         Thread sleep 4000
         backOffLogic(g, count + 1)
@@ -87,6 +87,10 @@ object funcs {
 
 }
 
+case class MyTrack2(artist : String, title : String)
+case class SpotifyTrack2(name : String, id : String)
+
+
 // if you make this impl GenTraversableOnce then
 // you can use coll.flatten to remove NoSong2s from List[SearchedSong2s]
 // like you can with Option (clever huh?)
@@ -101,9 +105,9 @@ sealed abstract class SearchedSong2 extends Ordered[SearchedSong2] {
 case class FoundSong2(alt18Name: String, alt18Artist: String, track: Track) extends SearchedSong2 {
   def spotifyName = track.getName
   def spotifyId = track.getId
-  def spotifyArtist(api: Api) =
+  def spotifyArtist(api: SpotifyApi) =
     try {
-      val tr = Util.backOffLogic(api.getTrack(spotifyId).build().get)
+      val tr = Util2.backOffLogic(api.getTrack(spotifyId).build().execute())
       /*val artists = track.getArtists
       println("got artists")
       val optH = artists.headOption
@@ -122,13 +126,14 @@ case class FoundSong2(alt18Name: String, alt18Artist: String, track: Track) exte
       case _ => false
     }
 }
-case class NoSong2(tr: MyTrack) extends SearchedSong2 {
 
+case class NoSong2(tr: MyTrack2) extends SearchedSong2 {
+ 
   override def alt18Name: String = tr.title
 
   override def equals(that: Any): Boolean =
     that match {
-      case ns: NoSong => ns.alt18Name == alt18Name
+      case ns: NoSong2 => ns.alt18Name == alt18Name
       case _ => false
     }
 }
@@ -136,27 +141,34 @@ case class NoSong2(tr: MyTrack) extends SearchedSong2 {
 import funcs._
 import Util2._
 
-class Spotify(spfy: Api) {
+class Spotify(val spfy: SpotifyApi) {
 
-  val uid = spfy.getMe.build.get.getId
+  val uid = spfy.getCurrentUsersProfile.build.execute.getId
 
-  def findSong(artist: String, title: String, mkt: String = "US"): List[Track] =
+  def findSong(
+      artist: String,
+      title: String,
+      mkt: com.neovisionaries.i18n.CountryCode = com.neovisionaries.i18n.CountryCode.US) : List[Track] =
     {
       val str = s"track:$title artist:$artist"
-      val items = backOffLogic(spfy.searchTracks(str).market(mkt).build.get.getItems)
+      val items = backOffLogic(spfy.searchTracks(str).market(mkt).build.execute.getItems)
       if (items.size == 0 && (title.contains("(") || artist.contains("(")))
         findSong(artist.takeWhile(_ != '('), title.takeWhile(_ != '('), mkt)
       else
         items.toList
     }
 
-  def findByTitle(title: String, mkt: String = "US"): List[Track] =
+  def findByTitle(
+      title: String,
+      mkt: com.neovisionaries.i18n.CountryCode = com.neovisionaries.i18n.CountryCode.US) : List[Track] =
     {
       val str = s"track:$title"
-      backOffLogic(spfy.searchTracks(str).market(mkt).build.get.getItems).toList
+      backOffLogic(spfy.searchTracks(str).market(mkt).build.execute.getItems).toList
     }
 
-  def findSpotify(tr: MyTrack, mkt: String = "US"): SearchedSong2 = {
+  def findSpotify(
+      tr: MyTrack2,
+      mkt: com.neovisionaries.i18n.CountryCode = com.neovisionaries.i18n.CountryCode.US): SearchedSong2 = {
     println("Looking for:" + tr.title + " by " + tr.artist)
     if (tr.artist.size > 0 && tr.title.size > 0) {
       val topTracks = findSong(tr.artist, tr.title, mkt)
@@ -189,21 +201,21 @@ class Spotify(spfy: Api) {
 
   def getPLTracks(plid: String, offset: Int = 0, acc: List[PlaylistTrack] = List()): List[PlaylistTrack] =
     {
-      val currItemsBld = spfy.getPlaylistTracks(uid, plid).offset(offset).build
-      val currItems = backOffLogic(currItemsBld.get.getItems)
+      val currItemsBld = spfy.getPlaylistsTracks(plid).offset(offset).build
+      val currItems = backOffLogic(currItemsBld.execute.getItems)
       if (currItems.size == 0)
         acc
       else
         getPLTracks(plid, offset + 100, acc ++ currItems)
     }
   
-  def getOtherPLTracks(uuid : String, plid: String) : List[PlaylistTrack] = 
+  def getOtherPLTracks(plid: String) : List[PlaylistTrack] = 
     {
-      val currItemsBld = spfy.getPlaylistTracks(uuid, plid).build
-      val currItems : List[PlaylistTrack] = backOffLogic(currItemsBld.get.getItems).toList
+      val currItemsBld = spfy.getPlaylistsTracks(plid).build
+      val currItems : List[PlaylistTrack] = backOffLogic(currItemsBld.execute.getItems).toList
       val currItems2 = if(currItems.size()==100) {
-         val currItemsBld2 = spfy.getPlaylistTracks(uuid, plid).offset(100).build
-         currItems ++ backOffLogic(currItemsBld2.get.getItems)
+         val currItemsBld2 = spfy.getPlaylistsTracks(plid).offset(100).build
+         currItems ++ backOffLogic(currItemsBld2.execute.getItems)
       }
       else
         currItems
@@ -211,8 +223,8 @@ class Spotify(spfy: Api) {
         currItems2
     }
   
-  def getPLName(uuid : String, plid : String) = 
-    spfy.getPlaylist(uuid, plid).build().get.getName
+  def getPLName(plid : String) = 
+    spfy.getPlaylist(plid).build().execute.getName
   
   def addToPL(plid: String, tracks: Iterable[FoundSong2]): Unit =
     {
@@ -224,38 +236,44 @@ class Spotify(spfy: Api) {
       newtracks2.foreach {  x => println(x.alt18Artist + ":" + x.alt18Name) }
       val newPLTrackUris2 = newtracks2.map(_.track.getUri).toList
       val distinctUris = newPLTrackUris2.distinct
-      addTracks(uid, plid, distinctUris)
+      addTracks(plid, distinctUris)
     }
 
-  def addTracks(uid: String, plid: String, tracks: List[String]): Unit =
+  def addTracks(plid: String, tracks: List[String]): Unit =
     if (tracks.size > 0) {
       val maxSize = 50
       if (tracks.size > maxSize)
-        addTracks(uid, plid, tracks.drop(maxSize))
-      val url = spfy.addTracksToPlaylist(uid, plid, tracks.take(maxSize)).build
-      backOffLogic(url.get)
+        addTracks(plid, tracks.drop(maxSize))
+      val url = spfy.addTracksToPlaylist(plid, tracks.take(maxSize).toArray).build
+      backOffLogic(url.execute)
     }
 
-  def getPL(name: String) = Try({
+  def getPL(uuid:String, name: String) = Try({
     println("trying to get:" + name)
-    val plpage = backOffLogic(spfy.getPlaylistsForUser(uid).limit(50).build.get)
+    val plpage = backOffLogic(spfy.getListOfUsersPlaylists(uuid).limit(50).build.execute)
     val pls = backOffLogic(plpage.getItems.filter(_.getName == name))
     pls.head
   }).toOption
+  
+  def getUsrPls(uuid:String) = Try({
+    println("trying to get playlists of:" + uuid)
+    val plpage = backOffLogic(spfy.getListOfUsersPlaylists(uuid).limit(50).build.execute)
+    plpage
+  }).toOption
 
-  def getPLId(name: String) = getPL(name).map(_.getId).
+  def getPLId(name: String) = getPL(uid, name).map(_.getId).
     getOrElse({
       println("creating:" + name)
-      spfy.createPlaylist(uid, name).build.get.getId
+      spfy.createPlaylist(uid, name).build.execute.getId
     })
-
+ 
   def makePlaylists(
     tracks: List[(String, List[String])],
     cache: SongCache,
     logLocation: String,
     bigPLName: String,
     plPre: String,
-    mkt: String = "US") =
+    mkt: com.neovisionaries.i18n.CountryCode = com.neovisionaries.i18n.CountryCode.US) =
     oMakePlaylists(tracks, Some(cache), logLocation, bigPLName, plPre, mkt)
 
   def oMakePlaylists(
@@ -264,7 +282,7 @@ class Spotify(spfy: Api) {
     logLocation: String,
     bigPLName: String,
     plPre: String,
-    mkt: String = "US") = {
+    mkt: com.neovisionaries.i18n.CountryCode = com.neovisionaries.i18n.CountryCode.US) = {
 
     val clean = (s: String) => s.replace(160.toChar, 32.toChar).replace('’', ''').replace("-", "–").trim.toLowerCase
 
@@ -279,24 +297,21 @@ class Spotify(spfy: Api) {
       if (at.size > 1) {
         val artist = at(0)
         val title = at(1)
-        Some(MyTrack(artist.toLowerCase, title))
+        Some(MyTrack2(artist.toLowerCase, title))
       } else
         None
     }
 
-    val pParse: PartialFunction[String, MyTrack] = Function.unlift((parse _))
+    val pParse: PartialFunction[String, MyTrack2] = Function.unlift((parse _))
 
     // parse.....removing un-parseable
     val parsed = allsongs.collect(pParse)
 
     def makeTrack(name: String, id: String) = {
-      val tr = new Track
-      tr.setName(name)
-      tr.setId(id)
-      tr.setUri("spotify:track:" + id)
-      tr
+      spfy.getTrack(id).build.execute
     }
-    val makeOrGet = (tr: MyTrack) => cache.flatMap(_.get(tr)).getOrElse(findSpotify(tr, mkt))
+    
+    val makeOrGet = (tr: MyTrack2) => cache.flatMap(_.get(tr)).getOrElse(findSpotify(tr, mkt))
     val f: PartialFunction[SearchedSong2, FoundSong2] = { case fs: FoundSong2 => fs }
     val nf: PartialFunction[SearchedSong2, NoSong2] = { case ns: NoSong2 => ns }
 
@@ -323,42 +338,79 @@ class Spotify(spfy: Api) {
 
 object Spotify {
 
-  val bldr = Api.builder.clientId("20212105b1764ecb81a226fca7796b4b")
-    .clientSecret("57a3b615f9be4b17b61361da94b35204")
+  val bldr = SpotifyApi.builder.setClientId("20212105b1764ecb81a226fca7796b4b")
+    .setClientSecret("35a98cd90f5d49dca804b9005d4e67ea")
 
   def apply(): Spotify = {
+    
+    println("connecting")
 
-    val _ref = "AQC0OxT6ayAimF5iie5cfjU2PNBa0Fxc1T56tUfGtC57zn3peIrPfeuFom31Gt9uMJHpjiJf486TUdnMVPrtDXs6W-xch6fjzukOKfVjvZk7iIrjNxerlpHvj36w1JXjqYI"
+    val _ref = "AQCVtM9Bokw9Mlbq-lfqRtwiejpKcUhhh0QXwC5eelPGt6z07OZyJbrOK4Sb4IwSuCQjfr17JFXVfRBbiUV5x7iWLppZ6e3h59J1UAo5f0ABdObNo30J0UF9tue2vnzoWjM"
 
     val accLoc = "acc.tmp"
     val accFile = new File(accLoc)
 
     def useAccess(tok: String) = {
-      val _api = Api.builder.accessToken(tok).build
-      _api.getMe.build.get // test it worked
+      val _api = SpotifyApi.builder.setAccessToken(tok).build
+      val id = _api.getCurrentUsersProfile.build.execute // test it worked
+      println("id is " + id)
       _api
     }
 
-    def tryAccess(fn: File): Try[Api] = Try(useAccess(io.Source.fromFile(fn, "utf-8").mkString))
+    def tryAccess(fn: File): Try[SpotifyApi] = Try(useAccess(io.Source.fromFile(fn, "utf-8").mkString))
 
-    val apix = if (accFile.exists) tryAccess(accFile).toOption
+    val apix : Option[SpotifyApi] = if (accFile.exists) tryAccess(accFile).toOption
     else {
       println("******NO FILE*********")
       accFile.createNewFile
       None
     }
 
-    def useRefresh() = {
-      val acc2Tk = bldr.refreshToken(_ref).build.refreshAccessToken.build.get.getAccessToken
-      accFile.delete
-      accFile.createNewFile
-      val writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(accFile), "UTF-8"));
-      writer.write(acc2Tk)
-      writer.close
-      Api.builder.accessToken(acc2Tk).build
+    def useRefresh() : Option[SpotifyApi] = {
+      println("refreshing access token")
+      val api = bldr.setRefreshToken(_ref).build
+      val auth = api.authorizationCodeRefresh().build();
+      val acc2Tk = auth.execute.getAccessToken
+      if(acc2Tk != null){
+        accFile.delete
+        accFile.createNewFile
+        val writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(accFile), "UTF-8"));
+        writer.write(acc2Tk)
+        writer.close
+        val api : SpotifyApi = SpotifyApi.builder.setAccessToken(acc2Tk).build
+        Some(api)
+      }
+      else
+        None
     }
-
-    val api2 = apix.getOrElse(useRefresh())
+    
+    // use this to get a code and update auth2
+    def useAuth() : SpotifyApi = {
+      println("using auth")
+      val api = bldr.setRedirectUri(new java.net.URI("http://localhost:8888/callback")).build()
+      val uri = api.authorizationCodeUri.build.execute
+      println(uri)
+      Thread.sleep(5*60*1000)
+      api
+    }
+    
+    def useAuth2 = {
+      val code = "AQDyox9snYMS_ktOplQBKyTOAHKEfgVVDXkD1aTlOPs1kGfHBTYhvIriN0CUJ3Vyi25KNoQUxCysXnXW713sTZ99cOWIBWS-r95b3Vu2QMWnCuS4mJ4Rv5wGGpUV3wE9Ypw0tIeedj3hx0z1lGHaf8LiO7-sRmIMEM9aiU1grJ23Cg"
+      
+      val api = bldr.setRedirectUri(new java.net.URI("http://localhost:8888/callback")).build()
+      
+      val auth = api.authorizationCode(code).build.execute
+      
+      api.setAccessToken(auth.getAccessToken());
+      api.setRefreshToken(auth.getRefreshToken());
+      
+      println("acc:"+auth.getAccessToken())
+      println("ref:"+auth.getRefreshToken())
+    
+     api
+    }
+    
+    val api2 = apix.getOrElse(useRefresh.getOrElse(useAuth2)) // useAuth to get login URL, login, get code from redirect update getAuth2 and run again
     new Spotify(api2)
 
   }
@@ -366,8 +418,8 @@ object Spotify {
 
 object SongCache {
 
-  def apply(oMap: Option[Map[(String, String), (String, String)]]): SongCache = new SongCache(oMap)
-  def apply(loc: String): SongCache = apply(load(loc))
+  def apply(spfy:SpotifyApi, oMap: Option[Map[(String, String), (String, String)]]): SongCache = new SongCache(spfy, oMap)
+  def apply(spfy:SpotifyApi, loc: String): SongCache = apply(spfy, load(loc))
 
   private def load(fileLoc: String) = {
     val songFile = new File(fileLoc)
@@ -377,14 +429,6 @@ object SongCache {
       if (entry.size != 4) println(line)
       ((entry(0), entry(1)), (entry(2), entry(3)))
     }).toMap)
-  }
-
-  private def makeTrack(name: String, id: String) = {
-    val tr = new Track
-    tr.setName(name)
-    tr.setId(id)
-    tr.setUri("spotify:track:" + id)
-    tr
   }
 
   def outputCache(loc: String, fss: List[FoundSong2]) =
@@ -401,20 +445,25 @@ object SongCache {
     }
 }
 
-class SongCache private (private val _theMap: Option[Map[(String, String), (String, String)]]) {
-  def getOrElse(key: MyTrack)(f: => SearchedSong2) =
+class SongCache private (private val spfy:SpotifyApi, private val _theMap: Option[Map[(String, String), (String, String)]]) {
+  def getOrElse(key: MyTrack2)(f: => SearchedSong2) =
     get(key).getOrElse(f)
 
-  def get(key: MyTrack): Option[FoundSong2] =
+  def get(key: MyTrack2): Option[FoundSong2] =
     _theMap.flatMap(_.get(key.title, key.artist)).map(
-      x => FoundSong2(key.title, key.artist, SongCache.makeTrack(x._1, x._2)))
+      x => FoundSong2(key.title, key.artist, makeTrack(x._1, x._2)))
 
   // maybe one day we can use this
   def update(key: (String, String), value: (String, String)) = {
     val currMap: Map[(String, String), (String, String)] = _theMap.getOrElse(Map())
     val newMap = currMap + (key -> value)
-    SongCache(Some(newMap))
+    SongCache(spfy, Some(newMap))
   }
+  
+  private def makeTrack(name: String, id: String) = {
+    spfy.getTrack(id).build.execute
+  }
+
 }
 
 import Util2._
@@ -431,8 +480,8 @@ object BuildAllPlaylist extends App {
   val cacheLoc = """C:\Users\KJCon\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs2.txt"""
   val logLoc = """C:\Users\KJCon\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\allsongs2.log"""
 
-  val cache = SongCache(cacheLoc)
-  val (nf, songs) = spotify.makePlaylists(alt18s, cache, logLoc, "all18V2", "alt18", "US")
+  val cache = SongCache(spotify.spfy, cacheLoc)
+  val (nf, songs) = spotify.makePlaylists(alt18s, cache, logLoc, "all18V2", "alt18", com.neovisionaries.i18n.CountryCode.US)
 
   val newCacheLoc = """C:\Users\KJCon\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\songs2.txt"""
   SongCache.outputCache(newCacheLoc, songs)
@@ -448,10 +497,10 @@ object MyPlaylistsFromUnofficalPlaylist extends App {
       
   // get tracks
   plids.map( plid => {
-  val tracks = spotify.getOtherPLTracks(uuid, plid)
+  val tracks = spotify.getOtherPLTracks(plid)
   
   // get year for this playlist
-  val plName = spotify.getPLName(uuid, plid)
+  val plName = spotify.getPLName(plid)
   val idx = plName.indexOf("20")
   val year = plName.substring(idx,idx+4)
   
@@ -492,7 +541,7 @@ object BuildShinePlaylist extends App {
   val songFileLoc2 = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\shineCache.txt"""
   val logLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\shineLog.txt"""
 
-  val cache = SongCache(songFileLoc2)
+  val cache = SongCache(spotify.spfy, songFileLoc2)
   val (nf, songs) = spotify.makePlaylists(shines, cache, logLoc, "Alt362", "")
   println("Found: " + songs.size + " songs")
   val newCacheLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\shineCache.txt"""
@@ -501,7 +550,7 @@ object BuildShinePlaylist extends App {
   println("NotFound In US: " + nf.size + " songs")
 
   // now try "GB" market....when everything is in the cache this is a bit of a waste
-  val (nf2, songs2) = spotify.makePlaylists(shines, cache, logLoc, "Alt362", "", "GB")
+  val (nf2, songs2) = spotify.makePlaylists(shines, cache, logLoc, "Alt362", "", com.neovisionaries.i18n.CountryCode.GB)
 
   println("NotFound: " + nf2.size + " songs")
 
@@ -528,7 +577,7 @@ object BuildBillboardPlaylist extends App {
   val songFileLoc2 = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\bbCache.txt"""
   val logLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\bbLog.txt"""
 
-  val cache = SongCache(songFileLoc2)
+  val cache = SongCache(spotify.spfy, songFileLoc2)
   val (nf, songs) = spotify.makePlaylists(List(("BBAdultPop", as)), cache, logLoc, "BBAdultPop", "")
   println("Found: " + songs.size + " songs")
   val newCacheLoc = """C:\Users\Karl\Documents\GitHub\SpotifyAlt18Gen\src\com\kjcondron\music\bbCache.txt"""
@@ -536,6 +585,20 @@ object BuildBillboardPlaylist extends App {
 
   println("NotFound: " + nf.size + " songs")
   nf.foreach(println)
+
+}
+
+object TestApp extends App {
+
+  val spotify = Spotify()
+  
+  val songs = spotify.findSong("Mika", "Grace Kelly")
+  
+  println(songs.size())
+  
+  val opls = spotify.getUsrPls("tyler_v2")
+  
+  opls.map( pls=> pls.getItems.map(pl=>println(pl.getName)) )
 
 }
 
